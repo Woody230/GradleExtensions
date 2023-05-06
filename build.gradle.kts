@@ -1,27 +1,9 @@
-plugins {
-    kotlin("jvm") version "1.8.20"
-    application
-}
-
 group = "io.github.woody230"
-version = "1.0-SNAPSHOT"
+version = "1.0.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-kotlin {
-    jvmToolchain(11)
-}
-
-application {
-    mainClass.set("MainKt")
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
