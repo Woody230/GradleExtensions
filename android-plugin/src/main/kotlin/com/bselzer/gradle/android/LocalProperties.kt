@@ -1,4 +1,4 @@
-package com.bselzer.gradle.android.plugin
+package com.bselzer.gradle.android
 
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.gradle.api.Project

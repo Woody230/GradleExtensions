@@ -5,6 +5,7 @@ vanniktech-publish = "0.25.2"
 [libraries]
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version = "8.0.0" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-multiplatform-gradle-plugin = { group = "org.jetbrains.kotlin.multiplatform", name = "org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-common", version.ref = "kotlin" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test-common", version.ref = "kotlin" }
 kotlin-test-annotations = { group = "org.jetbrains.kotlin", name = "kotlin-test-annotations-common", version.ref = "kotlin" }
