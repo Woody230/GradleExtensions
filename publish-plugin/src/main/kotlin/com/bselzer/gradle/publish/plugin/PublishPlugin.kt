@@ -11,12 +11,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
-import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.kotlin.gradle.plugin.extraProperties
 
 class PublishPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
-        plugins.apply(DokkaPlugin::class.java)
         plugins.apply(MavenPublishBasePlugin::class.java)
 
         val extension = extensions.create("publishExtension", PublishPluginExtension::class.java)
