@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     api(gradleApi())
-    api(projects.api)
+    implementation(projects.api)
     api(libs.kotlin.gradle.plugin)
     api(libs.vanniktech.publish.gradle.plugin)
     api(libs.dokka.gradle.plugin)
