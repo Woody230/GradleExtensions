@@ -5,30 +5,38 @@ import com.android.build.gradle.LibraryPlugin
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.getByType
 
 class AndroidPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(LibraryPlugin::class.java)
 
-        // TODO extension
-        val subgroupId = extensions.getByName("subgroupId")
+        val extension = extensions.create<AndroidExtension>("androidExtension")
+        extension.namespaceId.convention("com.bselzer")
+        extension.compileSdk.convention(33)
+        extension.minSdk.convention(21)
+        extension.testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
+        extension.sourceCompatability.convention(JavaVersion.VERSION_11)
+        extension.targetCompatability.convention(JavaVersion.VERSION_11)
 
-        with(extensions.getByType<LibraryExtension>()) {
-            namespace = "com.bselzer.$subgroupId.${project.name}".replace("-", ".")
-            compileSdk = 33
-            defaultConfig {
-                minSdk = 21
-                testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-            }
-            compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_11
-                targetCompatibility = JavaVersion.VERSION_11
-            }
-            testOptions {
-                unitTests {
-                    androidResources {
-                        isIncludeAndroidResources = true
+        afterEvaluate {
+            with(extensions.getByType<LibraryExtension>()) {
+                namespace = "${extension.namespaceId.get()}.${extension.subNamespaceId.get()}.${project.name}".replace("-", ".")
+                compileSdk = extension.compileSdk.get()
+                defaultConfig {
+                    minSdk = extension.minSdk.get()
+                    testInstrumentationRunner = extension.testInstrumentationRunner.get()
+                }
+                compileOptions {
+                    sourceCompatibility = extension.sourceCompatability.get()
+                    targetCompatibility = extension.targetCompatability.get()
+                }
+                testOptions {
+                    unitTests {
+                        androidResources {
+                            isIncludeAndroidResources = true
+                        }
                     }
                 }
             }
