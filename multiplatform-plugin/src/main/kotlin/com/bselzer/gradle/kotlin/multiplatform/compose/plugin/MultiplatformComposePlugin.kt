@@ -1,7 +1,7 @@
 package com.bselzer.gradle.kotlin.multiplatform.compose.plugin
 
 import com.android.build.gradle.LibraryExtension
-import com.bselzer.gradle.kotlin.multiplatform.plugin.libs
+import com.bselzer.gradle.kotlin.multiplatform.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create
