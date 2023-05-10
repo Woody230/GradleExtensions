@@ -1,10 +1,10 @@
-package com.bselzer.gradle.publish.plugin
+package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
 
 import org.gradle.api.provider.Property
 import org.gradle.api.publish.maven.MavenPomDeveloper
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 
-interface PublishPluginExtension {
+interface MultiplatformPublishPluginExtension {
     val groupId: Property<String>
     val subGroupId: Property<String>
     val artifactId: Property<String>

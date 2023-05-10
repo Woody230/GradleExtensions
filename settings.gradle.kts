@@ -17,4 +17,3 @@ rootProject.name = "GradleExtensions"
 include("api")
 include("multiplatform")
 include("multiplatform-plugin")
-include("publish-plugin")

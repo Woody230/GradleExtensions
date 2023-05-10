@@ -1,4 +1,4 @@
-package com.bselzer.gradle.publish.plugin
+package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
 
 import com.bselzer.gradle.api.containsKeys
 import com.bselzer.gradle.api.localProperties
@@ -13,11 +13,11 @@ import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.jetbrains.kotlin.gradle.plugin.extraProperties
 
-class PublishPlugin : Plugin<Project> {
+class MultiplatformPublishPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(MavenPublishBasePlugin::class.java)
 
-        val extension = extensions.create("publishExtension", PublishPluginExtension::class.java)
+        val extension = extensions.create("publishExtension", MultiplatformPublishPluginExtension::class.java)
         extension.groupId.convention("io.github.woody230")
         extension.artifactId.convention(name)
         extension.devs.convention { }
@@ -42,7 +42,7 @@ class PublishPlugin : Plugin<Project> {
         }
     }
 
-    private fun MavenPublishBaseExtension.configureCoordinates(extension: PublishPluginExtension) {
+    private fun MavenPublishBaseExtension.configureCoordinates(extension: MultiplatformPublishPluginExtension) {
         val groupId = "${extension.groupId.get()}.${extension.subGroupId.get()}"
         val artifactId = extension.artifactId.get()
         val version = extension.version.get()
@@ -78,7 +78,7 @@ class PublishPlugin : Plugin<Project> {
         scm { url.set(repo) }
     }
 
-    private fun MavenPublishBaseExtension.configurePom(project: Project, extension: PublishPluginExtension) = pom { pom ->
+    private fun MavenPublishBaseExtension.configurePom(project: Project, extension: MultiplatformPublishPluginExtension) = pom { pom ->
         pom.configure(
             name = "${extension.subGroupId.get()}-${project.name}",
             description = extension.description.get(),

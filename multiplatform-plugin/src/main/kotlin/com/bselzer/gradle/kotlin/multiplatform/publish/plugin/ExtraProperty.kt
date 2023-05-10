@@ -1,4 +1,4 @@
-package com.bselzer.gradle.publish.plugin
+package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
 
 internal object ExtraProperty {
     const val MAVEN_CENTRAL_USERNAME = "mavenCentralUsername"
