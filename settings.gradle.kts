@@ -14,7 +14,9 @@ plugins {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "GradleExtensions"
+include("android-desugar-plugin")
 include("android-plugin")
 include("api")
 include("multiplatform")
 include("multiplatform-plugin")
+include("multiplatform-publish-plugin")
