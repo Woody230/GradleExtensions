@@ -1,4 +1,4 @@
-package com.bselzer.gradle.kotlin.multiplatform.resources.plugin
+package com.bselzer.gradle.kotlin.multiplatform.resource.plugin
 
 import com.android.build.gradle.LibraryExtension
 import dev.icerock.gradle.MultiplatformResourcesPlugin
