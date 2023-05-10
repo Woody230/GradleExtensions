@@ -1,8 +1,11 @@
 package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
 
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.create
 
-val Project.publishExtension: MultiplatformPublishPluginExtension
-    get() = extensions.getByName("publishExtension") as MultiplatformPublishPluginExtension
+private const val EXTENSION_NAME = "multiplatformPublishExtension"
 
-fun Project.publishExtension(configure: MultiplatformPublishPluginExtension.() -> Unit) = publishExtension.apply(configure)
+val Project.multiplatformPublishExtension: MultiplatformPublishPluginExtension
+    get() = extensions.findByName(EXTENSION_NAME) as? MultiplatformPublishPluginExtension ?: extensions.create(EXTENSION_NAME)
+
+fun Project.multiplatformPublishExtension(configure: MultiplatformPublishPluginExtension.() -> Unit) = multiplatformPublishExtension.apply(configure)

@@ -11,7 +11,6 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
-import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.plugin.extraProperties
 
@@ -19,27 +18,26 @@ class MultiplatformPublishPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(MavenPublishBasePlugin::class.java)
 
-        val extension = extensions.create<MultiplatformPublishPluginExtension>("publishExtension")
-        extension.groupId.convention("io.github.woody230")
-        extension.artifactId.convention(name)
-        extension.devs.convention { }
+        val extension = multiplatformPublishExtension {
+            groupId.convention("io.github.woody230")
+            artifactId.convention(name)
+            devs.convention { }
+        }
 
         setupGradleProperties()
 
-        project.afterEvaluate {
-            with(extensions.getByType<MavenPublishBaseExtension>()) {
-                configureCoordinates(extension)
-                configurePom(project, extension)
-                configureMultiplatform()
+        with(extensions.getByType<MavenPublishBaseExtension>()) {
+            configureCoordinates(extension)
+            configurePom(project, extension)
+            configureMultiplatform()
 
-                publishToMavenCentral(
-                    host = SonatypeHost.S01,
-                    automaticRelease = false
-                )
+            publishToMavenCentral(
+                host = SonatypeHost.S01,
+                automaticRelease = false
+            )
 
-                if (localProperties.containsKeys(LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
-                    signAllPublications()
-                }
+            if (localProperties.containsKeys(LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
+                signAllPublications()
             }
         }
     }
