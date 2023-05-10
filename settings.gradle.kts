@@ -14,6 +14,7 @@ plugins {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "GradleExtensions"
+include("android-plugin")
 include("api")
 include("multiplatform")
 include("multiplatform-plugin")

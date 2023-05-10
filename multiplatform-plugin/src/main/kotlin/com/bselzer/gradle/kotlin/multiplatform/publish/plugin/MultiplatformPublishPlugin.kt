@@ -11,13 +11,15 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
+import org.gradle.kotlin.dsl.create
+import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.plugin.extraProperties
 
 class MultiplatformPublishPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(MavenPublishBasePlugin::class.java)
 
-        val extension = extensions.create("publishExtension", MultiplatformPublishPluginExtension::class.java)
+        val extension = extensions.create<MultiplatformPublishPluginExtension>("publishExtension")
         extension.groupId.convention("io.github.woody230")
         extension.artifactId.convention(name)
         extension.devs.convention { }
@@ -25,7 +27,7 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         setupGradleProperties()
 
         project.afterEvaluate {
-            with(extensions.getByType(MavenPublishBaseExtension::class.java)) {
+            with(extensions.getByType<MavenPublishBaseExtension>()) {
                 configureCoordinates(extension)
                 configurePom(project, extension)
                 configureMultiplatform()
@@ -55,21 +57,21 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         configure(platform)
     }
 
-    private fun MavenPom.configureLicenses() = licenses { licenses ->
-        licenses.license { license ->
-            license.name.set("The Apache Software License, Version 2.0")
-            license.url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-            license.distribution.set("repo")
+    private fun MavenPom.configureLicenses() = licenses {
+        license {
+            name.set("The Apache Software License, Version 2.0")
+            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+            distribution.set("repo")
         }
     }
 
-    private fun MavenPom.configureDevelopers(configure: MavenPomDeveloperSpec.() -> Unit) = developers { developers ->
-        configure(developers)
+    private fun MavenPom.configureDevelopers(configure: MavenPomDeveloperSpec.() -> Unit) = developers {
+        configure()
 
-        developers.developer { developer ->
-            developer.id.set("Woody230")
-            developer.name.set("Brandon Selzer")
-            developer.email.set("bselzer1@outlook.com")
+        developer {
+            id.set("Woody230")
+            name.set("Brandon Selzer")
+            email.set("bselzer1@outlook.com")
         }
     }
 
@@ -78,8 +80,8 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         scm { url.set(repo) }
     }
 
-    private fun MavenPublishBaseExtension.configurePom(project: Project, extension: MultiplatformPublishPluginExtension) = pom { pom ->
-        pom.configure(
+    private fun MavenPublishBaseExtension.configurePom(project: Project, extension: MultiplatformPublishPluginExtension) = pom {
+        configure(
             name = "${extension.subGroupId.get()}-${project.name}",
             description = extension.description.get(),
             devs = extension.devs.get(),
