@@ -9,17 +9,22 @@ interface MultiplatformPublishPluginExtension {
     val subGroupId: Property<String>
     val artifactId: Property<String>
     val version: Property<String>
+
+    /**
+     * The url to the repository of the project.
+     */
     val repository: Property<String>
 
     val description: Property<String>
-    val devs: Property<MavenPomDeveloperSpec.() -> Unit>
+
+    val developers: Property<MavenPomDeveloperSpec.() -> Unit>
 
     /**
      * Adds a developer to the [MavenPomDeveloperSpec].
      */
     fun developer(configure: MavenPomDeveloper.() -> Unit) {
-        val current = devs.get()
-        devs.set {
+        val current = developers.get()
+        developers.set {
             current()
             developer(configure)
         }

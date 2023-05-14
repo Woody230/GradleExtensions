@@ -2,17 +2,12 @@ package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
 
 import com.bselzer.gradle.api.containsKeys
 import com.bselzer.gradle.api.localProperties
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.MavenPublishBasePlugin
-import com.vanniktech.maven.publish.SonatypeHost
+import com.vanniktech.maven.publish.*
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.plugin.extraProperties
 
 class MultiplatformPublishPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
@@ -21,7 +16,7 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         val extension = multiplatformPublishExtension {
             groupId.convention("io.github.woody230")
             artifactId.convention(name)
-            devs.convention { }
+            developers.convention { }
         }
 
         setupGradleProperties()
@@ -29,7 +24,7 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         with(extensions.getByType<MavenPublishBaseExtension>()) {
             configureCoordinates(extension)
             configurePom(project, extension)
-            configureMultiplatform()
+            configurePlatform()
 
             publishToMavenCentral(
                 host = SonatypeHost.S01,
@@ -49,7 +44,7 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         coordinates(groupId, artifactId, version)
     }
 
-    private fun MavenPublishBaseExtension.configureMultiplatform() {
+    private fun MavenPublishBaseExtension.configurePlatform() {
         val jar = JavadocJar.Dokka("dokkaHtml")
         val platform = KotlinMultiplatform(javadocJar = jar)
         configure(platform)
@@ -82,7 +77,7 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         configure(
             name = "${extension.subGroupId.get()}-${project.name}",
             description = extension.description.get(),
-            devs = extension.devs.get(),
+            devs = extension.developers.get(),
             repo = extension.repository.get()
         )
     }
@@ -100,20 +95,20 @@ class MultiplatformPublishPlugin : Plugin<Project> {
         configureScm(repo)
     }
 
-    private fun Project.setupGradleProperties() = with(extraProperties) {
+    private fun Project.setupGradleProperties() = with(properties) {
         val localProperties = localProperties
 
         if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
-            set(ExtraProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
-            set(ExtraProperty.MAVEN_CENTRAL_PASSWORD, localProperties.getProperty(LocalProperty.SONATYPE_PASSWORD))
+            setProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
+            setProperty(GradleProperty.MAVEN_CENTRAL_PASSWORD, localProperties.getProperty(LocalProperty.SONATYPE_PASSWORD))
         }
 
         if (localProperties.containsKeys(LocalProperty.SIGNING_KEY_ID, LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
-            set(ExtraProperty.SIGNING_KEY_ID, localProperties.getProperty(LocalProperty.SIGNING_KEY_ID))
-            set(ExtraProperty.SIGNING_PASSWORD, localProperties.getProperty(LocalProperty.SIGNING_PASSWORD))
+            setProperty(GradleProperty.SIGNING_KEY_ID, localProperties.getProperty(LocalProperty.SIGNING_KEY_ID))
+            setProperty(GradleProperty.SIGNING_PASSWORD, localProperties.getProperty(LocalProperty.SIGNING_PASSWORD))
 
             val keyPath = localProperties.getProperty(LocalProperty.SIGNING_KEY)
-            set(ExtraProperty.SIGNING_KEY, project.file(keyPath).readText())
+            setProperty(GradleProperty.SIGNING_KEY, project.file(keyPath).readText())
         }
     }
 }

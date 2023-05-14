@@ -31,6 +31,9 @@ test-implementation = ["kotlin-test", "kotlin-test-annotations", "kotlin-test-ju
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 compose = { id = "org.jetbrains.compose", version.ref = "multiplatform-compose" }
+dsl = { id = "org.gradle.kotlin.kotlin-dsl", version = "4.0.7" }
+gradle-publish = { id = "com.gradle.plugin-publish", version = "1.2.0" }
+java = { id = "org.gradle.java-gradle-plugin" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }

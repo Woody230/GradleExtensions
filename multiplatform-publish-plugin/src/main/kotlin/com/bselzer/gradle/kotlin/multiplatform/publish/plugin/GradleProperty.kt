@@ -1,6 +1,6 @@
 package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
 
-internal object ExtraProperty {
+internal object GradleProperty {
     const val MAVEN_CENTRAL_USERNAME = "mavenCentralUsername"
     const val MAVEN_CENTRAL_PASSWORD = "mavenCentralPassword"
     const val SIGNING_KEY_ID = "signingInMemoryKeyId"
