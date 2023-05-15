@@ -11,11 +11,13 @@ import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.kotlin.dsl.getByType
 
-class MavenPublishPlugin : Plugin<Project> {
+abstract class MavenPublishPlugin : Plugin<Project> {
+    abstract val mavenPublishExtension: MavenPublishPluginExtension
+
     override fun apply(project: Project) = with(project) {
         plugins.apply(MavenPublishBasePlugin::class.java)
 
-        val extension = mavenPublishExtension {
+        val extension = mavenPublishExtension.apply {
             groupId.convention("io.github.woody230")
             artifactId.convention(name)
             developers.convention { }
