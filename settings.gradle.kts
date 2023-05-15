@@ -17,6 +17,7 @@ rootProject.name = "GradleExtensions"
 include("android-desugar-plugin")
 include("android-plugin")
 include("api")
+include("maven-publish-plugin")
 include("multiplatform")
 include("multiplatform-compose-plugin")
 include("multiplatform-plugin")
