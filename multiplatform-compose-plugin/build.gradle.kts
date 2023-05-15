@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.dsl)
-    alias(libs.plugins.jvm)
+    id(libs.plugins.java.get().pluginId)
+    alias(libs.plugins.gradle.publish)
 }
 
 dependencies {

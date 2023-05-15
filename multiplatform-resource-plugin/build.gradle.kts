@@ -1,12 +1,6 @@
 plugins {
-    alias(libs.plugins.dsl)
-    alias(libs.plugins.jvm)
-}
-
-buildscript {
-    dependencies {
-        classpath(libs.moko.resources.generator)
-    }
+    id(libs.plugins.java.get().pluginId)
+    alias(libs.plugins.gradle.publish)
 }
 
 dependencies {
