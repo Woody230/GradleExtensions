@@ -24,3 +24,11 @@ include("multiplatform-plugin")
 include("multiplatform-publish-plugin")
 include("multiplatform-resource-plugin")
 include("plugin-publish-plugin")
+
+includeBuild("build-publish-plugin") {
+    dependencySubstitution {
+        val module = module("io.github.woody230.gradle:plugin-publish-plugin")
+        val project = project(":plugin-publish-plugin")
+        substitute(module).using(project)
+    }
+}

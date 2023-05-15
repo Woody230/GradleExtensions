@@ -17,12 +17,6 @@ buildscript {
     }
 
     dependencies {
-        classpath(libs.kotlin.dsl.gradle.plugin)
         classpath(libs.moko.resources.generator)
     }
-}
-
-subprojects {
-    apply(plugin = rootProject.libs.plugins.dsl.get().pluginId)
-    apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
 }
