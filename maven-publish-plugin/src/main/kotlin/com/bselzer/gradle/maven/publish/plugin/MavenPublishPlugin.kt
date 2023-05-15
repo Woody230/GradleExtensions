@@ -4,6 +4,7 @@ import com.bselzer.gradle.api.containsKeys
 import com.bselzer.gradle.api.localProperties
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.MavenPublishBasePlugin
+import com.vanniktech.maven.publish.Platform
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -12,7 +13,9 @@ import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.kotlin.dsl.getByType
 
 abstract class MavenPublishPlugin : Plugin<Project> {
-    abstract val mavenPublishExtension: MavenPublishPluginExtension
+    protected abstract val Project.mavenPublishExtension: MavenPublishPluginExtension
+
+    protected abstract val Project.mavenPublishPlatform: Platform
 
     override fun apply(project: Project) = with(project) {
         plugins.apply(MavenPublishBasePlugin::class.java)
@@ -28,6 +31,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         with(extensions.getByType<MavenPublishBaseExtension>()) {
             configureCoordinates(extension)
             configurePom(project, extension)
+            configure(project.mavenPublishPlatform)
 
             publishToMavenCentral(
                 host = SonatypeHost.S01,

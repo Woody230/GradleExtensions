@@ -1,20 +1,11 @@
 package com.bselzer.gradle.plugin.publish.plugin
 
+import com.bselzer.gradle.maven.publish.plugin.MavenPublishPluginExtension
 import org.gradle.api.Project
 import org.gradle.api.provider.ListProperty
-import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.newInstance
 
-interface PluginPublishPluginExtension {
-    val groupId: Property<String>
-    val subGroupId: Property<String>
-    val version: Property<String>
-
-    /**
-     * The url to the repository of the project.
-     */
-    val repository: Property<String>
-
+interface PluginPublishPluginExtension : MavenPublishPluginExtension {
     /**
      * Common tags to apply to all plugins.
      */

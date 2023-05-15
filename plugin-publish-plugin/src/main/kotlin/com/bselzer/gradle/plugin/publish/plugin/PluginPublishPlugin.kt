@@ -2,42 +2,43 @@ package com.bselzer.gradle.plugin.publish.plugin
 
 import com.bselzer.gradle.api.containsKeys
 import com.bselzer.gradle.api.localProperties
+import com.bselzer.gradle.maven.publish.plugin.MavenPublishPlugin
+import com.bselzer.gradle.maven.publish.plugin.MavenPublishPluginExtension
 import com.vanniktech.maven.publish.GradlePublishPlugin
-import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.MavenPublishBasePlugin
+import com.vanniktech.maven.publish.Platform
 import org.gradle.api.NamedDomainObjectContainer
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.PluginDeclaration
 
-class PluginPublishPlugin : Plugin<Project> {
+class PluginPublishPlugin : MavenPublishPlugin() {
+    override val Project.mavenPublishPlatform: Platform
+        get() = GradlePublishPlugin()
+
+    override val Project.mavenPublishExtension: MavenPublishPluginExtension
+        get() = pluginPublishExtension
+
     override fun apply(project: Project) = with(project) {
-        plugins.apply(MavenPublishBasePlugin::class.java)
+        super.apply(project)
 
         val extension = pluginPublishExtension {
-            groupId.convention("io.github.woody230")
             tags.convention(emptyList())
         }
 
-        group = "${extension.groupId}.${extension.subGroupId}"
-        version = extension.version
+        group = "${extension.groupId.get()}.${extension.subGroupId.get()}"
+        version = extension.version.get()
 
         setupGradleProperties()
 
         with(extensions.getByType<GradlePluginDevelopmentExtension>()) {
             website.set(extension.repository)
-            vcsUrl.set("${extension.repository}.git")
+            vcsUrl.set("${extension.repository.get()}.git")
             plugins {
                 extension.plugins.get().forEach { plugin ->
                     configurePlugin(extension, plugin)
                 }
             }
-        }
-
-        with(extensions.getByType<MavenPublishBaseExtension>()) {
-            configurePlatform()
         }
     }
 
@@ -46,7 +47,7 @@ class PluginPublishPlugin : Plugin<Project> {
         plugin: com.bselzer.gradle.plugin.publish.plugin.PluginDeclaration,
     ) {
         create(plugin.name.get()) {
-            id = "${extension.groupId}.${extension.subGroupId}.${plugin.name}"
+            id = "${extension.groupId.get()}.${extension.subGroupId.get()}.${plugin.name.get()}"
             displayName = plugin.displayName.get()
             description = plugin.description.get()
             implementationClass = plugin.className.get()
@@ -54,11 +55,6 @@ class PluginPublishPlugin : Plugin<Project> {
             tags.addAll(extension.tags)
             tags.addAll(plugin.tags)
         }
-    }
-
-    private fun MavenPublishBaseExtension.configurePlatform() {
-        val platform = GradlePublishPlugin()
-        configure(platform)
     }
 
     private fun Project.setupGradleProperties() = with(properties) {
