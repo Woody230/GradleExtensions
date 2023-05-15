@@ -45,8 +45,6 @@ class PluginPublishPlugin : Plugin<Project> {
         extension: PluginPublishPluginExtension,
         plugin: com.bselzer.gradle.plugin.publish.plugin.PluginDeclaration,
     ) {
-        plugin.displayName.convention(plugin.name)
-
         create(plugin.name.get()) {
             id = "${extension.groupId}.${extension.subGroupId}.${plugin.name}"
             displayName = plugin.displayName.get()

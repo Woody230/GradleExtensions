@@ -1,7 +1,7 @@
-group = "io.github.woody230"
-version = "1.0.0-SNAPSHOT"
-
 allprojects {
+    group = "io.github.woody230.gradle"
+    version = "1.0.0-SNAPSHOT"
+
     repositories {
         google()
         mavenCentral()
