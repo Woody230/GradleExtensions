@@ -6,7 +6,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.io.File
 
-class MultiplatformResourcesPlugin : Plugin<Project> {
+class MultiplatformMokoResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(MultiplatformResourcesPlugin::class.java)
 
