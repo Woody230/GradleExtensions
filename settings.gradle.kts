@@ -20,6 +20,8 @@ include("api")
 project(":api").projectDir = File("build-common/api")
 
 include("maven-publish-plugin")
+project(":maven-publish-plugin").projectDir = File("build-common/maven-publish-plugin")
+
 include("multiplatform")
 include("multiplatform-compose-plugin")
 include("multiplatform-plugin")
