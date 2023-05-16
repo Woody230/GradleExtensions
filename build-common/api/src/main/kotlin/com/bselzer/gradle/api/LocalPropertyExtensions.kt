@@ -4,7 +4,7 @@ import org.gradle.api.Project
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStreamReader
-import java.util.Properties
+import java.util.*
 
 val Project.localProperties: Properties
     get() {
