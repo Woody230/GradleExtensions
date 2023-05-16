@@ -30,7 +30,6 @@ include("multiplatform-plugin")
 include("multiplatform-publish-plugin")
 include("multiplatform-resource-plugin")
 
-
 includeBuild("build-common") {
     dependencySubstitution {
         val module = module("io.github.woody230.gradle:plugin-publish-plugin")
@@ -38,3 +37,5 @@ includeBuild("build-common") {
         substitute(module).using(project)
     }
 }
+
+includeBuild("build-plugins")
