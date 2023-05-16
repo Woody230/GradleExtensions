@@ -10,6 +10,6 @@ plugins {
 }
 
 dependencies {
-    api(projects.api)
-    api(projects.multiplatform)
+    api(libs.woody230.gradle.api)
+    api(libs.woody230.gradle.multiplatform)
 }

@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(projects.api)
+    api(libs.woody230.gradle.api)
     api(libs.moko.resources.gradle.plugin)
     implementation(projects.androidPlugin)
     implementation(projects.multiplatformPublishPlugin)

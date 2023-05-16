@@ -10,8 +10,8 @@ plugins {
 }
 
 dependencies {
-    api(projects.api)
+    api(libs.woody230.gradle.api)
     api(libs.kotlin.gradle.plugin)
     api(libs.dokka.gradle.plugin)
-    implementation(projects.mavenPublishPlugin)
+    implementation(libs.woody230.gradle.maven.publish)
 }
