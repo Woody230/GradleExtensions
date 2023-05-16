@@ -17,3 +17,6 @@ rootProject.name = "build-plugins"
 include("android-desugar-plugin")
 include("android-plugin")
 include("multiplatform-compose-plugin")
+include("multiplatform-plugin")
+include("multiplatform-publish-plugin")
+include("multiplatform-resource-plugin")

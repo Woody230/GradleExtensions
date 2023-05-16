@@ -31,8 +31,11 @@ project(":android-plugin").projectDir = File("build-plugins/android-plugin")
 include("multiplatform-compose-plugin")
 project(":multiplatform-compose-plugin").projectDir = File("build-plugins/multiplatform-compose-plugin")
 include("multiplatform-plugin")
+project(":multiplatform-plugin").projectDir = File("build-plugins/multiplatform-plugin")
 include("multiplatform-publish-plugin")
+project(":multiplatform-publish-plugin").projectDir = File("build-plugins/multiplatform-publish-plugin")
 include("multiplatform-resource-plugin")
+project(":multiplatform-resource-plugin").projectDir = File("build-plugins/multiplatform-resource-plugin")
 
 includeBuild("build-common") {
     dependencySubstitution {
