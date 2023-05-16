@@ -25,7 +25,7 @@ include("multiplatform-publish-plugin")
 include("multiplatform-resource-plugin")
 include("plugin-publish-plugin")
 
-includeBuild("build-publish-plugin") {
+includeBuild("build-common") {
     dependencySubstitution {
         val module = module("io.github.woody230.gradle:plugin-publish-plugin")
         val project = project(":plugin-publish-plugin")
