@@ -14,20 +14,22 @@ plugins {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "GradleExtensions"
-include("android-desugar-plugin")
-include("android-plugin")
+
 include("api")
 project(":api").projectDir = File("build-common/api")
-
 include("maven-publish-plugin")
 project(":maven-publish-plugin").projectDir = File("build-common/maven-publish-plugin")
+include("plugin-publish-plugin")
+project(":plugin-publish-plugin").projectDir = File("build-common/plugin-publish-plugin")
 
+include("android-desugar-plugin")
+include("android-plugin")
 include("multiplatform")
 include("multiplatform-compose-plugin")
 include("multiplatform-plugin")
 include("multiplatform-publish-plugin")
 include("multiplatform-resource-plugin")
-include("plugin-publish-plugin")
+
 
 includeBuild("build-common") {
     dependencySubstitution {
