@@ -25,6 +25,7 @@ project(":plugin-publish-plugin").projectDir = File("build-common/plugin-publish
 include("android-desugar-plugin")
 project(":android-desugar-plugin").projectDir = File("build-plugins/android-desugar-plugin")
 include("android-plugin")
+project(":android-plugin").projectDir = File("build-plugins/android-plugin")
 include("multiplatform")
 include("multiplatform-compose-plugin")
 include("multiplatform-plugin")

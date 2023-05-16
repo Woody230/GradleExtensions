@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "build-plugins"
 include("android-desugar-plugin")
+include("android-plugin")
