@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    alias(libs.plugins.jvm)
+    id(libs.plugins.jvm.get().pluginId)
 }
 
 dependencies {

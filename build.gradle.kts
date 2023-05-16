@@ -5,7 +5,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven("https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
     }
 }
 
@@ -13,10 +13,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven("https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
     }
 
     dependencies {
         classpath(libs.moko.resources.generator)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.woody230.gradle.plugin.publish)
     }
 }

@@ -2,7 +2,7 @@ plugins {
     id(libs.plugins.java.get().pluginId)
     alias(libs.plugins.gradle.publish)
     `kotlin-dsl`
-    alias(libs.plugins.jvm)
+    id(libs.plugins.jvm.get().pluginId)
 }
 
 dependencies {

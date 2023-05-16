@@ -2,7 +2,7 @@ plugins {
     id(libs.plugins.java.get().pluginId)
     alias(libs.plugins.gradle.publish)
     `kotlin-dsl`
-    alias(libs.plugins.jvm)
+    id(libs.plugins.jvm.get().pluginId)
 }
 
 dependencies {
@@ -10,4 +10,19 @@ dependencies {
     api(libs.vanniktech.publish.gradle.plugin)
     api(libs.dokka.gradle.plugin)
     implementation(projects.mavenPublishPlugin)
+}
+
+gradlePlugin {
+    website.set("https://github.com/Woody230/KotlinExtensions")
+    vcsUrl.set("https://github.com/Woody230/KotlinExtensions.git")
+
+    plugins {
+        val id = libs.plugins.woody230.gradle.plugin.publish.get().pluginId
+        create(id) {
+            this.id = id
+            displayName = "Plugin Publishing"
+            description = "Internal publishing for gradle plugins."
+            implementationClass = "com.bselzer.gradle.plugin.publish.plugin.PluginPublishPlugin"
+        }
+    }
 }

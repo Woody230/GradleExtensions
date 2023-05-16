@@ -13,6 +13,10 @@ dependencyResolutionManagement {
     }
 }
 
+// TODO feature preview https://docs.gradle.org/8.1.1/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "build-publish-plugin"
 include("api")
 include("maven-publish-plugin")
 include("plugin-publish-plugin")

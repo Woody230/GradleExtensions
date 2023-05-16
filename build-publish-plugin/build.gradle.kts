@@ -2,6 +2,18 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven("https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
+    }
+}
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath(libs.kotlin.gradle.plugin)
     }
 }
