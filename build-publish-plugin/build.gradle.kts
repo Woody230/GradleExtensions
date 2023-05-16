@@ -15,5 +15,6 @@ buildscript {
 
     dependencies {
         classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.publish.gradle.plugin)
     }
 }

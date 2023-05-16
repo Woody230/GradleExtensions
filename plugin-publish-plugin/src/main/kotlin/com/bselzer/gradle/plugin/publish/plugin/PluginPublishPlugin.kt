@@ -11,6 +11,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.PluginDeclaration
+import org.gradle.plugin.devel.plugins.JavaGradlePluginPlugin
 
 class PluginPublishPlugin : MavenPublishPlugin() {
     override val Project.mavenPublishPlatform: Platform
@@ -21,6 +22,8 @@ class PluginPublishPlugin : MavenPublishPlugin() {
 
     override fun apply(project: Project) = with(project) {
         super.apply(project)
+
+        plugins.apply(JavaGradlePluginPlugin::class.java)
 
         val extension = pluginPublishExtension {
             tags.convention(emptyList())
@@ -35,7 +38,11 @@ class PluginPublishPlugin : MavenPublishPlugin() {
             website.set(extension.repository)
             vcsUrl.set("${extension.repository.get()}.git")
             plugins {
-                extension.plugins.get().forEach { plugin ->
+                val plugins = extension.plugins.get()
+                check(plugins.isNotEmpty()) { "At least one plugin must be published." }
+
+                plugins.forEach { plugin ->
+                    plugin.description.convention(mavenPublishExtension.description.get())
                     configurePlugin(extension, plugin)
                 }
             }
