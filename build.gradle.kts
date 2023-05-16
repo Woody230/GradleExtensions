@@ -8,18 +8,3 @@ allprojects {
         gradlePluginPortal()
     }
 }
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-
-    dependencies {
-        classpath(libs.moko.resources.generator)
-        classpath(libs.kotlin.gradle.plugin)
-        classpath(libs.woody230.gradle.plugin.publish)
-        classpath(libs.publish.gradle.plugin)
-    }
-}
