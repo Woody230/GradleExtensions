@@ -14,5 +14,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "build-common-plugins"
+include("jvm-publish-plugin")
 include("maven-publish-plugin")
 include("plugin-publish-plugin")

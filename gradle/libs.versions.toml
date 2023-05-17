@@ -41,4 +41,5 @@ java = { id = "org.gradle.java-gradle-plugin" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
+woody230-gradle-jvm-publish = { id = "io.github.woody230.gradle.jvm.publish" }
 woody230-gradle-plugin-publish = { id = "io.github.woody230.gradle.plugin.publish" }
