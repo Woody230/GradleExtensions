@@ -14,8 +14,8 @@ dependencies {
 }
 
 gradlePlugin {
-    website.set("https://github.com/Woody230/KotlinExtensions")
-    vcsUrl.set("https://github.com/Woody230/KotlinExtensions.git")
+    website.set("https://github.com/Woody230/GradleExtensions")
+    vcsUrl.set("https://github.com/Woody230/GradleExtensions.git")
 
     plugins {
         val id = libs.plugins.woody230.gradle.plugin.publish.get().pluginId
