@@ -1,7 +1,7 @@
 package com.bselzer.gradle.plugin.publish.plugin
 
-import com.bselzer.gradle.api.containsKeys
-import com.bselzer.gradle.api.localProperties
+import com.bselzer.gradle.properties.containsKeys
+import com.bselzer.gradle.properties.localProperties
 import com.bselzer.gradle.maven.publish.plugin.MavenPublishPlugin
 import com.bselzer.gradle.maven.publish.plugin.MavenPublishPluginExtension
 import com.vanniktech.maven.publish.GradlePublishPlugin

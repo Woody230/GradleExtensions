@@ -1,4 +1,4 @@
-package com.bselzer.gradle.api
+package com.bselzer.gradle.properties
 
 import org.gradle.api.Project
 import java.io.File
