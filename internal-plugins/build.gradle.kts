@@ -31,7 +31,7 @@ subprojects {
 
     pluginPublishExtension {
         subGroupId.set("gradle")
-        version.set("1.0.0")
+        version.set(rootProject.libs.versions.woody230.gradle)
         repository.set("https://github.com/Woody230/GradleExtensions")
     }
 

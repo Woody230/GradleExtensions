@@ -18,7 +18,11 @@ gradlePlugin {
 
 mavenPublishing {
     configure(GradlePublishPlugin())
-    coordinates(groupId = group.toString(), artifactId = name, version = version.toString())
+
+    val group = "io.github.woody230.gradle"
+    val version = libs.versions.woody230.gradle.get()
+    coordinates(groupId = group, artifactId = name, version = version)
+
     pom {
         name.set("gradle-${project.name}")
 
