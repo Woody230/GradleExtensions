@@ -1,4 +1,4 @@
-package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
+package com.bselzer.gradle.multiplatform.publish.plugin
 
 import com.bselzer.gradle.maven.publish.plugin.MavenPublishPluginExtension
 

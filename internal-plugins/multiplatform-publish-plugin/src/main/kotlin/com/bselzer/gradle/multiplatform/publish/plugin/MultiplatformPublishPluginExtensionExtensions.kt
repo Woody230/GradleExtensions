@@ -1,4 +1,4 @@
-package com.bselzer.gradle.kotlin.multiplatform.publish.plugin
+package com.bselzer.gradle.multiplatform.publish.plugin
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create

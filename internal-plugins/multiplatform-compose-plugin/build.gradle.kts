@@ -18,6 +18,6 @@ pluginPublishExtension {
     plugin {
         name.set("multiplatform-compose")
         displayName.set("Compose Multiplatform Plugin")
-        className.set("com.bselzer.gradle.kotlin.multiplatform.compose.plugin.MultiplatformComposePlugin")
+        className.set("com.bselzer.gradle.multiplatform.compose.plugin.MultiplatformComposePlugin")
     }
 }

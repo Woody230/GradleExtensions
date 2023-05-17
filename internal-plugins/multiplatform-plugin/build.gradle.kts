@@ -15,6 +15,6 @@ pluginPublishExtension {
     plugin {
         name.set("multiplatform")
         displayName.set("Kotlin Multiplatform Plugin")
-        className.set("com.bselzer.gradle.kotlin.multiplatform.plugin.MultiplatformPlugin")
+        className.set("com.bselzer.gradle.multiplatform.plugin.MultiplatformPlugin")
     }
 }

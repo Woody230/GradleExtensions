@@ -1,4 +1,4 @@
-package com.bselzer.gradle.kotlin.multiplatform.compose.plugin
+package com.bselzer.gradle.multiplatform.compose.plugin
 
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project

@@ -1,4 +1,4 @@
-package com.bselzer.gradle.kotlin.multiplatform.plugin
+package com.bselzer.gradle.multiplatform.plugin
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create
