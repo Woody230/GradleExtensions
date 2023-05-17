@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
-class KotlinMultiplatformDependencies(
+class MultiplatformDependencies(
     private val extension: KotlinProjectExtension
 ) {
     fun commonMain(configure: KotlinDependencyHandler.() -> Unit) = extension.sourceSets.commonMain.dependencies(configure)
@@ -17,4 +17,4 @@ class KotlinMultiplatformDependencies(
     fun androidInstrumentedTest(configure: KotlinDependencyHandler.() -> Unit) = extension.sourceSets.androidInstrumentedTest.dependencies(configure)
 }
 
-fun Project.kotlinMultiplatformDependencies(configure: KotlinMultiplatformDependencies.() -> Unit) = KotlinMultiplatformDependencies(kotlinExtension).apply(configure)
+fun Project.multiplatformDependencies(configure: MultiplatformDependencies.() -> Unit) = MultiplatformDependencies(kotlinExtension).apply(configure)
