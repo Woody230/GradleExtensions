@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    api(projects.api)
+    api(libs.woody230.gradle.api)
     api(libs.kotlin.gradle.plugin)
     api(libs.vanniktech.publish.gradle.plugin)
 }

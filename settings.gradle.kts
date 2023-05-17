@@ -15,20 +15,20 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "GradleExtensions"
 
-includeBuild("build-common") {
-    val substitutions = mapOf(
-        "io.github.woody230.gradle:api" to ":api",
-        "io.github.woody230.gradle:maven-publish-plugin" to ":maven-publish-plugin",
-        "io.github.woody230.gradle:multiplatform" to ":multiplatform",
-        "io.github.woody230.gradle:plugin-publish-plugin" to ":plugin-publish-plugin",
-    )
-
-    for (substitution in substitutions) {
-        dependencySubstitution {
-            val module = module(substitution.key)
-            val project = project(substitution.value)
-            substitute(module).using(project)
-        }
+fun ConfigurableIncludedBuild.substitute(substitution: Pair<String, String>) {
+    dependencySubstitution {
+        val module = module(substitution.first)
+        val project = project(substitution.second)
+        substitute(module).using(project)
     }
+}
+
+includeBuild("build-common") {
+    substitute("io.github.woody230.gradle:api" to ":api")
+    substitute("io.github.woody230.gradle:multiplatform" to ":multiplatform")
+}
+includeBuild("build-common-plugins") {
+    substitute("io.github.woody230.gradle:maven-publish-plugin" to ":maven-publish-plugin")
+    substitute("io.github.woody230.gradle:plugin-publish-plugin" to ":plugin-publish-plugin")
 }
 includeBuild("build-plugins")

@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(projects.api)
+    api(libs.woody230.gradle.api)
     api(libs.vanniktech.publish.gradle.plugin)
     api(libs.dokka.gradle.plugin)
     api(libs.publish.gradle.plugin)

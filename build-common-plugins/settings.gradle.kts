@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "build-common"
-include("api")
-include("multiplatform")
+rootProject.name = "build-common-plugins"
+include("maven-publish-plugin")
+include("plugin-publish-plugin")
