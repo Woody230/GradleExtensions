@@ -1,13 +1,21 @@
+import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+
 plugins {
-    id(libs.plugins.java.get().pluginId)
-    id(libs.plugins.gradle.publish.get().pluginId)
     `kotlin-dsl`
-    id(libs.plugins.jvm.get().pluginId)
 }
 
 dependencies {
-    api(libs.woody230.gradle.properties)
     api(libs.moko.resources.gradle.plugin)
     implementation(projects.androidPlugin)
     implementation(projects.multiplatformPublishPlugin)
+}
+
+pluginPublishExtension {
+    description.set("Applies the Moko Resources plugin for Kotlin Multiplatform.")
+
+    plugin {
+        name.set("multiplatform-resource")
+        displayName.set("Kotlin Multiplatform Moko Resources Plugin")
+        className.set("com.bselzer.gradle.kotlin.multiplatform.resource.plugin.MultiplatformMokoResourcesPlugin")
+    }
 }

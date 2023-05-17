@@ -14,7 +14,7 @@ gradlePlugin {
         val id = libs.plugins.woody230.gradle.jvm.publish.get().pluginId
         create(id) {
             this.id = id
-            displayName = "Kotlin JVM Project Publishing"
+            displayName = "Kotlin JVM Project Publishing Plugin"
             description = pluginDescription
             implementationClass = "com.bselzer.gradle.jvm.publish.plugin.JvmPublishPlugin"
         }

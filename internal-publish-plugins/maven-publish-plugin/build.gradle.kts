@@ -14,7 +14,7 @@ gradlePlugin {
         val id = libs.plugins.woody230.gradle.maven.publish.get().pluginId
         create(id) {
             this.id = id
-            displayName = "Maven Publishing"
+            displayName = "Maven Publishing Plugin"
             description = pluginDescription
             implementationClass = "com.bselzer.gradle.maven.publish.plugin.MavenPublishPlugin"
         }
