@@ -39,3 +39,8 @@ subprojects {
         apply(plugin = rootProject.libs.plugins.woody230.gradle.plugin.publish.get().pluginId)
     }
 }
+
+tasks.register("publishBuildToMavenLocal") {
+    val tasks = getTasksByName("publishToMavenLocal", true)
+    dependsOn(tasks)
+}
