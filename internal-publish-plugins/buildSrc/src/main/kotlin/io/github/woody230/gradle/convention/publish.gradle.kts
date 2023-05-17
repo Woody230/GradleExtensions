@@ -1,5 +1,7 @@
 package io.github.woody230.gradle.convention
 
+import com.vanniktech.maven.publish.GradlePublishPlugin
+
 // TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
     id("org.gradle.java-gradle-plugin")
@@ -15,6 +17,7 @@ gradlePlugin {
 }
 
 mavenPublishing {
+    configure(GradlePublishPlugin())
     coordinates(groupId = group.toString(), artifactId = name, version = version.toString())
     pom {
         name.set("gradle-${project.name}")

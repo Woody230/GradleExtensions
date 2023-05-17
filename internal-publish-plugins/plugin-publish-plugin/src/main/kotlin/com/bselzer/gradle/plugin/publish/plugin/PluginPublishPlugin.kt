@@ -8,6 +8,7 @@ import com.vanniktech.maven.publish.GradlePublishPlugin
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.PluginDeclaration
@@ -24,6 +25,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         super.apply(project)
 
         plugins.apply(JavaGradlePluginPlugin::class.java)
+        apply(plugin = "com.gradle.plugin-publish")
 
         val extension = pluginPublishExtension {
             tags.convention(emptyList())
