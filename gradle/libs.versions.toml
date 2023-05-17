@@ -27,11 +27,11 @@ moko-resources-compose = { group = "dev.icerock.moko", name = "resources-compose
 moko-resources-generator = { group = "dev.icerock.moko", name = "resources-generator", version.ref = "moko-resources" }
 moko-resources-gradle-plugin = { group = "dev.icerock.mobile.multiplatform-resources", name = "dev.icerock.mobile.multiplatform-resources.gradle.plugin", version.ref = "moko-resources" }
 vanniktech-publish-gradle-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
-woody230-gradle-jvm-publish = { group = "io.github.woody230.gradle", name = "jvm-publish-plugin" }
-woody230-gradle-maven-publish = { group = "io.github.woody230.gradle", name = "maven-publish-plugin" }
-woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "multiplatform" }
-woody230-gradle-plugin-publish = { group = "io.github.woody230.gradle", name = "plugin-publish-plugin" }
-woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "properties" }
+woody230-gradle-jvm-publish = { group = "io.github.woody230.gradle", name = "jvm-publish-plugin", version.ref = "woody230-gradle" }
+woody230-gradle-maven-publish = { group = "io.github.woody230.gradle", name = "maven-publish-plugin", version.ref = "woody230-gradle" }
+woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "multiplatform", version.ref = "woody230-gradle" }
+woody230-gradle-plugin-publish = { group = "io.github.woody230.gradle", name = "plugin-publish-plugin", version.ref = "woody230-gradle" }
+woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "properties", version.ref = "woody230-gradle" }
 
 # TODO can't NOT provide a version and use alias for plugins already in the classpath https://github.com/gradle/gradle/issues/17968
 [plugins]
@@ -43,7 +43,7 @@ java = { id = "org.gradle.java-gradle-plugin" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
-woody230-gradle-jvm-publish = { id = "io.github.woody230.gradle.jvm.publish" }
-woody230-gradle-maven-publish = { id = "io.github.woody230.gradle.maven.publish" }
-woody230-gradle-plugin-publish = { id = "io.github.woody230.gradle.plugin.publish" }
-woody230-convention-publish = { id = "io.github.woody230.gradle.convention.publish" }
+woody230-gradle-jvm-publish = { id = "io.github.woody230.gradle.jvm.publish", version.ref = "woody230-gradle" }
+woody230-gradle-maven-publish = { id = "io.github.woody230.gradle.maven.publish", version.ref = "woody230-gradle" }
+woody230-gradle-plugin-publish = { id = "io.github.woody230.gradle.plugin.publish", version.ref = "woody230-gradle" }
+woody230-convention-publish = { id = "io.github.woody230.gradle.convention.publish", version.ref = "woody230-gradle" }
