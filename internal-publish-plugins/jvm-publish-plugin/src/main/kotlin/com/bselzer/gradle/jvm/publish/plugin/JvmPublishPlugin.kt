@@ -6,6 +6,7 @@ import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.Project
+import org.jetbrains.dokka.gradle.DokkaPlugin
 
 class JvmPublishPlugin : MavenPublishPlugin() {
     override val Project.mavenPublishExtension: MavenPublishPluginExtension
@@ -16,4 +17,9 @@ class JvmPublishPlugin : MavenPublishPlugin() {
             val jar = JavadocJar.Dokka("dokkaHtml")
             return KotlinJvm(javadocJar = jar, sourcesJar = true)
         }
+
+    override fun apply(project: Project) = with(project) {
+        plugins.apply(DokkaPlugin::class.java)
+        super.apply(project)
+    }
 }

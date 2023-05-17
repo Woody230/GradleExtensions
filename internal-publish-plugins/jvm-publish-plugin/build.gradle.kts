@@ -4,6 +4,7 @@ plugins {
 }
 
 dependencies {
+    api(libs.dokka.gradle.plugin)
     implementation(projects.mavenPublishPlugin)
 }
 
