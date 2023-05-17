@@ -19,6 +19,6 @@ buildscript {
     dependencies {
         classpath(libs.kotlin.gradle.plugin)
         classpath(libs.publish.gradle.plugin)
-        classpath(libs.woody230.gradle.api)
+        classpath(libs.woody230.gradle.properties)
     }
 }

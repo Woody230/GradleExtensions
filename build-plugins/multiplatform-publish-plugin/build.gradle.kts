@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(libs.woody230.gradle.api)
+    api(libs.woody230.gradle.properties)
     api(libs.kotlin.gradle.plugin)
     api(libs.dokka.gradle.plugin)
     implementation(libs.woody230.gradle.maven.publish)

@@ -26,10 +26,10 @@ moko-resources-compose = { group = "dev.icerock.moko", name = "resources-compose
 moko-resources-generator = { group = "dev.icerock.moko", name = "resources-generator", version.ref = "moko-resources" }
 moko-resources-gradle-plugin = { group = "dev.icerock.mobile.multiplatform-resources", name = "dev.icerock.mobile.multiplatform-resources.gradle.plugin", version.ref = "moko-resources" }
 vanniktech-publish-gradle-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
-woody230-gradle-api = { group = "io.github.woody230.gradle", name = "api" }
 woody230-gradle-maven-publish = { group = "io.github.woody230.gradle", name = "maven-publish-plugin" }
 woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "multiplatform" }
 woody230-gradle-plugin-publish = { group = "io.github.woody230.gradle", name = "plugin-publish-plugin" }
+woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "properties" }
 
 # TODO can't NOT provide a version and use alias for plugins already in the classpath https://github.com/gradle/gradle/issues/17968
 [plugins]

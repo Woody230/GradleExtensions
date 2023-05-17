@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "build-common"
-include("api")
 include("multiplatform")
+include("properties")

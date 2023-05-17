@@ -6,6 +6,6 @@ plugins {
 }
 
 dependencies {
-    api(libs.woody230.gradle.api)
+    api(libs.woody230.gradle.properties)
     api(libs.woody230.gradle.multiplatform)
 }
