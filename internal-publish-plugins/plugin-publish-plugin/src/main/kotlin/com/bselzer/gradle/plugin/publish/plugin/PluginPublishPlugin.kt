@@ -22,10 +22,10 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         get() = pluginPublishExtension
 
     override fun apply(project: Project) = with(project) {
-        super.apply(project)
-
         plugins.apply(JavaGradlePluginPlugin::class.java)
         apply(plugin = "com.gradle.plugin-publish")
+
+        super.apply(project)
 
         val extension = pluginPublishExtension {
             tags.convention(emptyList())
@@ -41,7 +41,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
             vcsUrl.set("${extension.repository.get()}.git")
             plugins {
                 val plugins = extension.plugins.get()
-                check(plugins.isNotEmpty()) { "At least one plugin must be published." }
+                check(plugins.isNotEmpty()) { "[$name] At least one plugin must be published." }
 
                 plugins.forEach { plugin ->
                     plugin.description.convention(mavenPublishExtension.description.get())
