@@ -10,6 +10,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
+import org.gradle.api.publish.maven.MavenPomLicenseSpec
 import org.gradle.kotlin.dsl.getByType
 
 abstract class MavenPublishPlugin : Plugin<Project> {
@@ -24,6 +25,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
             groupId.convention("io.github.woody230")
             artifactId.convention(name)
             developers.convention { }
+            licensing.convention(Licensing.NONE)
         }
 
         setupGradleProperties()
@@ -51,12 +53,17 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         coordinates(groupId, artifactId, version)
     }
 
-    private fun MavenPom.configureLicenses() = licenses {
-        license {
-            name.set("The Apache Software License, Version 2.0")
-            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-            distribution.set("repo")
+    private fun MavenPom.configureLicenses(type: Licensing) = licenses {
+        when (type) {
+            Licensing.NONE -> {}
+            Licensing.APACHE_2_0 -> configureApache2()
         }
+    }
+
+    private fun MavenPomLicenseSpec.configureApache2() = license {
+        name.set("The Apache Software License, Version 2.0")
+        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+        distribution.set("repo")
     }
 
     private fun MavenPom.configureDevelopers(configure: MavenPomDeveloperSpec.() -> Unit) = developers {
@@ -78,6 +85,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         configure(
             name = "${extension.subGroupId.get()}-${project.name}",
             description = extension.description.get(),
+            licensing = extension.licensing.get(),
             devs = extension.developers.get(),
             repo = extension.repository.get()
         )
@@ -86,12 +94,13 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     private fun MavenPom.configure(
         name: String,
         description: String,
+        licensing: Licensing,
         devs: MavenPomDeveloperSpec.() -> Unit = {},
         repo: String
     ) {
         this.name.set(name)
         this.description.set(description)
-        configureLicenses()
+        configureLicenses(licensing)
         configureDevelopers(devs)
         configureScm(repo)
     }

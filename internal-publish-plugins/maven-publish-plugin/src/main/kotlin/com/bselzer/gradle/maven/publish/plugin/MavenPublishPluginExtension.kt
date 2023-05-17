@@ -17,6 +17,11 @@ interface MavenPublishPluginExtension {
 
     val description: Property<String>
 
+    /**
+     * The type of licensing to apply.
+     */
+    val licensing: Property<Licensing>
+
     val developers: Property<MavenPomDeveloperSpec.() -> Unit>
 
     /**
