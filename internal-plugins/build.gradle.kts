@@ -35,5 +35,7 @@ subprojects {
         repository.set("https://github.com/Woody230/GradleExtensions")
     }
 
-    apply(plugin = rootProject.libs.plugins.woody230.gradle.plugin.publish.get().pluginId)
+    afterEvaluate {
+        apply(plugin = rootProject.libs.plugins.woody230.gradle.plugin.publish.get().pluginId)
+    }
 }

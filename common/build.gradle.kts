@@ -33,5 +33,7 @@ subprojects {
         licensing.set(Licensing.APACHE_2_0)
     }
 
-    apply(plugin = rootProject.libs.plugins.woody230.gradle.jvm.publish.get().pluginId)
+    afterEvaluate {
+        apply(plugin = rootProject.libs.plugins.woody230.gradle.jvm.publish.get().pluginId)
+    }
 }
