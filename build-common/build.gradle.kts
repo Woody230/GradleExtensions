@@ -21,3 +21,8 @@ buildscript {
         classpath(libs.publish.gradle.plugin)
     }
 }
+
+// TODO must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
+subprojects {
+    apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
+}
