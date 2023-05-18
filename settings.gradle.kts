@@ -13,6 +13,8 @@ plugins {
 // TODO feature preview https://docs.gradle.org/8.1.1/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
+rootProject.name = "GradleExtensions"
+
 fun ConfigurableIncludedBuild.substitute(substitution: Pair<String, String>) {
     dependencySubstitution {
         val module = module(substitution.first)
