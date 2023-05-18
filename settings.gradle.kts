@@ -26,6 +26,7 @@ fun ConfigurableIncludedBuild.substitute(substitution: Pair<String, String>) {
 includeBuild("common") {
     substitute("io.github.woody230.gradle:multiplatform" to ":multiplatform")
     substitute("io.github.woody230.gradle:properties" to ":properties")
+    substitute("io.github.woody230.gradle:settings" to ":settings")
 }
 includeBuild("internal-publish-plugins") {
     substitute("io.github.woody230.gradle:jvm-publish-plugin" to ":jvm-publish-plugin")
