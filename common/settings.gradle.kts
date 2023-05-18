@@ -16,4 +16,3 @@ dependencyResolutionManagement {
 rootProject.name = "common"
 include("multiplatform")
 include("properties")
-include("settings")

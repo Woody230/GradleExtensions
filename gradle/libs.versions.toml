@@ -33,9 +33,7 @@ woody230-gradle-jvm-publish = { group = "io.github.woody230.gradle", name = "jvm
 woody230-gradle-maven-publish = { group = "io.github.woody230.gradle", name = "maven-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "multiplatform", version.ref = "woody230-gradle" }
 woody230-gradle-plugin-publish = { group = "io.github.woody230.gradle", name = "plugin-publish-plugin", version.ref = "woody230-gradle" }
-woody230-gradle-project = { group = "io.github.woody230.gradle", name = "project-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "properties", version.ref = "woody230-gradle" }
-woody230-gradle-settings = { group = "io.github.woody230.gradle", name = "settings-plugin", version.ref = "woody230-gradle" }
 
 # TODO can't NOT provide a version and use alias for plugins already in the classpath https://github.com/gradle/gradle/issues/17968
 [plugins]
@@ -50,6 +48,4 @@ vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "
 woody230-gradle-jvm-publish = { id = "io.github.woody230.gradle.jvm.publish", version.ref = "woody230-gradle" }
 woody230-gradle-maven-publish = { id = "io.github.woody230.gradle.maven.publish", version.ref = "woody230-gradle" }
 woody230-gradle-plugin-publish = { id = "io.github.woody230.gradle.plugin.publish", version.ref = "woody230-gradle" }
-woody230-gradle-project = { id = "io.github.woody230.gradle.project", version.ref = "woody230-gradle" }
-woody230-gradle-settings = { id = "io.github.woody230.gradle.settings", version.ref = "woody230-gradle" }
 woody230-convention-publish = { id = "io.github.woody230.gradle.convention.publish", version.ref = "woody230-gradle" }

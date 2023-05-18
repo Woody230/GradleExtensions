@@ -17,5 +17,3 @@ rootProject.name = "internal-common-plugins"
 include("jvm-publish-plugin")
 include("maven-publish-plugin")
 include("plugin-publish-plugin")
-include("project-plugin")
-include("settings-plugin")
