@@ -8,5 +8,6 @@ class SettingsPlugin : Plugin<Settings> {
         plugins.apply(SettingsRepositoryPlugin::class.java)
         plugins.apply(ToolchainPlugin::class.java)
         plugins.apply(TypeSafeProjectAccessorPlugin::class.java)
+        plugins.apply(VersionCatalogPlugin::class.java)
     }
 }
