@@ -3,6 +3,8 @@ package com.bselzer.gradle.settings.plugin
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import java.io.File
+import java.io.FileNotFoundException
+import java.nio.file.Path
 import java.nio.file.Paths
 
 class VersionCatalogPlugin : Plugin<Settings> {
@@ -22,8 +24,12 @@ class VersionCatalogPlugin : Plugin<Settings> {
 
     private val Settings.toml: File
         get() {
-            var path = Paths.get(rootDir.path)
+            var path: Path? = Paths.get(rootDir.path)
             while (true) {
+                if (path == null) {
+                    throw FileNotFoundException("Expected to find the version catalog at $RELATIVE_PATH in the project root directory $rootDir or higher level directory but it does not exist.")
+                }
+
                 val file = Paths.get(path.toString(), RELATIVE_PATH).toFile()
                 if (file.exists()) {
                     return file
