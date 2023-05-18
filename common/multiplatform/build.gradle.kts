@@ -1,9 +1,5 @@
 import com.bselzer.gradle.jvm.publish.plugin.jvmPublishExtension
 
-plugins {
-    `kotlin-dsl`
-}
-
 dependencies {
     api(gradleApi())
     api(libs.kotlin.gradle.plugin)
