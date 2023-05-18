@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "internal-publish-plugins"
+rootProject.name = "internal-common-plugins"
 include("jvm-publish-plugin")
 include("maven-publish-plugin")
 include("plugin-publish-plugin")
