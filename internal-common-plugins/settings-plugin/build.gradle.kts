@@ -4,7 +4,6 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.mavenPublishPlugin)
     implementation(libs.toolchain.gradle.plugin)
 }
 
