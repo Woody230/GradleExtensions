@@ -18,6 +18,7 @@ buildscript {
     dependencies {
         classpath(libs.kotlin.gradle.plugin)
         classpath(libs.publish.gradle.plugin)
+        classpath(libs.kotlin.dsl.gradle.plugin)
         classpath(libs.woody230.gradle.properties)
         classpath(libs.woody230.gradle.maven.publish)
         classpath(libs.woody230.gradle.multiplatform)
@@ -27,6 +28,7 @@ buildscript {
 
 // TODO must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
 subprojects {
+    apply(plugin = rootProject.libs.plugins.dsl.get().pluginId)
     apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
 
     pluginPublishExtension {

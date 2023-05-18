@@ -1,9 +1,5 @@
 import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
 
-plugins {
-    `kotlin-dsl`
-}
-
 dependencies {
     api(libs.woody230.gradle.properties)
     api(libs.kotlin.gradle.plugin)
