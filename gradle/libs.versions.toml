@@ -6,6 +6,7 @@ gradle-publish = "1.2.0"
 moko-resources = "0.22.0"
 multiplatform-compose = "1.3.1"
 multiplatform-compose-compiler = "1.4.2"
+toolchain = "0.4.0"
 vanniktech-publish = "0.25.2"
 woody230-gradle = "1.0.0"
 
@@ -26,12 +27,14 @@ moko-resources = { group = "dev.icerock.moko", name = "resources", version.ref =
 moko-resources-compose = { group = "dev.icerock.moko", name = "resources-compose", version.ref = "moko-resources" }
 moko-resources-generator = { group = "dev.icerock.moko", name = "resources-generator", version.ref = "moko-resources" }
 moko-resources-gradle-plugin = { group = "dev.icerock.mobile.multiplatform-resources", name = "dev.icerock.mobile.multiplatform-resources.gradle.plugin", version.ref = "moko-resources" }
+toolchain-gradle-plugin = { group = "org.gradle.toolchains.foojay-resolver-convention", name = "org.gradle.toolchains.foojay-resolver-convention.gradle.plugin", version.ref = "toolchain" }
 vanniktech-publish-gradle-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
 woody230-gradle-jvm-publish = { group = "io.github.woody230.gradle", name = "jvm-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-maven-publish = { group = "io.github.woody230.gradle", name = "maven-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "multiplatform", version.ref = "woody230-gradle" }
 woody230-gradle-plugin-publish = { group = "io.github.woody230.gradle", name = "plugin-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "properties", version.ref = "woody230-gradle" }
+woody230-gradle-settings = { group = "io.github.woody230.gradle", name = "settings-plugin", version.ref = "woody230-gradle" }
 
 # TODO can't NOT provide a version and use alias for plugins already in the classpath https://github.com/gradle/gradle/issues/17968
 [plugins]
@@ -46,4 +49,5 @@ vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "
 woody230-gradle-jvm-publish = { id = "io.github.woody230.gradle.jvm.publish", version.ref = "woody230-gradle" }
 woody230-gradle-maven-publish = { id = "io.github.woody230.gradle.maven.publish", version.ref = "woody230-gradle" }
 woody230-gradle-plugin-publish = { id = "io.github.woody230.gradle.plugin.publish", version.ref = "woody230-gradle" }
+woody230-gradle-settings = { id = "io.github.woody230.gradle.settings", version.ref = "woody230-gradle" }
 woody230-convention-publish = { id = "io.github.woody230.gradle.convention.publish", version.ref = "woody230-gradle" }
