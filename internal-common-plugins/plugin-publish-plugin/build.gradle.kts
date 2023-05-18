@@ -1,8 +1,3 @@
-plugins {
-    `kotlin-dsl`
-    id(libs.plugins.woody230.convention.publish.get().pluginId)
-}
-
 dependencies {
     implementation(projects.mavenPublishPlugin)
 }
