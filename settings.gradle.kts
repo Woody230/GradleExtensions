@@ -32,6 +32,7 @@ includeBuild("internal-common-plugins") {
     substitute("io.github.woody230.gradle:jvm-publish-plugin" to ":jvm-publish-plugin")
     substitute("io.github.woody230.gradle:maven-publish-plugin" to ":maven-publish-plugin")
     substitute("io.github.woody230.gradle:plugin-publish-plugin" to ":plugin-publish-plugin")
+    substitute("io.github.woody230.gradle:project-plugin" to ":project-plugin")
     substitute("io.github.woody230.gradle:settings-plugin" to ":settings-plugin")
 }
 includeBuild("internal-plugins")
