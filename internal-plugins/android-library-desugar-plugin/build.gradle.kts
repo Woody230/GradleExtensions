@@ -2,7 +2,7 @@ import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(gradleApi())
-    api(libs.android.gradle.plugin)
+    api(libs.android.plugin)
 
     // TODO can't access libs https://github.com/gradle/gradle/issues/15383
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))

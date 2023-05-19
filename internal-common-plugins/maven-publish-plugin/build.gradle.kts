@@ -1,6 +1,6 @@
 dependencies {
-    api(libs.kotlin.gradle.plugin)
-    api(libs.vanniktech.publish.gradle.plugin)
+    api(libs.kotlin.plugin)
+    api(libs.vanniktech.publish.plugin)
 }
 
 val pluginDescription = "Internal publishing to Maven Central."

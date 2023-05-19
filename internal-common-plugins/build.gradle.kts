@@ -14,7 +14,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(libs.kotlin.dsl.gradle.plugin)
+        classpath(libs.kotlin.dsl.plugin)
     }
 }
 

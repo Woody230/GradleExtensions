@@ -2,8 +2,8 @@ import com.bselzer.gradle.jvm.publish.plugin.jvmPublishExtension
 
 dependencies {
     api(gradleApi())
-    api(libs.kotlin.gradle.plugin)
-    api(libs.kotlin.multiplatform.gradle.plugin)
+    api(libs.kotlin.plugin)
+    api(libs.kotlin.multiplatform.plugin)
 }
 
 jvmPublishExtension {

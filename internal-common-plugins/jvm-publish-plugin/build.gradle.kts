@@ -1,5 +1,5 @@
 dependencies {
-    api(libs.dokka.gradle.plugin)
+    api(libs.dokka.plugin)
     implementation(projects.mavenPublishPlugin)
 }
 

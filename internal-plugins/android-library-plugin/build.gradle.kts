@@ -2,7 +2,7 @@ import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(gradleApi())
-    api(libs.android.gradle.plugin)
+    api(libs.android.plugin)
 }
 
 pluginPublishExtension {

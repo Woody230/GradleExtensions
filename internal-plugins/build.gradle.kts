@@ -17,13 +17,13 @@ buildscript {
     }
 
     dependencies {
-        classpath(libs.kotlin.gradle.plugin)
-        classpath(libs.publish.gradle.plugin)
-        classpath(libs.kotlin.dsl.gradle.plugin)
+        classpath(libs.kotlin.plugin)
+        classpath(libs.publish.plugin)
+        classpath(libs.kotlin.dsl.plugin)
         classpath(libs.woody230.gradle.properties)
-        classpath(libs.woody230.gradle.maven.publish)
+        classpath(libs.woody230.gradle.maven.publish.plugin)
         classpath(libs.woody230.gradle.multiplatform)
-        classpath(libs.woody230.gradle.plugin.publish)
+        classpath(libs.woody230.gradle.plugin.publish.plugin)
     }
 }
 
