@@ -230,34 +230,34 @@ Optional
 
 Plugins intended to be used by my personal projects only.
 
-### android-desugar-plugin
+### android-library-desugar-plugin
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.android.desugar")
+    id("io.github.woody230.gradle.android.library.desugar")
 }
 ```
 
-* Configures the `LibraryExtension` from the Android gradle plugin:
+* Configures the `LibraryExtension` from the Android library gradle plugin:
     * Compile options:
         * isCoreLibraryDesugaringEnabled as true
 * Adds the `com.android.tools:desugar_jdk_libs` dependency with the **[version]** to the `coreLibraryDesugaring`
   configuration.
 
-#### AndroidDesugarExtension
+#### AndroidLibraryDesugarExtension
 
 * **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default
   value of `2.0.3`.
 
-### android-plugin
+### android-library-plugin
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.android")
+    id("io.github.woody230.gradle.android.library")
 }
 ```
 
-* Applies the Android gradle plugin.
+* Applies the Android library gradle plugin.
     * Namespace: **[namespaceId]**, **[subNamespaceId]**, and **[artifactId]** separated by a period (`.`)
     * Compile sdk: **[compileSdk]**
     * Default config:
@@ -271,7 +271,7 @@ plugins {
             * Android resources:
                 * Is included android resources: true
 
-#### AndroidExtension
+#### AndroidLibraryExtension
 
 Required
 

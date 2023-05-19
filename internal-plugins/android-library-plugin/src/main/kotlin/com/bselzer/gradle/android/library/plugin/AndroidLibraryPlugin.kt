@@ -1,4 +1,4 @@
-package com.bselzer.gradle.android.plugin
+package com.bselzer.gradle.android.library.plugin
 
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
@@ -7,11 +7,11 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 
-class AndroidPlugin : Plugin<Project> {
+class AndroidLibraryPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(LibraryPlugin::class.java)
 
-        val extension = androidExtension {
+        val extension = androidLibraryExtension {
             namespaceId.convention("com.bselzer")
             artifactId.convention(name)
             compileSdk.convention(33)

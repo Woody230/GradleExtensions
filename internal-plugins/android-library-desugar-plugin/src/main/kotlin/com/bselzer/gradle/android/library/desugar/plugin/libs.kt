@@ -1,4 +1,4 @@
-package com.bselzer.gradle.android.desugar.plugin
+package com.bselzer.gradle.android.library.desugar.plugin
 
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project

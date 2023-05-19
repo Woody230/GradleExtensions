@@ -2,7 +2,7 @@ import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(libs.moko.resources.gradle.plugin)
-    implementation(projects.androidPlugin)
+    implementation(libs.android.gradle.plugin)
     implementation(projects.multiplatformPublishPlugin)
 }
 

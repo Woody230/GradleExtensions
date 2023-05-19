@@ -1,9 +1,9 @@
-package com.bselzer.gradle.android.plugin
+package com.bselzer.gradle.android.library.plugin
 
 import org.gradle.api.JavaVersion
 import org.gradle.api.provider.Property
 
-interface AndroidExtension {
+interface AndroidLibraryExtension {
     /**
      * The base id of the namespace.
      */
