@@ -306,9 +306,9 @@ plugins {
 #### MultiplatformComposeExtension
 
 * **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.4.2`.
-    * [Official compatibility documentation](https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility)
-    * [Official compatibility mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
-    * [Published versions](https://mvnrepository.com/artifact/org.jetbrains.compose.compiler/compiler)
+    * [Multiplatform Compatibility](https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility)
+        * [Mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
+    * [Jetpack Compatibility](https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility)
 
 ### multiplatform-plugin
 
@@ -353,3 +353,16 @@ plugins {
 
 * Applies the Moko Resources gradle plugin.
 * Adds explicit task dependencies in order to be compatible with Gradle 8.
+
+### multiplatform-test-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.multiplatform.test")
+    id("io.github.woody230.gradle.multiplatform.compose.test")
+}
+```
+
+Adds common test dependencies to the common, Android, and JVM test source sets.
+
+The compose specific plugin adds the Compose Multiplatform test dependencies.

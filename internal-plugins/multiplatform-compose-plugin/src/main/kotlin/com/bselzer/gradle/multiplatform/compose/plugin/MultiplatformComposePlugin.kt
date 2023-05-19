@@ -11,7 +11,7 @@ class MultiplatformComposePlugin : Plugin<Project> {
         plugins.apply(ComposePlugin::class.java)
 
         val extension = multiplatformComposeExtension {
-            compilerVersion.convention(libs.versions.multiplatform.compose.compiler.get())
+            compilerVersion.convention(libs.versions.androidx.compose.get())
         }
 
         with(extensions.getByType<LibraryExtension>()) {
@@ -19,8 +19,9 @@ class MultiplatformComposePlugin : Plugin<Project> {
                 compose = true
             }
             composeOptions {
-                // https://mvnrepository.com/artifact/org.jetbrains.compose.compiler/compiler
+                // https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility
                 // https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt
+                // https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
                 kotlinCompilerExtensionVersion = extension.compilerVersion.get()
             }
 
