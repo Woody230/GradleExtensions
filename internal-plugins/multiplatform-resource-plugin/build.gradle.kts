@@ -12,6 +12,6 @@ pluginPublishExtension {
     plugin {
         name.set("multiplatform-resource")
         displayName.set("Kotlin Multiplatform Moko Resources Plugin")
-        className.set("com.bselzer.gradle.multiplatform.resource.plugin.MultiplatformMokoResourcesPlugin")
+        className.set("com.bselzer.gradle.multiplatform.resource.plugin.MultiplatformResourcesPlugin")
     }
 }
