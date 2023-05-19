@@ -15,11 +15,13 @@ class SourceSetDependencyBundlePlugin : Plugin<Project> {
                 val implementationBundle = libs.findBundle("$name-implementation")
                 if (implementationBundle.isPresent) {
                     implementation(implementationBundle.get())
+                    logger.info("$name-implementation bundle configured")
                 }
 
                 val apiBundle = libs.findBundle("$name-api")
                 if (apiBundle.isPresent) {
                     api(apiBundle.get())
+                    logger.info("$name-api bundle configured")
                 }
             }
         }
