@@ -13,23 +13,24 @@ class AndroidPlugin : Plugin<Project> {
 
         val extension = androidExtension {
             namespaceId.convention("com.bselzer")
+            artifactId.convention(name)
             compileSdk.convention(33)
             minSdk.convention(21)
             testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
-            sourceCompatability.convention(JavaVersion.VERSION_11)
-            targetCompatability.convention(JavaVersion.VERSION_11)
+            sourceCompatibility.convention(JavaVersion.VERSION_11)
+            targetCompatibility.convention(JavaVersion.VERSION_11)
         }
 
         with(extensions.getByType<LibraryExtension>()) {
-            namespace = "${extension.namespaceId.get()}.${extension.subNamespaceId.get()}.${project.name}".replace("-", ".")
+            namespace = "${extension.namespaceId.get()}.${extension.subNamespaceId.get()}.${extension.artifactId.get()}".replace("-", ".")
             compileSdk = extension.compileSdk.get()
             defaultConfig {
                 minSdk = extension.minSdk.get()
                 testInstrumentationRunner = extension.testInstrumentationRunner.get()
             }
             compileOptions {
-                sourceCompatibility = extension.sourceCompatability.get()
-                targetCompatibility = extension.targetCompatability.get()
+                sourceCompatibility = extension.sourceCompatibility.get()
+                targetCompatibility = extension.targetCompatibility.get()
             }
             testOptions {
                 unitTests {

@@ -5,7 +5,7 @@ import org.gradle.api.provider.Property
 
 interface PluginDeclaration {
     /**
-     * The name of the plugin, to be combined with the group and sub-group id
+     * The name of the plugin, to be combined with the group and sub-group id.
      */
     val name: Property<String>
 
@@ -14,6 +14,9 @@ interface PluginDeclaration {
      */
     val displayName: Property<String>
 
+    /**
+     * A brief description of what the plugin provides.
+     */
     val description: Property<String>
 
     /**
@@ -22,7 +25,7 @@ interface PluginDeclaration {
     val tags: ListProperty<String>
 
     /**
-     * The package name and class name of the plugin.
+     * The fully qualified class name of the plugin.
      */
     val className: Property<String>
 }

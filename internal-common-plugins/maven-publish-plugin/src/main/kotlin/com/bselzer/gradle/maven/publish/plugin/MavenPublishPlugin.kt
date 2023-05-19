@@ -14,7 +14,7 @@ import org.gradle.api.publish.maven.MavenPomLicenseSpec
 import org.gradle.kotlin.dsl.getByType
 
 abstract class MavenPublishPlugin : Plugin<Project> {
-    protected abstract val Project.mavenPublishExtension: MavenPublishPluginExtension
+    protected abstract val Project.mavenPublishExtension: MavenPublishExtension
 
     protected abstract val Project.mavenPublishPlatform: Platform
 
@@ -32,7 +32,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
 
         with(extensions.getByType<MavenPublishBaseExtension>()) {
             configureCoordinates(extension)
-            configurePom(project, extension)
+            configurePom(extension)
             configure(project.mavenPublishPlatform)
 
             publishToMavenCentral(
@@ -40,13 +40,13 @@ abstract class MavenPublishPlugin : Plugin<Project> {
                 automaticRelease = false
             )
 
-            if (localProperties.containsKeys(LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
+            if (hasProperty(GradleProperty.SIGNING_KEY) && hasProperty(GradleProperty.SIGNING_PASSWORD)) {
                 signAllPublications()
             }
         }
     }
 
-    private fun MavenPublishBaseExtension.configureCoordinates(extension: MavenPublishPluginExtension) {
+    private fun MavenPublishBaseExtension.configureCoordinates(extension: MavenPublishExtension) {
         val groupId = "${extension.groupId.get()}.${extension.subGroupId.get()}"
         val artifactId = extension.artifactId.get()
         val version = extension.version.get()
@@ -81,9 +81,9 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         scm { url.set(repo) }
     }
 
-    private fun MavenPublishBaseExtension.configurePom(project: Project, extension: MavenPublishPluginExtension) = pom {
+    private fun MavenPublishBaseExtension.configurePom(extension: MavenPublishExtension) = pom {
         configure(
-            name = "${extension.subGroupId.get()}-${project.name}",
+            name = "${extension.subGroupId.get()}-${extension.artifactId.get()}",
             description = extension.description.get(),
             licensing = extension.licensing.get(),
             devs = extension.developers.get(),

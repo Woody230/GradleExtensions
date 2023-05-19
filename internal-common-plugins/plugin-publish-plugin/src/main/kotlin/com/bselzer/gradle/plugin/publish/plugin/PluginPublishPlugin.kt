@@ -1,7 +1,7 @@
 package com.bselzer.gradle.plugin.publish.plugin
 
+import com.bselzer.gradle.maven.publish.plugin.MavenPublishExtension
 import com.bselzer.gradle.maven.publish.plugin.MavenPublishPlugin
-import com.bselzer.gradle.maven.publish.plugin.MavenPublishPluginExtension
 import com.bselzer.gradle.properties.containsKeys
 import com.bselzer.gradle.properties.localProperties
 import com.vanniktech.maven.publish.GradlePublishPlugin
@@ -18,7 +18,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
     override val Project.mavenPublishPlatform: Platform
         get() = GradlePublishPlugin()
 
-    override val Project.mavenPublishExtension: MavenPublishPluginExtension
+    override val Project.mavenPublishExtension: MavenPublishExtension
         get() = pluginPublishExtension
 
     override fun apply(project: Project) = with(project) {
@@ -52,7 +52,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
     }
 
     private fun NamedDomainObjectContainer<PluginDeclaration>.configurePlugin(
-        extension: PluginPublishPluginExtension,
+        extension: PluginPublishExtension,
         plugin: com.bselzer.gradle.plugin.publish.plugin.PluginDeclaration,
     ) {
         create(plugin.name.get()) {

@@ -4,10 +4,25 @@ import org.gradle.api.provider.Property
 import org.gradle.api.publish.maven.MavenPomDeveloper
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 
-interface MavenPublishPluginExtension {
+interface MavenPublishExtension {
+    /**
+     * The base group id of the coordinates.
+     */
     val groupId: Property<String>
+
+    /**
+     * The specific category, denoting the type of modules.
+     */
     val subGroupId: Property<String>
+
+    /**
+     * The name of the module.
+     */
     val artifactId: Property<String>
+
+    /**
+     * The semantic version of the artifact. A snapshot is denoted by a version ending in -SNAPSNOT.
+     */
     val version: Property<String>
 
     /**
@@ -15,6 +30,9 @@ interface MavenPublishPluginExtension {
      */
     val repository: Property<String>
 
+    /**
+     * A brief description of what the module provides.
+     */
     val description: Property<String>
 
     /**
@@ -22,6 +40,9 @@ interface MavenPublishPluginExtension {
      */
     val licensing: Property<Licensing>
 
+    /**
+     * Configures the additional developers.
+     */
     val developers: Property<MavenPomDeveloperSpec.() -> Unit>
 
     /**

@@ -1,11 +1,11 @@
 package com.bselzer.gradle.plugin.publish.plugin
 
-import com.bselzer.gradle.maven.publish.plugin.MavenPublishPluginExtension
+import com.bselzer.gradle.maven.publish.plugin.MavenPublishExtension
 import org.gradle.api.Project
 import org.gradle.api.provider.ListProperty
 import org.gradle.kotlin.dsl.newInstance
 
-interface PluginPublishPluginExtension : MavenPublishPluginExtension {
+interface PluginPublishExtension : MavenPublishExtension {
     /**
      * Common tags to apply to all plugins.
      */
@@ -21,6 +21,6 @@ interface PluginPublishPluginExtension : MavenPublishPluginExtension {
      */
     fun Project.plugin(configure: PluginDeclaration.() -> Unit) {
         val plugin = objects.newInstance<PluginDeclaration>().apply(configure)
-        this@PluginPublishPluginExtension.plugins.add(plugin)
+        this@PluginPublishExtension.plugins.add(plugin)
     }
 }
