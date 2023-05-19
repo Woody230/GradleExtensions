@@ -3,21 +3,8 @@ dependencies {
     api(libs.vanniktech.publish.plugin)
 }
 
-val pluginDescription = "Internal publishing to Maven Central."
-gradlePlugin {
-    plugins {
-        val id = libs.plugins.woody230.gradle.maven.publish.get().pluginId
-        create(id) {
-            this.id = id
-            displayName = "Maven Publishing Plugin"
-            description = pluginDescription
-            implementationClass = "com.bselzer.gradle.maven.publish.plugin.MavenPublishPlugin"
-        }
-    }
-}
-
 mavenPublishing {
     pom {
-        description.set(pluginDescription)
+        description.set("Internal publishing to Maven Central.")
     }
 }
