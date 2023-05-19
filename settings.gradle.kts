@@ -28,7 +28,7 @@ includeBuild("common") {
     substitute("io.github.woody230.gradle:multiplatform" to ":multiplatform")
     substitute("io.github.woody230.gradle:properties" to ":properties")
 }
-includeBuild("internal-common-plugins") {
+includeBuild("internal-publish-plugins") {
     substitute("io.github.woody230.gradle:jvm-publish-plugin" to ":jvm-publish-plugin")
     substitute("io.github.woody230.gradle:maven-publish-plugin" to ":maven-publish-plugin")
     substitute("io.github.woody230.gradle:plugin-publish-plugin" to ":plugin-publish-plugin")

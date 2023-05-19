@@ -97,7 +97,149 @@ General Gradle extensions related to properties.
 * `localProperties` extension to get the local.properties file from the root directory
     * The logic is the same as the Android gradle plugin.
 
-## internal-common-plugins
+## internal-plugins
+
+Plugins intended to be used by my personal projects only.
+
+### android-desugar-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.android.desugar")
+}
+```
+
+* Configures the `LibraryExtension` or `BaseAppModuleExtension` depending on if the library or application plugin is
+  applied:
+    * Compile options:
+        * isCoreLibraryDesugaringEnabled as true
+* Adds the `com.android.tools:desugar_jdk_libs` dependency with the **[version]** to the `coreLibraryDesugaring`
+  configuration.
+
+#### AndroidDesugarExtension
+
+* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default
+  value of `2.0.3`.
+
+### android-library-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.android.library")
+}
+```
+
+* Applies the Android library gradle plugin.
+    * Namespace: **[namespaceId]**, **[subNamespaceId]**, and **[artifactId]** separated by a period (`.`)
+    * Compile sdk: **[compileSdk]**
+    * Default config:
+        * Min sdk: **[minSdk]**
+        * Test instrumentation runner: **[testInstrumentationRunner]**
+    * Compile options:
+        * Source compatibility: **[sourceCompatibility]**
+        * Target compatibility: **[targetCompatibility]**
+    * Test options:
+        * Unit tests:
+            * Android resources:
+                * Is included android resources: true
+
+#### AndroidLibraryExtension
+
+Required
+
+* **[subNamespaceId]**: The specific category, denoting the type of modules.
+
+Optional
+
+* **[namespaceId]**: The base id of the namespace. Optional with a default value of `com.bselzer`.
+* **[artifactId]**: The name of the module. Optional with a default value of the name of the project.
+* **[compileSdk]**: The API level to compile against. Optional with a default value of 33.
+* **[minSdk]**: The minimum API level required. Optional with a default value of 21.
+* **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
+* **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
+* **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a
+  default value of `androidx.test.runner.AndroidJUnitRunner`.
+
+### multiplatform-compose-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.multiplatform.compose")
+}
+```
+
+* Applies the Compose Multiplatform gradle plugin.
+* Configures the Android gradle plugin:
+    * Build features:
+        * Compose: true
+    * Compose options:
+        * Kotlin compiler extension version: **[compilerVersion]**
+
+#### MultiplatformComposeExtension
+
+* **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.4.2`.
+    * [Multiplatform Compatibility](https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility)
+        * [Mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
+    * [Jetpack Compatibility](https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility)
+
+### multiplatform-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.multiplatform")
+}
+```
+
+* Applies the Kotlin Multiplatform gradle plugin.
+    * Configures the targets:
+        * JVM
+        * Android with library variants `release` and `debug`
+    * Sets the jvm toolchain with the **[jdkVersion]**
+
+#### MultiplatformExtension
+
+* **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 11.
+
+### multiplatform-publish-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.multiplatform.publish")
+}
+```
+
+* See [maven-publish-plugin](#maven-publish-plugin) for base logic.
+    * Uses a KotlinMultiplatform platform with a Dokka generated javadoc.
+
+#### MultiplatformPublishExtension
+
+Implements the **[MavenPublishExtension](#mavenpublishextension)** without any additional properties.
+
+### multiplatform-resource-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.multiplatform.resource")
+}
+```
+
+* Applies the Moko Resources gradle plugin.
+* Adds explicit task dependencies in order to be compatible with Gradle 8.
+
+### multiplatform-test-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.multiplatform.test")
+    id("io.github.woody230.gradle.multiplatform.compose.test")
+}
+```
+
+Adds common test dependencies to the common, Android, and JVM test source sets.
+
+The compose specific plugin adds the Compose Multiplatform test dependencies.
+
+## internal-publish-plugins
 
 Plugins intended to be used by my personal projects only.
 
@@ -231,145 +373,3 @@ Required
 Optional
 
 * **[tags]**: The common tags to apply to all plugins. Optional with a default value of an empty list.
-
-## internal-plugins
-
-Plugins intended to be used by my personal projects only.
-
-### android-desugar-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.android.desugar")
-}
-```
-
-* Configures the `LibraryExtension` or `BaseAppModuleExtension` depending on if the library or application plugin is
-  applied:
-    * Compile options:
-        * isCoreLibraryDesugaringEnabled as true
-* Adds the `com.android.tools:desugar_jdk_libs` dependency with the **[version]** to the `coreLibraryDesugaring`
-  configuration.
-
-#### AndroidDesugarExtension
-
-* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default
-  value of `2.0.3`.
-
-### android-library-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.android.library")
-}
-```
-
-* Applies the Android library gradle plugin.
-    * Namespace: **[namespaceId]**, **[subNamespaceId]**, and **[artifactId]** separated by a period (`.`)
-    * Compile sdk: **[compileSdk]**
-    * Default config:
-        * Min sdk: **[minSdk]**
-        * Test instrumentation runner: **[testInstrumentationRunner]**
-    * Compile options:
-        * Source compatibility: **[sourceCompatibility]**
-        * Target compatibility: **[targetCompatibility]**
-    * Test options:
-        * Unit tests:
-            * Android resources:
-                * Is included android resources: true
-
-#### AndroidLibraryExtension
-
-Required
-
-* **[subNamespaceId]**: The specific category, denoting the type of modules.
-
-Optional
-
-* **[namespaceId]**: The base id of the namespace. Optional with a default value of `com.bselzer`.
-* **[artifactId]**: The name of the module. Optional with a default value of the name of the project.
-* **[compileSdk]**: The API level to compile against. Optional with a default value of 33.
-* **[minSdk]**: The minimum API level required. Optional with a default value of 21.
-* **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
-* **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
-* **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a
-  default value of `androidx.test.runner.AndroidJUnitRunner`.
-
-### multiplatform-compose-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.multiplatform-compose")
-}
-```
-
-* Applies the Compose Multiplatform gradle plugin.
-* Configures the Android gradle plugin:
-    * Build features:
-        * Compose: true
-    * Compose options:
-        * Kotlin compiler extension version: **[compilerVersion]**
-
-#### MultiplatformComposeExtension
-
-* **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.4.2`.
-    * [Multiplatform Compatibility](https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility)
-        * [Mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
-    * [Jetpack Compatibility](https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility)
-
-### multiplatform-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.multiplatform")
-}
-```
-
-* Applies the Kotlin Multiplatform gradle plugin.
-    * Configures the targets:
-        * JVM
-        * Android with library variants `release` and `debug`
-    * Sets the jvm toolchain with the **[jdkVersion]**
-
-#### MultiplatformExtension
-
-* **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 11.
-
-### multiplatform-publish-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.multiplatform.publish")
-}
-```
-
-* See [maven-publish-plugin](#maven-publish-plugin) for base logic.
-    * Uses a KotlinMultiplatform platform with a Dokka generated javadoc.
-
-#### MultiplatformPublishExtension
-
-Implements the **[MavenPublishExtension](#mavenpublishextension)** without any additional properties.
-
-### multiplatform-resource-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.multiplatform.resource")
-}
-```
-
-* Applies the Moko Resources gradle plugin.
-* Adds explicit task dependencies in order to be compatible with Gradle 8.
-
-### multiplatform-test-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.multiplatform.test")
-    id("io.github.woody230.gradle.multiplatform.compose.test")
-}
-```
-
-Adds common test dependencies to the common, Android, and JVM test source sets.
-
-The compose specific plugin adds the Compose Multiplatform test dependencies.
