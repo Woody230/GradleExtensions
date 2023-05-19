@@ -323,13 +323,6 @@ plugins {
         * JVM
         * Android with library variants `release` and `debug`
     * Sets the jvm toolchain with the **[jdkVersion]**
-* Applies source set dependency bundles:
-    * The libs version catalog must exist.
-    * For each Kotlin source set:
-        * Try and find the bundle with the name of the source set, appended with `-implementation`.
-            * If it exists, add the bundle as an implementation dependency.
-        * Try and find the bundle with the name of the source set, appended with `-api`.
-            * If it exists, add the bundle as an api dependency.
 
 #### MultiplatformExtension
 

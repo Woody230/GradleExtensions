@@ -18,8 +18,6 @@ class MultiplatformPlugin : Plugin<Project> {
             configureTargets()
             jvmToolchain(extension.jdkVersion.get())
         }
-
-        plugins.apply(SourceSetDependencyBundlePlugin::class.java)
     }
 
     private fun KotlinMultiplatformExtension.configureTargets() {
