@@ -182,6 +182,16 @@ plugins {
         * [Mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
     * [Jetpack Compatibility](https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility)
 
+### multiplatform-compose-test-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.multiplatform.compose.test")
+}
+```
+
+Adds compose test dependencies to the common, Android, and JVM test source sets.
+
 ### multiplatform-plugin
 
 ```kotlin
@@ -231,13 +241,10 @@ plugins {
 ```kotlin
 plugins {
     id("io.github.woody230.gradle.multiplatform.test")
-    id("io.github.woody230.gradle.multiplatform.compose.test")
 }
 ```
 
 Adds common test dependencies to the common, Android, and JVM test source sets.
-
-The compose specific plugin adds the Compose Multiplatform test dependencies.
 
 ## internal-publish-plugins
 

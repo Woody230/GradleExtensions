@@ -1,4 +1,4 @@
-package com.bselzer.gradle.multiplatform.test.plugin
+package com.bselzer.gradle.multiplatform.compose.test.plugin
 
 import com.bselzer.gradle.multiplatform.multiplatformDependencies
 import org.gradle.api.Plugin
