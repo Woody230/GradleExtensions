@@ -34,6 +34,14 @@ mavenPublishing {
             }
         }
 
+        licenses {
+            license {
+                name.set("The Apache Software License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("repo")
+            }
+        }
+
         url.set(repo)
         scm { url.set(repo) }
     }

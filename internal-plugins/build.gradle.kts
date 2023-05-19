@@ -1,3 +1,4 @@
+import com.bselzer.gradle.maven.publish.plugin.Licensing
 import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
 
 allprojects {
@@ -35,6 +36,7 @@ subprojects {
         subGroupId.set("gradle")
         version.set(rootProject.libs.versions.woody230.gradle)
         repository.set("https://github.com/Woody230/GradleExtensions")
+        licensing.set(Licensing.APACHE_2_0)
     }
 
     afterEvaluate {
