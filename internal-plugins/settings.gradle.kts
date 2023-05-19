@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "internal-plugins"
-include("android-library-desugar-plugin")
+include("android-desugar-plugin")
 include("android-library-plugin")
 include("multiplatform-compose-plugin")
 include("multiplatform-plugin")
