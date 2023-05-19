@@ -36,6 +36,12 @@ Consequently, all extension classes for the plugins must be configured before ap
 
 Non-internal extensions for Gradle.
 
+### android
+
+Android gradle plugin extensions:
+
+* androidExtension getter to find the `CommonExtension` as the extension model for the application or library plugin.
+
 ### multiplatform
 
 Kotlin Multiplatform gradle plugin extensions:

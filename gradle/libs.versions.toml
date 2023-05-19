@@ -45,6 +45,8 @@ woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "prop
 
 # TODO can't NOT provide a version and use alias for plugins already in the classpath https://github.com/gradle/gradle/issues/17968
 [plugins]
+android-application = { id = "com.android.application" }
+android-library = { id = "com.android.library" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 compose = { id = "org.jetbrains.compose", version.ref = "multiplatform-compose" }
 dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
