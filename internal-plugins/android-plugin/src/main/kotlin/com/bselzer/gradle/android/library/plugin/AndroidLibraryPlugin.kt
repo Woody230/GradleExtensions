@@ -1,44 +1,22 @@
 package com.bselzer.gradle.android.library.plugin
 
+import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
-import org.gradle.api.JavaVersion
-import org.gradle.api.Plugin
+import com.bselzer.gradle.android.plugin.AndroidExtension
+import com.bselzer.gradle.android.plugin.AndroidPlugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 
-class AndroidLibraryPlugin : Plugin<Project> {
+class AndroidLibraryPlugin : AndroidPlugin() {
+    override val Project.androidExtension: AndroidExtension
+        get() = androidLibraryExtension
+
+    override val Project.commonExtension: CommonExtension<*, *, *, *>
+        get() = extensions.getByType<LibraryExtension>()
+
     override fun apply(project: Project) = with(project) {
         plugins.apply(LibraryPlugin::class.java)
-
-        val extension = androidLibraryExtension {
-            namespaceId.convention("com.bselzer")
-            artifactId.convention(name)
-            compileSdk.convention(33)
-            minSdk.convention(21)
-            testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
-            sourceCompatibility.convention(JavaVersion.VERSION_11)
-            targetCompatibility.convention(JavaVersion.VERSION_11)
-        }
-
-        with(extensions.getByType<LibraryExtension>()) {
-            namespace = "${extension.namespaceId.get()}.${extension.subNamespaceId.get()}.${extension.artifactId.get()}".replace("-", ".")
-            compileSdk = extension.compileSdk.get()
-            defaultConfig {
-                minSdk = extension.minSdk.get()
-                testInstrumentationRunner = extension.testInstrumentationRunner.get()
-            }
-            compileOptions {
-                sourceCompatibility = extension.sourceCompatibility.get()
-                targetCompatibility = extension.targetCompatibility.get()
-            }
-            testOptions {
-                unitTests {
-                    androidResources {
-                        isIncludeAndroidResources = true
-                    }
-                }
-            }
-        }
+        super.apply(project)
     }
 }
