@@ -26,6 +26,8 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         setupGradleProperties()
 
         val extension = androidApplicationExtension {
+            // NOTE: base logic has been applied, so we can just get the namespace that was set
+            applicationId.convention("${extensions.getByType<BaseAppModuleExtension>().namespace}.android")
             targetSdk.convention(33)
 
             // Prefer to have all languages available, otherwise in-app language changes won't have the strings available because they aren't downloaded.
@@ -39,7 +41,10 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
         with(extensions.getByType<BaseAppModuleExtension>()) {
             defaultConfig {
+                applicationId = extension.applicationId.get()
                 targetSdk = extension.targetSdk.get()
+                versionName = extension.versionName.get()
+                versionCode = extension.versionCode.get()
             }
 
             bundle {

@@ -178,6 +178,9 @@ Configures the `BaseAppModuleExtension`:
 
 * Default config:
     * Target sdk: **[targetSdk]**
+    * Application id: **[applicationId]**
+    * Version name: **[versionName]**
+    * Version code: **[versionCode]**
 * Bundle:
     * Language:
         * Enable split: **[languageSplit]**
@@ -202,8 +205,17 @@ Configures the `BaseAppModuleExtension`:
 
 Implements the [AndroidExtension](#androidextension).
 
+Required
+
+* **[versionName]**: The semantic version.
+* **[versionCode]**: The incremental version.
+
+Optional
+
+* **[applicationId]**: The id of the application. Optional with a default value of the **[namespaceId]**, *
+  *[subNamespaceId]**, **[artifactId]**, and `android` separated by a period (`.`)
 * **[targetSdk]**: The target API level. Optional with a default value of 33.
-* **[languageSplit]**: Whether on-demand language downloading is enabled.
+* **[languageSplit]**: Whether on-demand language downloading is enabled. Optional with a default value of false.
 * **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional
   with a default value of `OPTIMIZED`.
 * **[proguardFiles]**: The relative path from the root directory to the additional proguard files. Optional with a
