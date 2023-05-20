@@ -18,5 +18,15 @@ class AndroidApplicationPlugin : AndroidPlugin() {
     override fun apply(project: Project) = with(project) {
         plugins.apply(AppPlugin::class.java)
         super.apply(project)
+
+        val extension = androidApplicationExtension {
+            targetSdk.convention(33)
+        }
+
+        with(extensions.getByType<BaseAppModuleExtension>()) {
+            defaultConfig {
+                targetSdk = extension.targetSdk.get()
+            }
+        }
     }
 }

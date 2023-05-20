@@ -136,10 +136,6 @@ Configures the `CommonExtension`:
 * Compile options:
     * Source compatibility: **[sourceCompatibility]**
     * Target compatibility: **[targetCompatibility]**
-* Test options:
-    * Unit tests:
-        * Android resources:
-            * Is included android resources: true
 
 #### AndroidExtension
 
@@ -170,8 +166,9 @@ plugins {
 * Applies the Android application gradle plugin.
 
 ##### AndroidApplicationExtension
+Implements the [AndroidExtension](#androidextension).
 
-Implements the [AndroidExtension](#androidextension) without any additional properties.
+* **[targetSdk]**: The target API level. Optional with a default value of 33.
 
 #### android-library-plugin
 
