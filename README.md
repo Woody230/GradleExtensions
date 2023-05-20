@@ -162,6 +162,15 @@ plugins {
 }
 ```
 
+* Sets up gradle properties from local properties, if they exist.
+
+| Gradle Property | Local Property |
+|-----------------|----------------|
+| storeFile       | storeFile      |
+| storePassword   | storePassword  |
+| keyPassword     | keyPassword    |
+| keyAlias        | keyAlias       |
+
 * See [android-plugin](#android-plugin) for base logic.
 * Applies the Android application gradle plugin.
 
@@ -172,6 +181,22 @@ Configures the `BaseAppModuleExtension`:
 * Bundle:
     * Language:
         * Enable split: **[languageSplit]**
+* Build types:
+    * Release:
+        * isMinifyEnabled: true
+        * isShrinkResources: true
+        * proguardFiles:
+            * Add the **[defaultProguardFile]**.
+                * `OPTIMIZED` uses `proguard-android-optimize.txt`
+                * `UNOPTIMIZED` uses `proguard-android.txt`
+            * Add the additional **[proguardFiles]**.
+        * ndk:
+            * debugSymbolLevel: `FULL`
+        * signingConfig:
+            * storeFile: file with path of `storeFile` gradle property
+            * storePassword: `storePassword` gradle property
+            * keyPassword: `keyPassword` gradle property
+            * keyAlias: `keyAlias` gradle property
 
 ##### AndroidApplicationExtension
 
@@ -179,6 +204,10 @@ Implements the [AndroidExtension](#androidextension).
 
 * **[targetSdk]**: The target API level. Optional with a default value of 33.
 * **[languageSplit]**: Whether on-demand language downloading is enabled.
+* **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional
+  with a default value of `OPTIMIZED`.
+* **[proguardFiles]**: The relative path from the root directory to the additional proguard files. Optional with a
+  default collection of only `proguard.rules.pro`.
 
 #### android-library-plugin
 
