@@ -165,10 +165,20 @@ plugins {
 * See [android-plugin](#android-plugin) for base logic.
 * Applies the Android application gradle plugin.
 
+Configures the `BaseAppModuleExtension`:
+
+* Default config:
+    * Target sdk: **[targetSdk]**
+* Bundle:
+    * Language:
+        * Enable split: **[languageSplit]**
+
 ##### AndroidApplicationExtension
+
 Implements the [AndroidExtension](#androidextension).
 
 * **[targetSdk]**: The target API level. Optional with a default value of 33.
+* **[languageSplit]**: Whether on-demand language downloading is enabled.
 
 #### android-library-plugin
 

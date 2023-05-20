@@ -8,4 +8,9 @@ interface AndroidApplicationExtension : AndroidExtension {
      * The target API level.
      */
     val targetSdk: Property<Int>
+
+    /**
+     * Whether on-demand language downloading is enabled.
+     */
+    val languageSplit: Property<Boolean>
 }
