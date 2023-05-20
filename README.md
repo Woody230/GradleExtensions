@@ -121,29 +121,27 @@ plugins {
 * **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default
   value of `2.0.3`.
 
-### android-library-plugin
+### android-plugin
 
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.android.library")
-}
-```
+The base plugin for configuring common options for the [library](#android-library-plugin)
+and [application](#android-application-plugin) plugins.
 
-* Applies the Android library gradle plugin.
-    * Namespace: **[namespaceId]**, **[subNamespaceId]**, and **[artifactId]** separated by a period (`.`)
-    * Compile sdk: **[compileSdk]**
-    * Default config:
-        * Min sdk: **[minSdk]**
-        * Test instrumentation runner: **[testInstrumentationRunner]**
-    * Compile options:
-        * Source compatibility: **[sourceCompatibility]**
-        * Target compatibility: **[targetCompatibility]**
-    * Test options:
-        * Unit tests:
-            * Android resources:
-                * Is included android resources: true
+Configures the `CommonExtension`:
 
-#### AndroidLibraryExtension
+* Namespace: **[namespaceId]**, **[subNamespaceId]**, and **[artifactId]** separated by a period (`.`)
+* Compile sdk: **[compileSdk]**
+* Default config:
+    * Min sdk: **[minSdk]**
+    * Test instrumentation runner: **[testInstrumentationRunner]**
+* Compile options:
+    * Source compatibility: **[sourceCompatibility]**
+    * Target compatibility: **[targetCompatibility]**
+* Test options:
+    * Unit tests:
+        * Android resources:
+            * Is included android resources: true
+
+#### AndroidExtension
 
 Required
 
@@ -159,6 +157,36 @@ Optional
 * **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
 * **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a
   default value of `androidx.test.runner.AndroidJUnitRunner`.
+
+#### android-application-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.android.application")
+}
+```
+
+* See [android-plugin](#android-plugin) for base logic.
+* Applies the Android application gradle plugin.
+
+##### AndroidApplicationExtension
+
+Implements the [AndroidExtension](#androidextension) without any additional properties.
+
+#### android-library-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.android.library")
+}
+```
+
+* See [android-plugin](#android-plugin) for base logic.
+* Applies the Android library gradle plugin.
+
+##### AndroidLibraryExtension
+
+Implements the [AndroidExtension](#androidextension) without any additional properties.
 
 ### multiplatform-compose-plugin
 
@@ -223,7 +251,7 @@ plugins {
 
 #### MultiplatformPublishExtension
 
-Implements the **[MavenPublishExtension](#mavenpublishextension)** without any additional properties.
+Implements the [MavenPublishExtension](#mavenpublishextension) without any additional properties.
 
 ### multiplatform-resource-plugin
 
@@ -266,7 +294,7 @@ plugins {
 
 #### JvmPublishExtension
 
-Implements the **[MavenPublishExtension](#mavenpublishextension)** without any additional properties.
+Implements the [MavenPublishExtension](#mavenpublishextension) without any additional properties.
 
 ### maven-publish-plugin
 
