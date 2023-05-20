@@ -370,9 +370,14 @@ Required
 * **[plugins]**: The plugins to publish. At least one plugin is required.
     * **[name]**: The name of the plugin, to be combined with the **[groupId]** and **[subGroupId]** for the id of the
       plugin.
+        * If there is only a single plugin, then it is optional with a default value of the project name stripped of
+          the `-plugin` suffix and with dashes (`-`) replaced by periods (`.`).
     * **[displayName]**: The friendly name of the plugin.
-    * **[description]**: A brief description of what the plugin provides. Optional with a default value of the *
-      *[PluginPublishPluginExtension.description]**.
+        * If there is only a single plugin, then it is optional with a default value of the project name with
+          dashes (`-`) replaced by spaces and words capitalized.
+    * **[description]**: A brief description of what the plugin provides.
+        * If there is only a single plugin, then it is optional with a default value of the *
+          *[PluginPublishPluginExtension.description]**.
     * **[tags]**: The individual tags for this particular plugin, to be combined with the common tags. Optional with a
       default value of an empty list.
     * **[className]**: The fully qualified class name of the plugin.

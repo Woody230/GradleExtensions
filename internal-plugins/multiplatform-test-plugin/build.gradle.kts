@@ -11,7 +11,6 @@ pluginPublishExtension {
     description.set("Applies the test dependencies for the Kotlin Multiplatform source sets.")
 
     plugin {
-        name.set("multiplatform-test")
         displayName.set("Kotlin Multiplatform Test Plugin")
         className.set("com.bselzer.gradle.multiplatform.test.plugin.MultiplatformTestPlugin")
     }

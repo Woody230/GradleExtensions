@@ -12,7 +12,6 @@ pluginPublishExtension {
     description.set("Applies core library desugaring of Java APIs for an Android library.")
 
     plugin {
-        name.set("android.library.desugar")
         displayName.set("Android Core Library Desugaring Plugin")
         className.set("com.bselzer.gradle.android.library.desugar.plugin.AndroidLibraryDesugarPlugin")
     }

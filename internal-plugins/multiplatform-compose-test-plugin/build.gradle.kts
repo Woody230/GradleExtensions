@@ -11,7 +11,6 @@ pluginPublishExtension {
     description.set("Applies the Compose Multiplatform test dependencies for the Kotlin Multiplatform source sets.")
 
     plugin {
-        name.set("multiplatform-compose-test")
         displayName.set("Compose Multiplatform Test Plugin")
         className.set("com.bselzer.gradle.multiplatform.compose.test.plugin.MultiplatformComposeTestPlugin")
     }

@@ -8,6 +8,7 @@ import com.vanniktech.maven.publish.GradlePublishPlugin
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
+import org.gradle.configurationcache.extensions.capitalized
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
@@ -44,12 +45,31 @@ class PluginPublishPlugin : MavenPublishPlugin() {
                 check(plugins.isNotEmpty()) { "[$name] At least one plugin must be published." }
 
                 plugins.forEach { plugin ->
-                    plugin.description.convention(mavenPublishExtension.description.get())
+                    // If there is a single plugin, then we can make assumptions about the name/description because the module is dedicated.
+                    if (plugins.size == 1) {
+                        plugin.description.convention(mavenPublishExtension.description.get())
+                        plugin.name.convention(nameConvention)
+                        plugin.displayName.convention(displayNameConvention)
+                    }
+
                     configurePlugin(extension, plugin)
                 }
             }
         }
     }
+
+    private val Project.nameConvention: String
+        get() {
+            // We already know we are publishing a plugin, so it shouldn't exist in the id.
+            // Prefer to only use periods and no dashes.
+            return name.removeSuffix("-plugin").replace("-", ".")
+        }
+
+    private val Project.displayNameConvention: String
+        get() {
+            // Example: plugin-publish-plugin should become Plugin Publish Plugin
+            return name.split("-").joinToString(separator = " ", transform = String::capitalized)
+        }
 
     private fun NamedDomainObjectContainer<PluginDeclaration>.configurePlugin(
         extension: PluginPublishExtension,
