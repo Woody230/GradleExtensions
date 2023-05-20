@@ -3,6 +3,7 @@ import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
 dependencies {
     api(gradleApi())
     api(libs.android.plugin)
+    api(libs.kotlin.plugin)
     implementation(libs.woody230.gradle.android)
     implementation(libs.woody230.gradle.properties)
 }

@@ -10,7 +10,7 @@ abstract class AndroidPlugin : Plugin<Project> {
 
     protected abstract val Project.commonExtension: CommonExtension<*, *, *, *>
 
-    override fun apply(project: Project) = with(project) {
+    override fun apply(project: Project): Unit = with(project) {
         val extension = androidExtension.apply {
             namespaceId.convention("com.bselzer")
             artifactId.convention(name)
@@ -38,6 +38,30 @@ abstract class AndroidPlugin : Plugin<Project> {
                         isIncludeAndroidResources = true
                     }
                 }
+            }
+        }
+
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
+            val target = extension.targetCompatibility.get()
+            kotlinOptions.jvmTarget = when (target) {
+                JavaVersion.VERSION_1_8 -> "1.8"
+                JavaVersion.VERSION_1_9 -> "9"
+                JavaVersion.VERSION_1_10 -> "10"
+                JavaVersion.VERSION_11 -> "11"
+                JavaVersion.VERSION_12 -> "12"
+                JavaVersion.VERSION_13 -> "13"
+                JavaVersion.VERSION_14 -> "14"
+                JavaVersion.VERSION_15 -> "15"
+                JavaVersion.VERSION_16 -> "16"
+                JavaVersion.VERSION_17 -> "17"
+                JavaVersion.VERSION_18 -> "18"
+                JavaVersion.VERSION_19 -> "19"
+                JavaVersion.VERSION_20 -> "20"
+                JavaVersion.VERSION_21 -> "21"
+                JavaVersion.VERSION_22 -> "22"
+                JavaVersion.VERSION_23 -> "23"
+                JavaVersion.VERSION_24 -> "24"
+                else -> throw NotImplementedError("Unsupported JVM target $target")
             }
         }
     }

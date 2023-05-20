@@ -18,6 +18,10 @@ class MultiplatformPlugin : Plugin<Project> {
             configureTargets()
             jvmToolchain(extension.jdkVersion.get())
         }
+
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
+            kotlinOptions.jvmTarget = extension.jdkVersion.get().toString()
+        }
     }
 
     private fun KotlinMultiplatformExtension.configureTargets() {
