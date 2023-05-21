@@ -17,8 +17,14 @@ repositories {
 }
 ```
 
+Non-internal modules:
 ```kotlin
 implementation("io.github.woody230.gradle:$Module:$Version")
+```
+
+Internal modules:
+```kotlin
+implementation("io.github.woody230.gradle.internal:$Module:$Version")
 ```
 
 # Modules
@@ -105,26 +111,22 @@ Plugins intended to be used by my personal projects only.
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.android.desugar")
+    id("io.github.woody230.gradle.internal.android.desugar")
 }
 ```
 
-* Configures the `LibraryExtension` or `BaseAppModuleExtension` depending on if the library or application plugin is
-  applied:
+* Configures the `LibraryExtension` or `BaseAppModuleExtension` depending on if the library or application plugin is applied:
     * Compile options:
         * isCoreLibraryDesugaringEnabled as true
-* Adds the `com.android.tools:desugar_jdk_libs` dependency with the **[version]** to the `coreLibraryDesugaring`
-  configuration.
+* Adds the `com.android.tools:desugar_jdk_libs` dependency with the **[version]** to the `coreLibraryDesugaring` configuration.
 
 #### AndroidDesugarExtension
 
-* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default
-  value of `2.0.3`.
+* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default value of `2.0.3`.
 
 ### android-plugin
 
-The base plugin for configuring common options for the [library](#android-library-plugin)
-and [application](#android-application-plugin) plugins.
+The base plugin for configuring common options for the [library](#android-library-plugin) and [application](#android-application-plugin) plugins.
 
 Configures the `CommonExtension`:
 
@@ -152,14 +154,13 @@ Optional
 * **[minSdk]**: The minimum API level required. Optional with a default value of 21.
 * **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
 * **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
-* **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a
-  default value of `androidx.test.runner.AndroidJUnitRunner`.
+* **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a default value of `androidx.test.runner.AndroidJUnitRunner`.
 
 #### android-application-plugin
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.android.application")
+    id("io.github.woody230.gradle.internal.android.application")
 }
 ```
 
@@ -217,16 +218,14 @@ Optional
   **[namespace.category]**, **[namespace.module]**, and `android` separated by a period (`.`)
 * **[targetSdk]**: The target API level. Optional with a default value of 33.
 * **[languageSplit]**: Whether on-demand language downloading is enabled. Optional with a default value of false.
-* **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional
-  with a default value of `OPTIMIZED`.
-* **[proguardFiles]**: The relative path from the root directory to the additional proguard files. Optional with a
-  default collection of only `proguard.rules.pro`.
+* **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional with a default value of `OPTIMIZED`.
+* **[proguardFiles]**: The relative path from the root directory to the additional proguard files. Optional with a default collection of only `proguard.rules.pro`.
 
 #### android-library-plugin
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.android.library")
+    id("io.github.woody230.gradle.internal.android.library")
 }
 ```
 
@@ -241,7 +240,7 @@ Implements the [AndroidExtension](#androidextension) without any additional prop
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.multiplatform.compose")
+    id("io.github.woody230.gradle.internal.multiplatform.compose")
 }
 ```
 
@@ -263,7 +262,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.multiplatform.compose.test")
+    id("io.github.woody230.gradle.internal.multiplatform.compose.test")
 }
 ```
 
@@ -273,7 +272,7 @@ Adds compose test dependencies to the common, Android, and JVM test source sets.
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.multiplatform")
+    id("io.github.woody230.gradle.internal.multiplatform")
 }
 ```
 
@@ -291,7 +290,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.multiplatform.publish")
+    id("io.github.woody230.gradle.internal.multiplatform.publish")
 }
 ```
 
@@ -306,7 +305,7 @@ Implements the [MavenPublishExtension](#mavenpublishextension) without any addit
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.multiplatform.resource")
+    id("io.github.woody230.gradle.internal.multiplatform.resource")
 }
 ```
 
@@ -317,7 +316,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.multiplatform.test")
+    id("io.github.woody230.gradle.internal.multiplatform.test")
 }
 ```
 
@@ -327,14 +326,13 @@ Adds common test dependencies to the common, Android, and JVM test source sets.
 
 Plugins intended to be used by my personal projects only.
 
-These plugins are included within this build because they are also used by the other modules in the other builds within
-this project.
+These plugins are included within this build because they are also used by the other modules in the other builds within this project.
 
 ### jvm-publish-plugin
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.jvm.publish")
+    id("io.github.woody230.gradle.internal.jvm.publish")
 }
 ```
 
@@ -347,11 +345,7 @@ Implements the [MavenPublishExtension](#mavenpublishextension) without any addit
 
 ### maven-publish-plugin
 
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.maven.publish")
-}
-```
+Base plugin for publishing to Maven Central.
 
 * Sets up gradle properties from local properties, if they exist.
 
@@ -399,21 +393,19 @@ Required
     * **[category]**: The specific category, denoting the type of modules. For example, this repository uses `gradle`.
     * **[module]**: The name of the module. Optional with a default value of the name of the project.
 * **[version]**: The semantic version of the artifact. A snapshot is denoted by a version ending in `-SNAPSNOT`.
-* **[repository]**: The URL for the source control repository. For example, this repository
-  uses `https://github.com/Woody230/GradleExtensions`.
+* **[repository]**: The URL for the source control repository. For example, this repository uses `https://github.com/Woody230/GradleExtensions`.
 * **[description]**: A brief description of what the module provides.
 
 Optional
 
-* **[licensing]**: The type of licensing to apply. Must be either `NONE` or `APACHE_2_0`. Optional with a default value
-  of `NONE`.
+* **[licensing]**: The type of licensing to apply. Must be either `NONE` or `APACHE_2_0`. Optional with a default value of `NONE`.
 * **[developers]**: Configures the additional developers. Optional with a default function that does nothing.
 
 ### plugin-publish-plugin
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.plugin.publish")
+    id("io.github.woody230.gradle.internal.plugin.publish")
 }
 ```
 
@@ -447,19 +439,13 @@ Implements the **[MavenPublishExtension](#mavenpublishextension)**.
 Required
 
 * **[plugins]**: The plugins to publish. At least one plugin is required.
-    * **[name]**: The name of the plugin, to be combined with the **[coordinates.group]** and **[coordinates.category]**
-      for the id of the
-      plugin.
-        * If there is only a single plugin, then it is optional with a default value of the project name stripped of
-          the `-plugin` suffix and with dashes (`-`) replaced by periods (`.`).
+    * **[name]**: The name of the plugin, to be combined with the **[coordinates.group]** and **[coordinates.category]** for the id of the plugin.
+        * If there is only a single plugin, then it is optional with a default value of the project name stripped of the `-plugin` suffix and with dashes (`-`) replaced by periods (`.`).
     * **[displayName]**: The friendly name of the plugin.
-        * If there is only a single plugin, then it is optional with a default value of the project name with
-          dashes (`-`) replaced by spaces and words capitalized.
+        * If there is only a single plugin, then it is optional with a default value of the project name with dashes (`-`) replaced by spaces and words capitalized.
     * **[description]**: A brief description of what the plugin provides.
-        * If there is only a single plugin, then it is optional with a default value of the *
-          *[PluginPublishPluginExtension.description]**.
-    * **[tags]**: The individual tags for this particular plugin, to be combined with the common tags. Optional with a
-      default value of an empty list.
+        * If there is only a single plugin, then it is optional with a default value of the **[PluginPublishPluginExtension.description]**.
+    * **[tags]**: The individual tags for this particular plugin, to be combined with the common tags. Optional with a default value of an empty list.
     * **[className]**: The fully qualified class name of the plugin.
 
 Optional
