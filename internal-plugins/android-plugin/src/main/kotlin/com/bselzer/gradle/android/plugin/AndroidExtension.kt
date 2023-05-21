@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.android.plugin
+package com.bselzer.gradle.android.plugin
 
 import com.bselzer.gradle.internal.models.ModuleId
 import org.gradle.api.JavaVersion

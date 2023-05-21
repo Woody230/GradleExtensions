@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.android.application.plugin
+package com.bselzer.gradle.android.application.plugin
 
 internal object LocalProperty {
     const val STORE_FILE = "storeFile"

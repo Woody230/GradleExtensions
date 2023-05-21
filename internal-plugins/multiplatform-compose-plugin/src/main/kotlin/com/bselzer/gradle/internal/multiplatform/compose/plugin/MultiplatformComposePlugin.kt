@@ -1,7 +1,7 @@
 package com.bselzer.gradle.internal.multiplatform.compose.plugin
 
 import com.android.build.api.dsl.CommonExtension
-import com.bselzer.gradle.internal.android.androidExtensionOrNull
+import com.bselzer.gradle.android.androidExtensionOrNull
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.compose.ComposePlugin

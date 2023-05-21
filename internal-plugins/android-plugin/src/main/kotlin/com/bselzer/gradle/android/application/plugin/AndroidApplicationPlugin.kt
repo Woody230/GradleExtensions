@@ -1,11 +1,11 @@
-package com.bselzer.gradle.internal.android.application.plugin
+package com.bselzer.gradle.android.application.plugin
 
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
-import com.bselzer.gradle.internal.android.plugin.AndroidExtension
-import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
-import com.bselzer.gradle.internal.android.release
+import com.bselzer.gradle.android.plugin.AndroidExtension
+import com.bselzer.gradle.android.plugin.AndroidPlugin
+import com.bselzer.gradle.android.release
 import com.bselzer.gradle.properties.containsKeys
 import com.bselzer.gradle.properties.getProperty
 import com.bselzer.gradle.properties.localProperties

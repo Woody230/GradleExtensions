@@ -1,6 +1,6 @@
-package com.bselzer.gradle.internal.android.application.plugin
+package com.bselzer.gradle.android.application.plugin
 
-import com.bselzer.gradle.internal.android.plugin.AndroidExtension
+import com.bselzer.gradle.android.plugin.AndroidExtension
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 

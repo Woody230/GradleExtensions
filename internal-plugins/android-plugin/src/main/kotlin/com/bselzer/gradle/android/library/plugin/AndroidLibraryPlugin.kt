@@ -1,10 +1,10 @@
-package com.bselzer.gradle.internal.android.library.plugin
+package com.bselzer.gradle.android.library.plugin
 
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
-import com.bselzer.gradle.internal.android.plugin.AndroidExtension
-import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
+import com.bselzer.gradle.android.plugin.AndroidExtension
+import com.bselzer.gradle.android.plugin.AndroidPlugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 

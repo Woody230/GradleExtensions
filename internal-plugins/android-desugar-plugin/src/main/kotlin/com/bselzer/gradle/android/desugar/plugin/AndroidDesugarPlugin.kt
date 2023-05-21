@@ -1,6 +1,6 @@
-package com.bselzer.gradle.internal.android.desugar.plugin
+package com.bselzer.gradle.android.desugar.plugin
 
-import com.bselzer.gradle.internal.android.androidExtension
+import com.bselzer.gradle.android.androidExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

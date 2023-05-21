@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.android
+package com.bselzer.gradle.android
 
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project

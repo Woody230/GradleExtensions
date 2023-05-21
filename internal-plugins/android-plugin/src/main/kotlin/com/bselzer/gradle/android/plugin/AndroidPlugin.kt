@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.android.plugin
+package com.bselzer.gradle.android.plugin
 
 import com.android.build.api.dsl.CommonExtension
 import com.bselzer.gradle.internal.models.toNumericString

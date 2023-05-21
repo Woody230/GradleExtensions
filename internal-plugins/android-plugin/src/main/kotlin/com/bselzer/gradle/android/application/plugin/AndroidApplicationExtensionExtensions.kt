@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.android.application.plugin
+package com.bselzer.gradle.android.application.plugin
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create
