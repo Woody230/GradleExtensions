@@ -111,7 +111,7 @@ Plugins intended to be used by my personal projects only.
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.android.desugar")
+    id("io.github.woody230.gradle.internal.android-desugar")
 }
 ```
 
@@ -160,7 +160,7 @@ Optional
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.android.application")
+    id("io.github.woody230.gradle.internal.android-application")
 }
 ```
 
@@ -225,7 +225,7 @@ Optional
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.android.library")
+    id("io.github.woody230.gradle.internal.android-library")
 }
 ```
 
@@ -240,7 +240,7 @@ Implements the [AndroidExtension](#androidextension) without any additional prop
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.multiplatform.compose")
+    id("io.github.woody230.gradle.internal.multiplatform-compose")
 }
 ```
 
@@ -262,7 +262,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.multiplatform.compose.test")
+    id("io.github.woody230.gradle.internal.multiplatform-compose-test")
 }
 ```
 
@@ -290,7 +290,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.multiplatform.publish")
+    id("io.github.woody230.gradle.internal.multiplatform-publish")
 }
 ```
 
@@ -305,7 +305,7 @@ Implements the [MavenPublishExtension](#mavenpublishextension) without any addit
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.multiplatform.resource")
+    id("io.github.woody230.gradle.internal.multiplatform-resource")
 }
 ```
 
@@ -316,7 +316,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.multiplatform.test")
+    id("io.github.woody230.gradle.internal.multiplatform-test")
 }
 ```
 
@@ -332,7 +332,7 @@ These plugins are included within this build because they are also used by the o
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.jvm.publish")
+    id("io.github.woody230.gradle.internal.jvm-publish")
 }
 ```
 
@@ -405,7 +405,7 @@ Optional
 
 ```kotlin
 plugins {
-    id("io.github.woody230.gradle.internal.plugin.publish")
+    id("io.github.woody230.gradle.internal.plugin-publish")
 }
 ```
 
