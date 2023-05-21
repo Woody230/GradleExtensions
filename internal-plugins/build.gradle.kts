@@ -1,5 +1,5 @@
-import com.bselzer.gradle.maven.publish.plugin.Licensing
-import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.maven.publish.plugin.Licensing
+import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 allprojects {
     repositories {
@@ -21,9 +21,9 @@ buildscript {
         classpath(libs.publish.plugin)
         classpath(libs.kotlin.dsl.plugin)
         classpath(libs.woody230.gradle.properties)
-        classpath(libs.woody230.gradle.maven.publish.plugin)
+        classpath(libs.woody230.gradle.internal.maven.publish.plugin)
         classpath(libs.woody230.gradle.multiplatform)
-        classpath(libs.woody230.gradle.plugin.publish.plugin)
+        classpath(libs.woody230.gradle.internal.plugin.publish.plugin)
     }
 }
 
@@ -33,14 +33,16 @@ subprojects {
     apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
 
     pluginPublishExtension {
-        coordinates.category.set("gradle")
+        coordinates.category.set("gradle.internal")
         version.set(rootProject.libs.versions.woody230.gradle)
         repository.set("https://github.com/Woody230/GradleExtensions")
         licensing.set(Licensing.APACHE_2_0)
+
+        tags.add("internal")
     }
 
     afterEvaluate {
-        apply(plugin = rootProject.libs.plugins.woody230.gradle.plugin.publish.get().pluginId)
+        apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.plugin.publish.get().pluginId)
     }
 }
 

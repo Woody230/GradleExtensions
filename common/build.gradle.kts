@@ -1,5 +1,5 @@
-import com.bselzer.gradle.jvm.publish.plugin.jvmPublishExtension
-import com.bselzer.gradle.maven.publish.plugin.Licensing
+import com.bselzer.gradle.internal.jvm.publish.plugin.jvmPublishExtension
+import com.bselzer.gradle.internal.maven.publish.plugin.Licensing
 
 allprojects {
     repositories {
@@ -18,7 +18,7 @@ buildscript {
 
     dependencies {
         classpath(libs.kotlin.plugin)
-        classpath(libs.woody230.gradle.jvm.publish.plugin)
+        classpath(libs.woody230.gradle.internal.jvm.publish.plugin)
     }
 }
 
@@ -34,7 +34,7 @@ subprojects {
     }
 
     afterEvaluate {
-        apply(plugin = rootProject.libs.plugins.woody230.gradle.jvm.publish.get().pluginId)
+        apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.jvm.publish.get().pluginId)
     }
 }
 

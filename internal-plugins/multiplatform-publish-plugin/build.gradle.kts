@@ -1,10 +1,10 @@
-import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(libs.woody230.gradle.properties)
     api(libs.kotlin.plugin)
     api(libs.dokka.plugin)
-    implementation(libs.woody230.gradle.maven.publish.plugin)
+    implementation(libs.woody230.gradle.internal.maven.publish.plugin)
 }
 
 pluginPublishExtension {

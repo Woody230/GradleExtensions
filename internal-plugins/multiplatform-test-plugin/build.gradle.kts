@@ -1,4 +1,4 @@
-import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(libs.woody230.gradle.multiplatform)
@@ -12,6 +12,6 @@ pluginPublishExtension {
 
     plugin {
         displayName.set("Kotlin Multiplatform Test Plugin")
-        className.set("com.bselzer.gradle.multiplatform.test.plugin.MultiplatformTestPlugin")
+        className.set("com.bselzer.gradle.internal.multiplatform.test.plugin.MultiplatformTestPlugin")
     }
 }

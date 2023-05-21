@@ -1,4 +1,4 @@
-import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(libs.moko.resources.plugin)
@@ -11,6 +11,6 @@ pluginPublishExtension {
 
     plugin {
         displayName.set("Kotlin Multiplatform Moko Resources Plugin")
-        className.set("com.bselzer.gradle.multiplatform.resource.plugin.MultiplatformResourcesPlugin")
+        className.set("com.bselzer.gradle.internal.multiplatform.resource.plugin.MultiplatformResourcesPlugin")
     }
 }

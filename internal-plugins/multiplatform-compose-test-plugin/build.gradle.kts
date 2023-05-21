@@ -1,4 +1,4 @@
-import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(libs.woody230.gradle.multiplatform)

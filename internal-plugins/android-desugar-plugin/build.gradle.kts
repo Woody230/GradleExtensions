@@ -1,4 +1,4 @@
-import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(gradleApi())
@@ -13,6 +13,6 @@ pluginPublishExtension {
 
     plugin {
         displayName.set("Android Core Library Desugaring Plugin")
-        className.set("com.bselzer.gradle.android.library.desugar.plugin.AndroidLibraryDesugarPlugin")
+        className.set("com.bselzer.gradle.internal.android.desugar.plugin.AndroidDesugarPlugin")
     }
 }

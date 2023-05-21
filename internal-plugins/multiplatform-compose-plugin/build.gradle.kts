@@ -1,4 +1,4 @@
-import com.bselzer.gradle.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(libs.compose.plugin)
@@ -13,6 +13,6 @@ pluginPublishExtension {
 
     plugin {
         displayName.set("Compose Multiplatform Plugin")
-        className.set("com.bselzer.gradle.multiplatform.compose.plugin.MultiplatformComposePlugin")
+        className.set("com.bselzer.gradle.internal.multiplatform.compose.plugin.MultiplatformComposePlugin")
     }
 }

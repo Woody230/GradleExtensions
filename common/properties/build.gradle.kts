@@ -1,4 +1,4 @@
-import com.bselzer.gradle.jvm.publish.plugin.jvmPublishExtension
+import com.bselzer.gradle.internal.jvm.publish.plugin.jvmPublishExtension
 
 dependencies {
     api(gradleApi())
