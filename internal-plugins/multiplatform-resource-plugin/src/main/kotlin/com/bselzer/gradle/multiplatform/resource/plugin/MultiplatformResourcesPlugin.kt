@@ -1,6 +1,6 @@
 package com.bselzer.gradle.multiplatform.resource.plugin
 
-import com.android.build.gradle.LibraryExtension
+import com.bselzer.gradle.android.androidExtension
 import dev.icerock.gradle.MultiplatformResourcesPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -11,8 +11,7 @@ class MultiplatformResourcesPlugin : Plugin<Project> {
         plugins.apply(MultiplatformResourcesPlugin::class.java)
 
         // TODO temporary srcDir inclusion https://github.com/icerockdev/moko-resources/issues/353
-        val android = extensions.getByType(LibraryExtension::class.java)
-        with(android.sourceSets.getByName("main")) {
+        with(androidExtension.sourceSets.getByName("main")) {
             assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
             res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
         }
