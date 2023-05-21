@@ -32,8 +32,8 @@ implementation("io.github.woody230.gradle.internal:$Module:$Version")
 Modules exist within multiple builds that are included within the root project as a composite:
 
 * [common](#common)
-* [internal-common-plugins](#internal-common-plugins)
 * [internal-plugins](#internal-plugins)
+* [internal-publish-plugins](#internal-publish-plugins)
 
 Note that for all plugins, afterEvaluate is NOT used.
 Consequently, all extension classes for the plugins must be configured before applying the plugins.
