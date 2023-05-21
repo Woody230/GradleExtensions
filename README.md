@@ -365,11 +365,12 @@ plugins {
 
 * Applies [vanniktech's base publish plugin](https://github.com/vanniktech/gradle-maven-publish-plugin).
 * Coordinates:
-    * Group id: **[groupId]** and **[subGroupId]** separated by a period (`.`)
-    * Artifact id: **[artifactId]**
+    * Group id: **[coordinates.group]** and **[coordinates.category]** separated by a period (`.`)
+    * Artifact id: **[coordinates.module]**
     * Version: **[version]**
 * Pom:
-    * Name: **[subGroupId]** and **[artifactId]** separated by a dash (`-`)
+    * Name: **[coordinates.category]** and **[coordinates.module]** separated by a space with dashes (`-`) replaced with
+      spaces and words capitalized
     * Description: **[description]**
     * Licenses: based on **[licensing]**
         * `NONE`: No license is added.
@@ -423,7 +424,7 @@ plugins {
 | gradle.publish.key    | gradle.publish.key    |
 | gradle.publish.secret | gradle.publish.secret |
 
-* Project's group: **[groupId]** and **[subGroupId]** separated by a period (`.`)
+* Project's group: **[coordinates.group]** and **[coordinates.category]** separated by a period (`.`)
 * Project's version: **[version]**
 
 * See [maven-publish-plugin](#maven-publish-plugin) for base logic.
@@ -433,7 +434,7 @@ plugins {
     * Website: **[repository]**
     * Vcs url: **[repository]** with `.git` appended
     * Plugins: for each of the **[plugins]** with at least 1 required
-        * Id: **[groupId]**, **[subGroupId]**, and **[plugins.name]** separated by a period (`.`).
+        * Id: **[coordinates.group]**, **[coordinates.category]**, and **[plugins.name]** separated by a period (`.`).
         * Display name: **[plugins.displayName]**
         * Description: **[plugins.description]**
         * Implementation class: **[plugins.className]**
@@ -446,7 +447,8 @@ Implements the **[MavenPublishExtension](#mavenpublishextension)**.
 Required
 
 * **[plugins]**: The plugins to publish. At least one plugin is required.
-    * **[name]**: The name of the plugin, to be combined with the **[groupId]** and **[subGroupId]** for the id of the
+    * **[name]**: The name of the plugin, to be combined with the **[coordinates.group]** and **[coordinates.category]**
+      for the id of the
       plugin.
         * If there is only a single plugin, then it is optional with a default value of the project name stripped of
           the `-plugin` suffix and with dashes (`-`) replaced by periods (`.`).
