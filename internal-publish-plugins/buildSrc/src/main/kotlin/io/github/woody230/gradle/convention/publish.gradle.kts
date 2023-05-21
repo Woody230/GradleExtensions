@@ -1,6 +1,7 @@
 package io.github.woody230.gradle.convention
 
 import com.vanniktech.maven.publish.GradlePublishPlugin
+import org.gradle.configurationcache.extensions.capitalized
 
 // TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
@@ -24,7 +25,8 @@ mavenPublishing {
     coordinates(groupId = group, artifactId = name, version = version)
 
     pom {
-        name.set("Gradle Internal ${project.name}")
+        val module = project.name.split("-").joinToString(separator = " ", transform = String::capitalized)
+        name.set("Gradle Internal $module")
 
         developers {
             developer {
