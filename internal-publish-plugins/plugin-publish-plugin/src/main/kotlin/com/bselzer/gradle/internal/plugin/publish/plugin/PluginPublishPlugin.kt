@@ -61,8 +61,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
     private val Project.nameConvention: String
         get() {
             // We already know we are publishing a plugin, so it shouldn't exist in the id.
-            // Prefer to only use periods and no dashes.
-            return name.removeSuffix("-plugin").replace("-", ".")
+            return name.removeSuffix("-plugin")
         }
 
     private val Project.displayNameConvention: String
