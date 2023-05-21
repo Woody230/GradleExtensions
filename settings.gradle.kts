@@ -23,14 +23,17 @@ fun ConfigurableIncludedBuild.substitute(substitution: Pair<String, String>) {
     }
 }
 
-includeBuild("common") {
-    substitute("io.github.woody230.gradle:android" to ":android")
-    substitute("io.github.woody230.gradle:multiplatform" to ":multiplatform")
-    substitute("io.github.woody230.gradle:properties" to ":properties")
+includeBuild("internal-common") {
+    substitute("io.github.woody230.gradle:internal-models" to ":models")
 }
 includeBuild("internal-publish-plugins") {
     substitute("io.github.woody230.gradle:jvm-publish-plugin" to ":jvm-publish-plugin")
     substitute("io.github.woody230.gradle:maven-publish-plugin" to ":maven-publish-plugin")
     substitute("io.github.woody230.gradle:plugin-publish-plugin" to ":plugin-publish-plugin")
+}
+includeBuild("common") {
+    substitute("io.github.woody230.gradle:android" to ":android")
+    substitute("io.github.woody230.gradle:multiplatform" to ":multiplatform")
+    substitute("io.github.woody230.gradle:properties" to ":properties")
 }
 includeBuild("internal-plugins")

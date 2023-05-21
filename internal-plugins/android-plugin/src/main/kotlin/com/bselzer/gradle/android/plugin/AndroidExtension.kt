@@ -1,23 +1,16 @@
 package com.bselzer.gradle.android.plugin
 
+import com.bselzer.gradle.models.ModuleId
 import org.gradle.api.JavaVersion
 import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Nested
 
 interface AndroidExtension {
     /**
-     * The base id of the namespace.
+     * The id of the namespace.
      */
-    val namespaceId: Property<String>
-
-    /**
-     * The specific category, denoting the type of modules.
-     */
-    val subNamespaceId: Property<String>
-
-    /**
-     * The name of the module.
-     */
-    val artifactId: Property<String>
+    @get:Nested
+    val namespace: ModuleId
 
     /**
      * The API level to compile against.

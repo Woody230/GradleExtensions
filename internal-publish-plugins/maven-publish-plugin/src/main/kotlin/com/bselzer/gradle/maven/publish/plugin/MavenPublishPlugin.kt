@@ -11,6 +11,7 @@ import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPomLicenseSpec
+import org.gradle.configurationcache.extensions.capitalized
 import org.gradle.kotlin.dsl.getByType
 
 abstract class MavenPublishPlugin : Plugin<Project> {
@@ -22,8 +23,8 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         plugins.apply(MavenPublishBasePlugin::class.java)
 
         val extension = mavenPublishExtension.apply {
-            groupId.convention("io.github.woody230")
-            artifactId.convention(name)
+            coordinates.group.convention("io.github.woody230")
+            coordinates.module.convention(name)
             developers.convention { }
             licensing.convention(Licensing.NONE)
         }
@@ -47,8 +48,8 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     }
 
     private fun MavenPublishBaseExtension.configureCoordinates(extension: MavenPublishExtension) {
-        val groupId = "${extension.groupId.get()}.${extension.subGroupId.get()}"
-        val artifactId = extension.artifactId.get()
+        val groupId = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}"
+        val artifactId = extension.coordinates.module.get()
         val version = extension.version.get()
         coordinates(groupId, artifactId, version)
     }
@@ -82,8 +83,9 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     }
 
     private fun MavenPublishBaseExtension.configurePom(extension: MavenPublishExtension) = pom {
+        val components = listOf(extension.coordinates.category.get()) + extension.coordinates.module.get().split("-")
         configure(
-            name = "${extension.subGroupId.get()}-${extension.artifactId.get()}",
+            name = components.joinToString(separator = " ", transform = String::capitalized),
             description = extension.description.get(),
             licensing = extension.licensing.get(),
             devs = extension.developers.get(),

@@ -38,6 +38,7 @@ robolectric = { group = "org.robolectric", name = "robolectric", version = "4.10
 toolchain-plugin = { group = "org.gradle.toolchains.foojay-resolver-convention", name = "org.gradle.toolchains.foojay-resolver-convention.gradle.plugin", version.ref = "toolchain" }
 vanniktech-publish-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
 woody230-gradle-android = { group = "io.github.woody230.gradle", name = "android", version.ref = "woody230-gradle" }
+woody230-gradle-internal-models = { group = "io.github.woody230.gradle", name = "internal-models", version.ref = "woody230-gradle" }
 woody230-gradle-jvm-publish-plugin = { group = "io.github.woody230.gradle", name = "jvm-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-maven-publish-plugin = { group = "io.github.woody230.gradle", name = "maven-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "multiplatform", version.ref = "woody230-gradle" }

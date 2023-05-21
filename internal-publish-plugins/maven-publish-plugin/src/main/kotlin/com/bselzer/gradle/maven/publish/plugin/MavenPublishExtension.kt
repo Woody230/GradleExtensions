@@ -1,24 +1,17 @@
 package com.bselzer.gradle.maven.publish.plugin
 
+import com.bselzer.gradle.models.ModuleId
 import org.gradle.api.provider.Property
 import org.gradle.api.publish.maven.MavenPomDeveloper
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
+import org.gradle.api.tasks.Nested
 
 interface MavenPublishExtension {
     /**
-     * The base group id of the coordinates.
+     * The id of the coordinates.
      */
-    val groupId: Property<String>
-
-    /**
-     * The specific category, denoting the type of modules.
-     */
-    val subGroupId: Property<String>
-
-    /**
-     * The name of the module.
-     */
-    val artifactId: Property<String>
+    @get:Nested
+    val coordinates: ModuleId
 
     /**
      * The semantic version of the artifact. A snapshot is denoted by a version ending in -SNAPSNOT.

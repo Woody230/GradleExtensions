@@ -32,7 +32,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
             tags.convention(emptyList())
         }
 
-        group = "${extension.groupId.get()}.${extension.subGroupId.get()}"
+        group = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}"
         version = extension.version.get()
 
         setupGradleProperties()
@@ -76,7 +76,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         plugin: com.bselzer.gradle.plugin.publish.plugin.PluginDeclaration,
     ) {
         create(plugin.name.get()) {
-            id = "${extension.groupId.get()}.${extension.subGroupId.get()}.${plugin.name.get()}"
+            id = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}.${plugin.name.get()}"
             displayName = plugin.displayName.get()
             description = plugin.description.get()
             implementationClass = plugin.className.get()

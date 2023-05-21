@@ -27,7 +27,7 @@ subprojects {
     apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
 
     jvmPublishExtension {
-        subGroupId.set("gradle")
+        coordinates.category.set("gradle")
         version.set(rootProject.libs.versions.woody230.gradle)
         repository.set("https://github.com/Woody230/GradleExtensions")
         licensing.set(Licensing.APACHE_2_0)

@@ -128,7 +128,7 @@ and [application](#android-application-plugin) plugins.
 
 Configures the `CommonExtension`:
 
-* Namespace: **[namespaceId]**, **[subNamespaceId]**, and **[artifactId]** separated by a period (`.`)
+* Namespace: **[namespace.group]**, **[namespace.category]**, and **[namespace.module]** separated by a period (`.`)
 * Compile sdk: **[compileSdk]**
 * Default config:
     * Min sdk: **[minSdk]**
@@ -141,12 +141,13 @@ Configures the `CommonExtension`:
 
 Required
 
-* **[subNamespaceId]**: The specific category, denoting the type of modules.
+* **[namespace]**: The id of the namespace.
+    * **[group]**: The base id of the namespace. Optional with a default value of `com.bselzer`.
+    * **[category]**: The specific category, denoting the type of modules. For example, this repository uses `gradle`.
+    * **[module]**: The name of the module. Optional with a default value of the name of the project.
 
 Optional
 
-* **[namespaceId]**: The base id of the namespace. Optional with a default value of `com.bselzer`.
-* **[artifactId]**: The name of the module. Optional with a default value of the name of the project.
 * **[compileSdk]**: The API level to compile against. Optional with a default value of 33.
 * **[minSdk]**: The minimum API level required. Optional with a default value of 21.
 * **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
@@ -212,8 +213,8 @@ Required
 
 Optional
 
-* **[applicationId]**: The id of the application. Optional with a default value of the **[namespaceId]**, *
-  *[subNamespaceId]**, **[artifactId]**, and `android` separated by a period (`.`)
+* **[applicationId]**: The id of the application. Optional with a default value of the **[namespace.group]**, *
+  **[namespace.category]**, **[namespace.module]**, and `android` separated by a period (`.`)
 * **[targetSdk]**: The target API level. Optional with a default value of 33.
 * **[languageSplit]**: Whether on-demand language downloading is enabled. Optional with a default value of false.
 * **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional
@@ -392,7 +393,10 @@ plugins {
 
 Required
 
-* **[subGroupId]**: The specific category, denoting the type of modules. For example, this repository uses `gradle`.
+* **[coordinates]**: The id of the coordinates.
+    * **[group]**: The base id of the coordinates. Optional with a default value of `io.github.woody230`.
+    * **[category]**: The specific category, denoting the type of modules. For example, this repository uses `gradle`.
+    * **[module]**: The name of the module. Optional with a default value of the name of the project.
 * **[version]**: The semantic version of the artifact. A snapshot is denoted by a version ending in `-SNAPSNOT`.
 * **[repository]**: The URL for the source control repository. For example, this repository
   uses `https://github.com/Woody230/GradleExtensions`.
@@ -400,8 +404,6 @@ Required
 
 Optional
 
-* **[groupId]**: The base group id of the coordinates. Optional with a default value of `io.github.woody230`.
-* **[artifactId]**: The name of the module. Optional with a default value of the name of the project.
 * **[licensing]**: The type of licensing to apply. Must be either `NONE` or `APACHE_2_0`. Optional with a default value
   of `NONE`.
 * **[developers]**: Configures the additional developers. Optional with a default function that does nothing.
