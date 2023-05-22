@@ -272,6 +272,26 @@ plugins {
 
 Implements the [AndroidExtension](#androidextension) without any additional properties.
 
+### buildkonfig-plugin
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.buildkonfig")
+}
+```
+
+* Applies the BuildKonfig plugin.
+
+Extensions for adding fields.
+```kotlin
+buildkonfig {
+    defaultConfigs {
+        boolean("DEBUG", true)
+        int("VERSION_CODE", 1)
+        string("VERSION_NAME", "1.0.0")
+    }
+}
+```
+
 ### kotlininject-plugin
 ```kotlin
 plugins {
