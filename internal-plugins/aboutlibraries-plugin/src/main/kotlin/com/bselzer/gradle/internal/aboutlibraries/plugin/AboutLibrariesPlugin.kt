@@ -1,5 +1,6 @@
 package com.bselzer.gradle.internal.aboutlibraries.plugin
 
+import com.bselzer.gradle.multiplatform.multiplatformDependencies
 import com.mikepenz.aboutlibraries.plugin.AboutLibrariesExtension
 import com.mikepenz.aboutlibraries.plugin.AboutLibrariesPlugin
 import dev.icerock.gradle.MultiplatformResourcesPluginExtension
@@ -18,6 +19,12 @@ class AboutLibrariesPlugin : Plugin<Project> {
     private fun Project.configureMultiplatform() {
         if (!plugins.hasPlugin(libs.plugins.multiplatform.get().pluginId)) {
             return
+        }
+
+        multiplatformDependencies {
+            mainSourceSets {
+                implementation(libs.aboutlibraries.core)
+            }
         }
 
         with(extensions.getByType<AboutLibrariesExtension>()) {

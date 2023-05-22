@@ -4,6 +4,7 @@ dependencies {
     api(gradleApi())
     api(libs.aboutlibraries.plugin)
     implementation(libs.moko.resources.plugin)
+    implementation(libs.woody230.gradle.multiplatform)
 
     // TODO can't access libs https://github.com/gradle/gradle/issues/15383
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
