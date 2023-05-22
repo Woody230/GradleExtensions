@@ -76,7 +76,13 @@ kotlin {
 
 ```kotlin
 multiplatformDependencies {
+    // Required configuring
     androidMain {
+        api("...")
+    }
+
+    // Optional configuring
+    maybeAndroidMain {
         api("...")
     }
 }
