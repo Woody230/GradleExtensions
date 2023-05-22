@@ -1,6 +1,7 @@
 [versions]
 aboutlibraries = "10.6.2"
 androidx-compose = "1.4.2"
+buildkonfig = "0.13.3"
 dokka = "1.8.10"
 kotlin = "1.8.10"
 kotlin-dsl = "4.0.7"
@@ -24,6 +25,8 @@ androidx-test-compose-ui-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-test-core = { group = "androidx.test", name = "core", version = "1.5.0" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version = "1.1.5" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version = "1.5.2" }
+buildkonfig-compiler = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-compiler", version.ref = "buildkonfig" }
+buildkonfig-plugin = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-gradle-plugin", version.ref = "buildkonfig" }
 compose-plugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "multiplatform-compose" }
 dokka-plugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
 kotlin-dsl-plugin = { group = "org.gradle.kotlin", name = "gradle-kotlin-dsl-plugins", version.ref = "kotlin-dsl" }
@@ -57,6 +60,7 @@ woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "prop
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibraries" }
 android-application = { id = "com.android.application" }
 android-library = { id = "com.android.library" }
+buildkonfig = { id = "com.codingfeline.buildkonfig" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 compose = { id = "org.jetbrains.compose", version.ref = "multiplatform-compose" }
 dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
