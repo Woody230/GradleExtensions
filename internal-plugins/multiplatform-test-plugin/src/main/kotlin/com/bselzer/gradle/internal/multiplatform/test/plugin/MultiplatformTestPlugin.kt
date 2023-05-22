@@ -7,19 +7,19 @@ import org.gradle.api.Project
 class MultiplatformTestPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         multiplatformDependencies {
-            commonTest {
+            maybeCommonTest {
                 implementation(libs.kotlin.test.asProvider())
                 implementation(libs.kotlin.test.annotations)
                 implementation(libs.kotlin.reflect)
             }
-            androidUnitTest {
+            maybeAndroidUnitTest {
                 implementation(libs.kotlin.test.junit)
                 implementation(libs.androidx.test.core)
                 implementation(libs.androidx.test.junit)
                 implementation(libs.androidx.test.runner)
                 implementation(libs.robolectric)
             }
-            jvmTest {
+            maybeJvmTest {
                 implementation(libs.kotlin.test.junit)
             }
         }
