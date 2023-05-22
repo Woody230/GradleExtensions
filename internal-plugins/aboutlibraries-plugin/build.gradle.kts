@@ -2,17 +2,18 @@ import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 
 dependencies {
     api(gradleApi())
-    implementation(libs.woody230.gradle.android)
+    api(libs.aboutlibraries.plugin)
+    implementation(libs.moko.resources.plugin)
 
     // TODO can't access libs https://github.com/gradle/gradle/issues/15383
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
 pluginPublishExtension {
-    description.set("Applies core library desugaring of Java APIs for Android.")
+    description.set("Applies the AboutLibraries plugin.")
 
     plugin {
-        displayName.set("Android Core Library Desugaring Plugin")
-        className.set("com.bselzer.gradle.internal.android.desugar.plugin.AndroidDesugarPlugin")
+        displayName.set("AboutLibraries Plugin")
+        className.set("com.bselzer.gradle.internal.aboutlibraries.plugin.AboutLibrariesPlugin")
     }
 }

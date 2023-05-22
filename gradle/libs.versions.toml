@@ -1,4 +1,5 @@
 [versions]
+aboutlibraries = "10.6.2"
 androidx-compose = "1.4.2"
 dokka = "1.8.10"
 kotlin = "1.8.10"
@@ -11,6 +12,7 @@ vanniktech-publish = "0.25.2"
 woody230-gradle = "1.0.0"
 
 [libraries]
+aboutlibraries-plugin = { group = "com.mikepenz.aboutlibraries.plugin", name = "aboutlibraries-plugin", version.ref = "aboutlibraries" }
 android-desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version = "2.0.3" }
 android-plugin = { group = "com.android.tools.build", name = "gradle", version = "8.0.0" }
 androidx-test-compose-ui = { group = "androidx.compose.ui", name = "ui-test", version.ref = "androidx-compose" }
@@ -23,7 +25,6 @@ compose-plugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugi
 dokka-plugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
 kotlin-dsl-plugin = { group = "org.gradle.kotlin", name = "gradle-kotlin-dsl-plugins", version.ref = "kotlin-dsl" }
 kotlin-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-multiplatform-plugin = { group = "org.jetbrains.kotlin.multiplatform", name = "org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-common", version.ref = "kotlin" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test-common", version.ref = "kotlin" }
@@ -47,6 +48,7 @@ woody230-gradle-properties = { group = "io.github.woody230.gradle", name = "prop
 
 # TODO can't NOT provide a version and use alias for plugins already in the classpath https://github.com/gradle/gradle/issues/17968
 [plugins]
+aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibraries" }
 android-application = { id = "com.android.application" }
 android-library = { id = "com.android.library" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
@@ -56,6 +58,7 @@ gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publi
 java = { id = "org.gradle.java-gradle-plugin" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
 woody230-gradle-internal-jvm-publish = { id = "io.github.woody230.gradle.internal.jvm-publish", version.ref = "woody230-gradle" }
 woody230-gradle-internal-maven-publish = { id = "io.github.woody230.gradle.internal.maven-publish", version.ref = "woody230-gradle" }
