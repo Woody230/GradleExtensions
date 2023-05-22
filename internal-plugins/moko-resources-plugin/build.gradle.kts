@@ -7,10 +7,9 @@ dependencies {
 }
 
 pluginPublishExtension {
-    description.set("Applies the Moko Resources plugin for Kotlin Multiplatform.")
+    description.set("Applies the Moko Resources plugin.")
 
     plugin {
-        displayName.set("Kotlin Multiplatform Moko Resources Plugin")
-        className.set("com.bselzer.gradle.internal.multiplatform.resource.plugin.MultiplatformResourcesPlugin")
+        className.set("com.bselzer.gradle.internal.moko.resources.plugin.MokoResourcesPlugin")
     }
 }

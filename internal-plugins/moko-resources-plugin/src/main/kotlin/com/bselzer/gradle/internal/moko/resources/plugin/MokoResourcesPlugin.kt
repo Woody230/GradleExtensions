@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.multiplatform.resource.plugin
+package com.bselzer.gradle.internal.moko.resources.plugin
 
 import com.bselzer.gradle.internal.android.androidExtension
 import dev.icerock.gradle.MultiplatformResourcesPlugin
@@ -6,7 +6,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.io.File
 
-class MultiplatformResourcesPlugin : Plugin<Project> {
+class MokoResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(MultiplatformResourcesPlugin::class.java)
 
