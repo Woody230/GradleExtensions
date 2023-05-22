@@ -1,6 +1,10 @@
 package com.bselzer.gradle.multiplatform
 
 interface MultiplatformSourceSetsConfigurer<Receiver> {
+    fun allSourceSets(configure: Receiver.() -> Unit)
+    fun mainSourceSets(configure: Receiver.() -> Unit)
+    fun testSourceSets(configure: Receiver.() -> Unit)
+
     fun commonMain(configure: Receiver.() -> Unit)
     fun commonTest(configure: Receiver.() -> Unit)
     fun jvmMain(configure: Receiver.() -> Unit)

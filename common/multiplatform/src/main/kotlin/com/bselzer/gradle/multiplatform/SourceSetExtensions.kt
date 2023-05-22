@@ -1,6 +1,7 @@
 package com.bselzer.gradle.multiplatform
 
 import org.gradle.api.NamedDomainObjectContainer
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 val NamedDomainObjectContainer<KotlinSourceSet>.commonMain: KotlinSourceSet
@@ -44,3 +45,9 @@ val NamedDomainObjectContainer<KotlinSourceSet>.androidInstrumentedTest: KotlinS
 
 val NamedDomainObjectContainer<KotlinSourceSet>.androidInstrumentedTestOrNull: KotlinSourceSet?
     get() = findByName("androidInstrumentedTest")
+
+val KotlinProjectExtension.mainSourceSets: Collection<KotlinSourceSet>
+    get() = sourceSets.filter { sourceSet -> sourceSet.name == "main" || sourceSet.name.endsWith("Main") }
+
+val KotlinProjectExtension.testSourceSets: Collection<KotlinSourceSet>
+    get() = sourceSets.filter { sourceSet -> sourceSet.name == "test" || sourceSet.name.endsWith("Test") }

@@ -6,9 +6,9 @@ import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 class MultiplatformSourceSets(
-    private val extension: KotlinProjectExtension
+    extension: KotlinProjectExtension
 ) : MultiplatformSourceSetsConfigurer<KotlinSourceSet> by InternalMultiplatformSourceSetsConfigurer(
-    extension.sourceSets,
+    extension,
     { configure -> apply(configure) }
 )
 

@@ -1,18 +1,26 @@
 package com.bselzer.gradle.multiplatform
 
 import org.gradle.api.NamedDomainObjectContainer
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 internal class InternalMultiplatformSourceSetsConfigurer<Receiver>(
-    private val sourceSets: NamedDomainObjectContainer<KotlinSourceSet>,
+    private val extension: KotlinProjectExtension,
     private val configure: KotlinSourceSet.(Receiver.() -> Unit) -> Unit
 ) : MultiplatformSourceSetsConfigurer<Receiver> {
+    private val sourceSets: NamedDomainObjectContainer<KotlinSourceSet>
+        get() = extension.sourceSets
+
     private fun KotlinSourceSet?.apply(configure: Receiver.() -> Unit) {
         if (this == null) {
             return
         }
 
         configure(configure)
+    }
+
+    private fun Collection<KotlinSourceSet>.apply(configure: Receiver.() -> Unit) {
+        forEach { sourceSet -> sourceSet.apply(configure) }
     }
 
     override fun commonMain(configure: Receiver.() -> Unit) = sourceSets.commonMain.apply(configure)
@@ -30,4 +38,8 @@ internal class InternalMultiplatformSourceSetsConfigurer<Receiver>(
     override fun maybeAndroidMain(configure: Receiver.() -> Unit) = sourceSets.androidMainOrNull.apply(configure)
     override fun maybeAndroidUnitTest(configure: Receiver.() -> Unit) = sourceSets.androidUnitTestOrNull.apply(configure)
     override fun maybeAndroidInstrumentedTest(configure: Receiver.() -> Unit) = sourceSets.androidInstrumentedTestOrNull.apply(configure)
+
+    override fun allSourceSets(configure: Receiver.() -> Unit) = sourceSets.apply(configure)
+    override fun mainSourceSets(configure: Receiver.() -> Unit) = extension.mainSourceSets.apply(configure)
+    override fun testSourceSets(configure: Receiver.() -> Unit) = extension.testSourceSets.apply(configure)
 }
