@@ -270,6 +270,18 @@ plugins {
 
 Implements the [AndroidExtension](#androidextension) without any additional properties.
 
+### kotlininject-plugin
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.kotlininject")
+}
+```
+
+* Applies the KSP plugin.
+* If the Kotlin Multiplatform plugin is applied:
+  * Adds the KSP compiler from Kotlin Inject to KSP's common dependencies.
+  * Adds the Kotlin Inject runtime dependency to the commonMain source set.
+
 ### multiplatform-compose-plugin
 
 ```kotlin
