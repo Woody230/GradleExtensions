@@ -12,6 +12,6 @@ pluginPublishExtension {
 
     plugin {
         displayName.set("Kotlin Multiplatform Project Publish Plugin")
-        className.set("com.bselzer.gradle.multiplatform.publish.plugin.MultiplatformPublishPlugin")
+        className.set("com.bselzer.gradle.internal.multiplatform.publish.plugin.MultiplatformPublishPlugin")
     }
 }

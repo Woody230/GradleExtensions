@@ -12,6 +12,6 @@ pluginPublishExtension {
 
     plugin {
         displayName.set("Compose Multiplatform Test Plugin")
-        className.set("com.bselzer.gradle.multiplatform.compose.test.plugin.MultiplatformComposeTestPlugin")
+        className.set("com.bselzer.gradle.internal.multiplatform.compose.test.plugin.MultiplatformComposeTestPlugin")
     }
 }
