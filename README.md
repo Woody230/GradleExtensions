@@ -107,6 +107,19 @@ General Gradle extensions related to properties.
 
 Plugins intended to be used by my personal projects only.
 
+### aboutlibraries-plugin
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.aboutlibraries")
+}
+```
+
+* Applies the `AboutLibrariesPlugin`.
+* Configures the `AboutLibrariesExtension`:
+  * If the Kotlin Multiplatform plugin has been applied, then `registerAndroidTasks` is set to false.
+* If the Moko Resources plugin has been applied, then the `aboutLibrariesResource` task is created:
+  * The `aboutLibraries.json` file produced by the `exportLibraryDefinitions` task is moved to the MR assets of the source set the Moko Resources plugin is using.
+
 ### android-desugar-plugin
 
 ```kotlin
