@@ -17,6 +17,7 @@ rootProject.name = "internal-plugins"
 include("aboutlibraries-plugin")
 include("android-desugar-plugin")
 include("android-plugin")
+include("kotlininject-plugin")
 include("multiplatform-compose-plugin")
 include("multiplatform-compose-test-plugin")
 include("multiplatform-plugin")

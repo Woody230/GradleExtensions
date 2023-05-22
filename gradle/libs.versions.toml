@@ -4,6 +4,8 @@ androidx-compose = "1.4.2"
 dokka = "1.8.10"
 kotlin = "1.8.10"
 kotlin-dsl = "4.0.7"
+kotlininject = "0.6.1"
+ksp = "1.8.10-1.0.9"
 gradle-publish = "1.2.0"
 moko-resources = "0.22.0"
 multiplatform-compose = "1.3.1"
@@ -12,6 +14,7 @@ vanniktech-publish = "0.25.2"
 woody230-gradle = "1.0.0"
 
 [libraries]
+aboutlibraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "aboutlibraries" }
 aboutlibraries-plugin = { group = "com.mikepenz.aboutlibraries.plugin", name = "aboutlibraries-plugin", version.ref = "aboutlibraries" }
 android-desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version = "2.0.3" }
 android-plugin = { group = "com.android.tools.build", name = "gradle", version = "8.0.0" }
@@ -30,6 +33,9 @@ kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-common",
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test-common", version.ref = "kotlin" }
 kotlin-test-annotations = { group = "org.jetbrains.kotlin", name = "kotlin-test-annotations-common", version.ref = "kotlin" }
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin" }
+kotlininject-ksp = { group = "me.tatarka.inject", name = "kotlin-inject-compiler-ksp", version.ref = "kotlininject" }
+kotlininject-runtime = { group = "me.tatarka.inject", name = "kotlin-inject-runtime", version.ref = "kotlininject" }
+ksp-plugin = { group = "com.google.devtools.ksp", name = "symbol-processing-gradle-plugin", version.ref = "ksp" }
 publish-plugin = { group = "com.gradle.publish", name = "plugin-publish-plugin", version.ref = "gradle-publish" }
 moko-resources = { group = "dev.icerock.moko", name = "resources", version.ref = "moko-resources" }
 moko-resources-compose = { group = "dev.icerock.moko", name = "resources-compose", version.ref = "moko-resources" }
@@ -57,6 +63,7 @@ dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
 gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish" }
 java = { id = "org.gradle.java-gradle-plugin" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
