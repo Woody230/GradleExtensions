@@ -138,6 +138,8 @@ plugins {
 * Applies the `AboutLibrariesPlugin`.
 * Configures the `AboutLibrariesExtension`:
   * If the Kotlin Multiplatform plugin has been applied, then `registerAndroidTasks` is set to false.
+* If the Kotlin Multiplatform plugin has been applied:
+  * The core AboutLibraries dependency is added to the main source sets.
 * If the Moko Resources plugin has been applied, then the `aboutLibrariesResource` task is created:
   * The `aboutLibraries.json` file produced by the `exportLibraryDefinitions` task is moved to the MR assets of the source set the Moko Resources plugin is using.
 
@@ -278,9 +280,9 @@ plugins {
 ```
 
 * Applies the KSP plugin.
-* If the Kotlin Multiplatform plugin is applied:
+* If the Kotlin Multiplatform plugin has been applied:
   * Adds the KSP compiler from Kotlin Inject to KSP's common dependencies.
-  * Adds the Kotlin Inject runtime dependency to the commonMain source set.
+  * Adds the Kotlin Inject runtime dependency to the main source sets.
 
 ### multiplatform-compose-plugin
 
