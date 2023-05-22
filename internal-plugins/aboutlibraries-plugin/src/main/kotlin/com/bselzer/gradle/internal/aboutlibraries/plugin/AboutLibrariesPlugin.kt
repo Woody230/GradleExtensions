@@ -52,7 +52,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
         }
 
         tasks.whenTaskAdded {
-            if (name == "generateMRcommonMain") {
+            if (name == "generateMR$sourceSetName") {
                 dependsOn(aboutLibrariesResource)
             }
         }
