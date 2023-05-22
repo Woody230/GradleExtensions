@@ -71,8 +71,23 @@ kotlin {
 }
 ```
 
-* `MultiplatformDependencies` class and extension for conveniently setting the dependencies of the previously listed
-  source sets.
+* `MultiplatformSourceSets` class and extension for conveniently configuring the previously listed source sets.
+
+```kotlin
+multiplatformSourceSets {
+    // Required configuring
+    androidMain {
+        // ...
+    }
+
+    // Optional configuring
+    maybeAndroidMain {
+        // ...
+    }
+}
+```
+
+* `MultiplatformDependencies` class and extension for conveniently configuring the dependencies of the previously listed source sets.
 
 ```kotlin
 multiplatformDependencies {
