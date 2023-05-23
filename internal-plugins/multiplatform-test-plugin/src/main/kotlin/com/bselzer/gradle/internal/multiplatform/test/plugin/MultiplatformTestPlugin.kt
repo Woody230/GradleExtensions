@@ -18,9 +18,11 @@ class MultiplatformTestPlugin : Plugin<Project> {
                 implementation(libs.androidx.test.junit)
                 implementation(libs.androidx.test.runner)
                 implementation(libs.robolectric)
+                implementation(libs.kotlin.reflect)
             }
             maybeJvmTest {
                 implementation(libs.kotlin.test.junit)
+                implementation(libs.kotlin.reflect)
             }
         }
     }
