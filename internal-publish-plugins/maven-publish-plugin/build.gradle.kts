@@ -1,3 +1,7 @@
+plugins {
+    id(libs.plugins.woody230.convention.publish.get().pluginId)
+}
+
 dependencies {
     api(libs.kotlin.plugin)
     api(libs.vanniktech.publish.plugin)

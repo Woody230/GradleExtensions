@@ -23,6 +23,7 @@ fun ConfigurableIncludedBuild.substitute(substitution: Pair<String, String>) {
     }
 }
 
+includeBuild("convention-plugins")
 includeBuild("internal-common") {
     substitute("io.github.woody230.gradle.internal:models" to ":models")
 }
