@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "common"
 include("android")
+include("function")
 include("multiplatform")
-include("properties")

@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.models
+package com.bselzer.gradle.function
 
 import org.gradle.api.JavaVersion
 

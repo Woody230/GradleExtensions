@@ -1,7 +1,7 @@
 package com.bselzer.gradle.internal.multiplatform.plugin
 
-import com.bselzer.gradle.internal.models.toInt
-import com.bselzer.gradle.internal.models.toNumericString
+import com.bselzer.gradle.function.toInt
+import com.bselzer.gradle.function.toNumericString
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project

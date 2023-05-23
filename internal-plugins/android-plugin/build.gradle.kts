@@ -5,7 +5,7 @@ dependencies {
     api(libs.android.plugin)
     api(libs.kotlin.plugin)
     implementation(libs.woody230.gradle.android)
-    implementation(libs.woody230.gradle.properties)
+    implementation(libs.woody230.gradle.function)
     implementation(libs.woody230.gradle.internal.models)
 }
 

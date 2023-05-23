@@ -5,5 +5,5 @@ dependencies {
 }
 
 jvmPublishExtension {
-    description.set("Gradle property extensions.")
+    description.set("General Gradle extensions.")
 }

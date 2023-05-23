@@ -20,7 +20,7 @@ buildscript {
         classpath(libs.kotlin.plugin)
         classpath(libs.publish.plugin)
         classpath(libs.kotlin.dsl.plugin)
-        classpath(libs.woody230.gradle.properties)
+        classpath(libs.woody230.gradle.function)
         classpath(libs.woody230.gradle.internal.maven.publish.plugin)
         classpath(libs.woody230.gradle.multiplatform)
         classpath(libs.woody230.gradle.internal.plugin.publish.plugin)

@@ -6,9 +6,9 @@ import com.android.build.gradle.internal.plugins.AppPlugin
 import com.bselzer.gradle.internal.android.plugin.AndroidExtension
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
 import com.bselzer.gradle.internal.android.release
-import com.bselzer.gradle.properties.containsKeys
-import com.bselzer.gradle.properties.getProperty
-import com.bselzer.gradle.properties.localProperties
+import com.bselzer.gradle.function.properties.containsKeys
+import com.bselzer.gradle.function.properties.getProperty
+import com.bselzer.gradle.function.properties.localProperties
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 

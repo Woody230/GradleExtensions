@@ -1,4 +1,4 @@
-package com.bselzer.gradle.properties
+package com.bselzer.gradle.function.properties
 
 import org.gradle.api.Project
 import java.util.*

@@ -48,6 +48,13 @@ Android gradle plugin extensions:
 
 * androidExtension getter to find the `CommonExtension` as the extension model for the application or library plugin.
 
+### function
+
+General Gradle extensions.
+
+* `localProperties` extension to get the local.properties file from the root directory
+    * The logic is the same as the Android gradle plugin.
+
 ### multiplatform
 
 Kotlin Multiplatform gradle plugin extensions:
@@ -116,13 +123,6 @@ kotlin {
     }
 }
 ```
-
-### properties
-
-General Gradle extensions related to properties.
-
-* `localProperties` extension to get the local.properties file from the root directory
-    * The logic is the same as the Android gradle plugin.
 
 ## internal-plugins
 

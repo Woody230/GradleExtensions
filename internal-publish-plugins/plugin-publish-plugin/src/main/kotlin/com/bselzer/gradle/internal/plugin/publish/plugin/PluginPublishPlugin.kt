@@ -1,9 +1,9 @@
 package com.bselzer.gradle.internal.plugin.publish.plugin
 
+import com.bselzer.gradle.function.properties.containsKeys
+import com.bselzer.gradle.function.properties.localProperties
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishExtension
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
-import com.bselzer.gradle.properties.containsKeys
-import com.bselzer.gradle.properties.localProperties
 import com.vanniktech.maven.publish.GradlePublishPlugin
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.NamedDomainObjectContainer

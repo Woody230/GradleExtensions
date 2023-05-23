@@ -33,7 +33,7 @@ includeBuild("internal-publish-plugins") {
 }
 includeBuild("common") {
     substitute("io.github.woody230.gradle:android" to ":android")
+    substitute("io.github.woody230.gradle:function" to ":function")
     substitute("io.github.woody230.gradle:multiplatform" to ":multiplatform")
-    substitute("io.github.woody230.gradle:properties" to ":properties")
 }
 includeBuild("internal-plugins")
