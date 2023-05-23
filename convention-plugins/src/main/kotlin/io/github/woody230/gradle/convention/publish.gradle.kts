@@ -20,13 +20,19 @@ gradlePlugin {
 mavenPublishing {
     configure(GradlePublishPlugin())
 
-    val group = "io.github.woody230.gradle.internal"
+    val category = when {
+        rootDir.name.contains("internal") -> "gradle.internal"
+        else -> "gradle"
+    }
+
+    val group = "io.github.woody230.$category"
+    val module = name
     val version = libs.versions.woody230.gradle.get()
-    coordinates(groupId = group, artifactId = name, version = version)
+    coordinates(groupId = group, artifactId = module, version = version)
 
     pom {
-        val module = project.name.split("-").joinToString(separator = " ", transform = String::capitalized)
-        name.set("Gradle Internal $module")
+        val components = category.split(".") + module.split("-")
+        name.set(components.joinToString(separator = " ", transform = String::capitalized))
 
         developers {
             developer {
