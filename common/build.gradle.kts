@@ -1,6 +1,3 @@
-import com.bselzer.gradle.internal.jvm.publish.plugin.jvmPublishExtension
-import com.bselzer.gradle.internal.maven.publish.plugin.Licensing
-
 allprojects {
     repositories {
         google()
@@ -18,7 +15,6 @@ buildscript {
 
     dependencies {
         classpath(libs.kotlin.plugin)
-        classpath(libs.woody230.gradle.internal.jvm.publish.plugin)
     }
 }
 
@@ -26,16 +22,7 @@ buildscript {
 subprojects {
     apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
 
-    jvmPublishExtension {
-        coordinates.category.set("gradle")
-        version.set(rootProject.libs.versions.woody230.gradle)
-        repository.set("https://github.com/Woody230/GradleExtensions")
-        licensing.set(Licensing.APACHE_2_0)
-    }
-
-    afterEvaluate {
-        apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.jvm.publish.get().pluginId)
-    }
+    // TODO can't apply publish convention plugin, must be done in plugins block in each individual build.gradle
 }
 
 tasks.register("publishBuildToMavenLocal") {

@@ -21,9 +21,11 @@ buildscript {
 // TODO must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
 subprojects {
     apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
+
+    // TODO can't apply publish convention plugin, must be done in plugins block in each individual build.gradle
 }
 
 tasks.register("publishBuildToMavenLocal") {
-    // Intentionally not publishing anything.
-    // These modules are intermediaries for the other modules which should actually get published.
+    val tasks = getTasksByName("publishToMavenLocal", true)
+    dependsOn(tasks)
 }

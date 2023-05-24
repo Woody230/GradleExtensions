@@ -1,10 +1,14 @@
-import com.bselzer.gradle.internal.jvm.publish.plugin.jvmPublishExtension
+plugins {
+    id(libs.plugins.woody230.convention.publish.get().pluginId)
+}
 
 dependencies {
     api(gradleApi())
     api(libs.kotlin.plugin)
 }
 
-jvmPublishExtension {
-    description.set("Kotlin Multiplatform gradle plugin extensions.")
+mavenPublishing {
+    pom {
+        description.set("Kotlin Multiplatform gradle plugin extensions.")
+    }
 }

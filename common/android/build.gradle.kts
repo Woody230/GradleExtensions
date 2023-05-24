@@ -1,4 +1,6 @@
-import com.bselzer.gradle.internal.jvm.publish.plugin.jvmPublishExtension
+plugins {
+    id(libs.plugins.woody230.convention.publish.get().pluginId)
+}
 
 dependencies {
     api(gradleApi())
@@ -8,6 +10,8 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
-jvmPublishExtension {
-    description.set("Android gradle plugin extensions.")
+mavenPublishing {
+    pom {
+        description.set("Android gradle plugin extensions.")
+    }
 }

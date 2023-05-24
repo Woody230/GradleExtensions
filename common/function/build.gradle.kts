@@ -1,9 +1,13 @@
-import com.bselzer.gradle.internal.jvm.publish.plugin.jvmPublishExtension
+plugins {
+    id(libs.plugins.woody230.convention.publish.get().pluginId)
+}
 
 dependencies {
     api(gradleApi())
 }
 
-jvmPublishExtension {
-    description.set("General Gradle extensions.")
+mavenPublishing {
+    pom {
+        description.set("General Gradle extensions.")
+    }
 }
