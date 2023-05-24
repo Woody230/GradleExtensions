@@ -11,7 +11,8 @@ class MultiplatformComposePlugin : Plugin<Project> {
         plugins.apply(ComposePlugin::class.java)
 
         val extension = multiplatformComposeExtension {
-            compilerVersion.convention(libs.versions.androidx.compose.get())
+            // TODO libs.versions.androidx.compose.get()
+            compilerVersion.convention("1.4.2")
         }
 
         androidExtensionOrNull?.configureCompose(extension)

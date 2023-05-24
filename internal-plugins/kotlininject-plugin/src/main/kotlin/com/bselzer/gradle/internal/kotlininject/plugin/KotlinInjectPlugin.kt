@@ -14,14 +14,17 @@ class KotlinInjectPlugin : Plugin<Project> {
     }
 
     private fun Project.configureMultiplatform() {
-        if (!plugins.hasPlugin(libs.plugins.multiplatform.get().pluginId)) {
+        // TODO libs.plugins.multiplatform.get().pluginId
+        if (!plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
             return
         }
 
-        dependencies.add("kspCommonMainMetadata", libs.kotlininject.ksp)
+        // TODO libs.kotlininject.ksp
+        dependencies.add("kspCommonMainMetadata", "me.tatarka.inject:kotlin-inject-compiler-ksp:0.6.1")
         multiplatformDependencies {
             mainSourceSets {
-                implementation(libs.kotlininject.runtime)
+                // TODO libs.kotlininject.runtime
+                implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.1")
             }
         }
 

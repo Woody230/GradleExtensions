@@ -17,13 +17,15 @@ class AboutLibrariesPlugin : Plugin<Project> {
     }
 
     private fun Project.configureMultiplatform() {
-        if (!plugins.hasPlugin(libs.plugins.multiplatform.get().pluginId)) {
+        // TODO libs.plugins.multiplatform.get().pluginId
+        if (!plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
             return
         }
 
         multiplatformDependencies {
             mainSourceSets {
-                implementation(libs.aboutlibraries.core)
+                // TODO libs.aboutlibraries.core
+                implementation("com.mikepenz:aboutlibraries-core:10.6.2")
             }
         }
 
@@ -33,7 +35,8 @@ class AboutLibrariesPlugin : Plugin<Project> {
     }
 
     private fun Project.configureMokoResources() {
-        if (!plugins.hasPlugin(libs.plugins.moko.resources.get().pluginId)) {
+        // TODO libs.plugins.moko.resources.get().pluginId
+        if (!plugins.hasPlugin("dev.icerock.mobile.multiplatform-resources")) {
             return
         }
 

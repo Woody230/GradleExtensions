@@ -8,9 +8,14 @@ class MultiplatformComposeTestPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         multiplatformDependencies {
             maybeAndroidUnitTest {
-                implementation(libs.androidx.test.compose.ui.asProvider())
-                implementation(libs.androidx.test.compose.ui.junit)
-                implementation(libs.androidx.test.compose.ui.manifest)
+                // TODO libs.androidx.test.compose.ui.asProvider()
+                implementation("androidx.compose.ui:ui-test:1.4.2")
+
+                // TODO libs.androidx.test.compose.ui.junit
+                implementation("androidx.compose.ui:ui-test-junit4:1.4.2")
+
+                // TODO libs.androidx.test.compose.ui.manifest
+                implementation("androidx.compose.ui:ui-test-manifest:1.4.2")
             }
         }
     }
