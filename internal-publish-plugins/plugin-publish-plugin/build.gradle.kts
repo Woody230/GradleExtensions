@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.mavenPublishPlugin)
+    api(projects.mavenPublishPlugin)
 }
 
 val pluginDescription = "Internal publishing for gradle plugins."

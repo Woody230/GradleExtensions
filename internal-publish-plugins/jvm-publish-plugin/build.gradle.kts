@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     api(libs.dokka.plugin)
-    implementation(projects.mavenPublishPlugin)
+    api(projects.mavenPublishPlugin)
 }
 
 val pluginDescription = "Internal publishing for Kotlin JVM projects."
