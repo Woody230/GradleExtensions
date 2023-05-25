@@ -1,5 +1,7 @@
 package com.bselzer.gradle.internal.android.application.plugin
 
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
@@ -14,9 +16,6 @@ import org.gradle.kotlin.dsl.getByType
 class AndroidApplicationPlugin : AndroidPlugin() {
     override val Project.androidExtension: AndroidApplicationExtension
         get() = androidApplicationExtension
-
-    override val Project.commonExtension: BaseAppModuleExtension
-        get() = extensions.getByType<BaseAppModuleExtension>()
 
     override fun apply(project: Project) = with(project) {
         plugins.apply(AppPlugin::class.java)
@@ -38,7 +37,9 @@ class AndroidApplicationPlugin : AndroidPlugin() {
             proguardFiles.convention(listOf("proguard-rules.pro"))
         }
 
-        afterEvaluate {
+        // NOTE: Must configure in finalizeDsl not afterEvaluate
+        // https://developer.android.com/build/extend-agp#build-flow-extension-points
+        extensions.getByType(ApplicationAndroidComponentsExtension::class.java).finalizeDsl { commonExtension ->
             with(commonExtension) {
                 defaultConfig {
                     applicationId = extension.applicationId.get()
@@ -62,7 +63,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         }
     }
 
-    private fun BaseAppModuleExtension.proguard(
+    private fun ApplicationExtension.proguard(
         defaultProguardFile: DefaultProguardFile,
         proguardFiles: Collection<String>
     ) = buildTypes.release {
@@ -75,7 +76,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         ndk.debugSymbolLevel = "FULL"
     }
 
-    private fun Project.signing(app: BaseAppModuleExtension) = with(app) {
+    private fun Project.signing(app: ApplicationExtension) = with(app) {
         buildTypes.release {
             signingConfig = signingConfigs.release {
                 storeFile = file(getProperty(GradleProperty.STORE_FILE))

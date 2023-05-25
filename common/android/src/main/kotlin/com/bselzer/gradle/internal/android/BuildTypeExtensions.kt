@@ -1,18 +1,15 @@
 package com.bselzer.gradle.internal.android
 
-import com.android.build.api.dsl.ApplicationBuildType
-import com.android.build.gradle.internal.dsl.BuildType
+import com.android.build.api.dsl.BuildType
 import org.gradle.api.NamedDomainObjectContainer
 
-
-val NamedDomainObjectContainer<out BuildType>.debug: ApplicationBuildType
+val <T : BuildType> NamedDomainObjectContainer<T>.debug: T
     get() = getByName("debug")
 
-fun NamedDomainObjectContainer<out BuildType>.debug(configure: ApplicationBuildType.() -> Unit) = debug.apply(configure)
+fun <T : BuildType> NamedDomainObjectContainer<T>.debug(configure: T.() -> Unit) = debug.apply(configure)
 
-
-val NamedDomainObjectContainer<out BuildType>.release: ApplicationBuildType
+val <T : BuildType> NamedDomainObjectContainer<T>.release: T
     get() = getByName("release")
 
-fun NamedDomainObjectContainer<out BuildType>.release(configure: ApplicationBuildType.() -> Unit) = release.apply(configure)
+fun <T : BuildType> NamedDomainObjectContainer<T>.release(configure: T.() -> Unit) = release.apply(configure)
 
