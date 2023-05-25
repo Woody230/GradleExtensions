@@ -1,7 +1,7 @@
 package com.bselzer.gradle.internal.android.desugar.plugin
 
-import org.gradle.api.provider.Provider
+import org.gradle.api.provider.Property
 
 interface AndroidDesugarExtension {
-    val version: Provider<String>
+    val version: Property<String>
 }
