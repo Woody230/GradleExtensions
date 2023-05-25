@@ -1,4 +1,4 @@
-package com.bselzer.gradle.multiplatform
+package com.bselzer.gradle.multiplatform.configure.sourceset
 
 interface MultiplatformSourceSetsConfigurer<Receiver> {
     fun allSourceSets(configure: Receiver.() -> Unit)

@@ -1,7 +1,7 @@
 package com.bselzer.gradle.internal.kotlininject.plugin
 
-import com.bselzer.gradle.multiplatform.multiplatformDependencies
-import com.bselzer.gradle.multiplatform.multiplatformSourceSets
+import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
+import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformSourceSets
 import com.google.devtools.ksp.gradle.KspGradleSubplugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project

@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.aboutlibraries.plugin
 
-import com.bselzer.gradle.multiplatform.multiplatformDependencies
+import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
 import com.mikepenz.aboutlibraries.plugin.AboutLibrariesExtension
 import com.mikepenz.aboutlibraries.plugin.AboutLibrariesPlugin
 import dev.icerock.gradle.MultiplatformResourcesPluginExtension

@@ -1,5 +1,6 @@
-package com.bselzer.gradle.multiplatform
+package com.bselzer.gradle.multiplatform.configure.sourceset
 
+import com.bselzer.gradle.multiplatform.*
 import org.gradle.api.NamedDomainObjectContainer
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet

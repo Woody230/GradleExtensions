@@ -1,4 +1,4 @@
-package com.bselzer.gradle.multiplatform
+package com.bselzer.gradle.multiplatform.configure.sourceset
 
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
