@@ -1,9 +1,9 @@
 package com.bselzer.gradle.internal.android.application.plugin
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
+import com.bselzer.gradle.android.configure.component.applicationAndroidComponents
 import com.bselzer.gradle.android.release
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.containsKeys
@@ -39,26 +39,24 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        extensions.getByType(ApplicationAndroidComponentsExtension::class.java).finalizeDsl { commonExtension ->
-            with(commonExtension) {
-                defaultConfig {
-                    applicationId = extension.applicationId.get()
-                    targetSdk = extension.targetSdk.get()
-                    versionName = extension.versionName.get()
-                    versionCode = extension.versionCode.get()
-                }
+        applicationAndroidComponents.finalizeDsl {
+            defaultConfig {
+                applicationId = extension.applicationId.get()
+                targetSdk = extension.targetSdk.get()
+                versionName = extension.versionName.get()
+                versionCode = extension.versionCode.get()
+            }
 
-                bundle {
-                    language {
-                        enableSplit = extension.languageSplit.get()
-                    }
+            bundle {
+                language {
+                    enableSplit = extension.languageSplit.get()
                 }
+            }
 
-                proguard(extension.defaultProguardFile.get(), extension.proguardFiles.get())
+            proguard(extension.defaultProguardFile.get(), extension.proguardFiles.get())
 
-                if (properties.containsKey(GradleProperty.STORE_FILE)) {
-                    signing(this)
-                }
+            if (properties.containsKey(GradleProperty.STORE_FILE)) {
+                signing(this)
             }
         }
     }

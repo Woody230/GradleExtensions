@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.android.plugin
 
-import com.android.build.api.variant.AndroidComponentsExtension
+import com.bselzer.gradle.android.configure.component.commonAndroidComponents
 import com.bselzer.gradle.function.toNumericString
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -22,23 +22,21 @@ abstract class AndroidPlugin : Plugin<Project> {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        extensions.getByType(AndroidComponentsExtension::class.java).finalizeDsl { commonExtension ->
-            with(commonExtension) {
-                namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
-                compileSdk = extension.compileSdk.get()
-                defaultConfig {
-                    minSdk = extension.minSdk.get()
-                    testInstrumentationRunner = extension.testInstrumentationRunner.get()
-                }
-                compileOptions {
-                    sourceCompatibility = extension.sourceCompatibility.get()
-                    targetCompatibility = extension.targetCompatibility.get()
-                }
-                testOptions {
-                    unitTests {
-                        androidResources {
-                            isIncludeAndroidResources = true
-                        }
+        commonAndroidComponents.finalizeDsl {
+            namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
+            compileSdk = extension.compileSdk.get()
+            defaultConfig {
+                minSdk = extension.minSdk.get()
+                testInstrumentationRunner = extension.testInstrumentationRunner.get()
+            }
+            compileOptions {
+                sourceCompatibility = extension.sourceCompatibility.get()
+                targetCompatibility = extension.targetCompatibility.get()
+            }
+            testOptions {
+                unitTests {
+                    androidResources {
+                        isIncludeAndroidResources = true
                     }
                 }
             }

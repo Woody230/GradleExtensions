@@ -5,11 +5,14 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
-class MultiplatformDependencies(
+class MultiplatformDependencies internal constructor(
     extension: KotlinProjectExtension
 ) : MultiplatformSourceSetsConfigurer<KotlinDependencyHandler> by InternalMultiplatformSourceSetsConfigurer(
     extension,
     { configure -> dependencies(configure) }
 )
 
-fun Project.multiplatformDependencies(configure: MultiplatformDependencies.() -> Unit) = MultiplatformDependencies(kotlinExtension).apply(configure)
+val Project.multiplatformDependencies: MultiplatformDependencies
+    get() = MultiplatformDependencies(kotlinExtension)
+
+fun Project.multiplatformDependencies(configure: MultiplatformDependencies.() -> Unit) = multiplatformDependencies.configure()

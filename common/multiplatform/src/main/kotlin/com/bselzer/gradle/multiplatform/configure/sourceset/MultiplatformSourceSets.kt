@@ -5,11 +5,14 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
-class MultiplatformSourceSets(
+class MultiplatformSourceSets internal constructor(
     extension: KotlinProjectExtension
 ) : MultiplatformSourceSetsConfigurer<KotlinSourceSet> by InternalMultiplatformSourceSetsConfigurer(
     extension,
     { configure -> apply(configure) }
 )
 
-fun Project.multiplatformSourceSets(configure: MultiplatformSourceSets.() -> Unit) = MultiplatformSourceSets(kotlinExtension).apply(configure)
+val Project.multiplatformSourceSets: MultiplatformSourceSets
+    get() = MultiplatformSourceSets(kotlinExtension)
+
+fun Project.multiplatformSourceSets(configure: MultiplatformSourceSets.() -> Unit) = multiplatformSourceSets.configure()
