@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.android
+package com.bselzer.gradle.android
 
 import com.android.build.api.dsl.ApkSigningConfig
 import org.gradle.api.NamedDomainObjectContainer

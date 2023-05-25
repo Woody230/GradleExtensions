@@ -4,12 +4,12 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
+import com.bselzer.gradle.android.release
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.getProperty
 import com.bselzer.gradle.function.properties.localProperties
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
-import com.bselzer.gradle.internal.android.release
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 

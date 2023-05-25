@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.moko.resources.plugin
 
-import com.bselzer.gradle.internal.android.androidExtension
+import com.bselzer.gradle.android.androidExtension
 import dev.icerock.gradle.MultiplatformResourcesPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
