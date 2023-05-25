@@ -35,9 +35,6 @@ Modules exist within multiple builds that are included within the root project a
 * [internal-plugins](#internal-plugins)
 * [internal-publish-plugins](#internal-publish-plugins)
 
-Note that for all plugins, afterEvaluate is NOT used.
-Consequently, all extension classes for the plugins must be configured before applying the plugins.
-
 ## common
 
 Non-internal extensions for Gradle.
