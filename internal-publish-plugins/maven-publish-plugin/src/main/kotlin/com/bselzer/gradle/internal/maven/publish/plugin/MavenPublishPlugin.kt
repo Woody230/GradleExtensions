@@ -1,5 +1,6 @@
 package com.bselzer.gradle.internal.maven.publish.plugin
 
+import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.localProperties
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
@@ -113,16 +114,16 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         val localProperties = localProperties
 
         if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
-            setProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
-            setProperty(GradleProperty.MAVEN_CENTRAL_PASSWORD, localProperties.getProperty(LocalProperty.SONATYPE_PASSWORD))
+            addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
+            addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_PASSWORD, localProperties.getProperty(LocalProperty.SONATYPE_PASSWORD))
         }
 
         if (localProperties.containsKeys(LocalProperty.SIGNING_KEY_ID, LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
-            setProperty(GradleProperty.SIGNING_KEY_ID, localProperties.getProperty(LocalProperty.SIGNING_KEY_ID))
-            setProperty(GradleProperty.SIGNING_PASSWORD, localProperties.getProperty(LocalProperty.SIGNING_PASSWORD))
+            addOrReplaceProperty(GradleProperty.SIGNING_KEY_ID, localProperties.getProperty(LocalProperty.SIGNING_KEY_ID))
+            addOrReplaceProperty(GradleProperty.SIGNING_PASSWORD, localProperties.getProperty(LocalProperty.SIGNING_PASSWORD))
 
             val keyPath = localProperties.getProperty(LocalProperty.SIGNING_KEY)
-            setProperty(GradleProperty.SIGNING_KEY, project.file(keyPath).readText())
+            addOrReplaceProperty(GradleProperty.SIGNING_KEY, project.file(keyPath).readText())
         }
     }
 }

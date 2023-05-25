@@ -1,5 +1,6 @@
 package com.bselzer.gradle.internal.plugin.publish.plugin
 
+import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.localProperties
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
@@ -90,8 +91,8 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         val localProperties = localProperties
 
         if (localProperties.containsKeys(LocalProperty.GRADLE_KEY, LocalProperty.GRADLE_SECRET)) {
-            setProperty(GradleProperty.GRADLE_KEY, localProperties.getProperty(LocalProperty.GRADLE_KEY))
-            setProperty(GradleProperty.GRADLE_SECRET, localProperties.getProperty(LocalProperty.GRADLE_SECRET))
+            addOrReplaceProperty(GradleProperty.GRADLE_KEY, localProperties.getProperty(LocalProperty.GRADLE_KEY))
+            addOrReplaceProperty(GradleProperty.GRADLE_SECRET, localProperties.getProperty(LocalProperty.GRADLE_SECRET))
         }
     }
 }

@@ -2,6 +2,7 @@ package com.bselzer.gradle.internal.android.application.plugin
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
+import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.getProperty
 import com.bselzer.gradle.function.properties.localProperties
@@ -89,10 +90,10 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         val localProperties = localProperties
 
         if (localProperties.containsKeys(LocalProperty.STORE_FILE)) {
-            setProperty(GradleProperty.KEY_ALIAS, localProperties.getProperty(LocalProperty.KEY_ALIAS))
-            setProperty(GradleProperty.KEY_PASSWORD, localProperties.getProperty(LocalProperty.KEY_PASSWORD))
-            setProperty(GradleProperty.STORE_FILE, localProperties.getProperty(LocalProperty.STORE_FILE))
-            setProperty(GradleProperty.STORE_PASSWORD, localProperties.getProperty(LocalProperty.STORE_PASSWORD))
+            addOrReplaceProperty(GradleProperty.KEY_ALIAS, localProperties.getProperty(LocalProperty.KEY_ALIAS))
+            addOrReplaceProperty(GradleProperty.KEY_PASSWORD, localProperties.getProperty(LocalProperty.KEY_PASSWORD))
+            addOrReplaceProperty(GradleProperty.STORE_FILE, localProperties.getProperty(LocalProperty.STORE_FILE))
+            addOrReplaceProperty(GradleProperty.STORE_PASSWORD, localProperties.getProperty(LocalProperty.STORE_PASSWORD))
         }
     }
 }
