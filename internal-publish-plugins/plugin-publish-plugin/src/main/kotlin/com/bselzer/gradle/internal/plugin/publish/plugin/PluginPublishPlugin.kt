@@ -2,7 +2,6 @@ package com.bselzer.gradle.internal.plugin.publish.plugin
 
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.localProperties
-import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishExtension
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
 import com.vanniktech.maven.publish.GradlePublishPlugin
 import com.vanniktech.maven.publish.Platform
@@ -19,7 +18,7 @@ class PluginPublishPlugin : MavenPublishPlugin() {
     override val Project.mavenPublishPlatform: Platform
         get() = GradlePublishPlugin()
 
-    override val Project.mavenPublishExtension: MavenPublishExtension
+    override val Project.mavenPublishExtension: PluginPublishExtension
         get() = pluginPublishExtension
 
     override fun apply(project: Project) = with(project) {
@@ -28,31 +27,33 @@ class PluginPublishPlugin : MavenPublishPlugin() {
 
         super.apply(project)
 
+        setupGradleProperties()
+
         val extension = pluginPublishExtension {
             tags.convention(emptyList())
         }
 
-        group = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}"
-        version = extension.version.get()
+        afterEvaluate {
+            group = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}"
+            version = extension.version.get()
 
-        setupGradleProperties()
+            with(extensions.getByType<GradlePluginDevelopmentExtension>()) {
+                website.set(extension.repository)
+                vcsUrl.set("${extension.repository.get()}.git")
+                plugins {
+                    val plugins = extension.plugins.get()
+                    check(plugins.isNotEmpty()) { "[$name] At least one plugin must be published." }
 
-        with(extensions.getByType<GradlePluginDevelopmentExtension>()) {
-            website.set(extension.repository)
-            vcsUrl.set("${extension.repository.get()}.git")
-            plugins {
-                val plugins = extension.plugins.get()
-                check(plugins.isNotEmpty()) { "[$name] At least one plugin must be published." }
+                    plugins.forEach { plugin ->
+                        // If there is a single plugin, then we can make assumptions about the name/description because the module is dedicated.
+                        if (plugins.size == 1) {
+                            plugin.description.convention(mavenPublishExtension.description.get())
+                            plugin.name.convention(nameConvention)
+                            plugin.displayName.convention(displayNameConvention)
+                        }
 
-                plugins.forEach { plugin ->
-                    // If there is a single plugin, then we can make assumptions about the name/description because the module is dedicated.
-                    if (plugins.size == 1) {
-                        plugin.description.convention(mavenPublishExtension.description.get())
-                        plugin.name.convention(nameConvention)
-                        plugin.displayName.convention(displayNameConvention)
+                        configurePlugin(extension, plugin)
                     }
-
-                    configurePlugin(extension, plugin)
                 }
             }
         }

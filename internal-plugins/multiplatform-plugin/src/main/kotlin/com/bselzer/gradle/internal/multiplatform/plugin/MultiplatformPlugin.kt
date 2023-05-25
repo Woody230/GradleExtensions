@@ -17,13 +17,15 @@ class MultiplatformPlugin : Plugin<Project> {
             jdkVersion.convention(JavaVersion.VERSION_11)
         }
 
-        with(extensions.getByType<KotlinMultiplatformExtension>()) {
-            configureTargets()
-            jvmToolchain(extension.jdkVersion.get().toInt())
-        }
+        afterEvaluate {
+            with(extensions.getByType<KotlinMultiplatformExtension>()) {
+                configureTargets()
+                jvmToolchain(extension.jdkVersion.get().toInt())
+            }
 
-        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
-            kotlinOptions.jvmTarget = extension.jdkVersion.get().toNumericString()
+            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
+                kotlinOptions.jvmTarget = extension.jdkVersion.get().toNumericString()
+            }
         }
     }
 

@@ -22,6 +22,8 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins.apply(MavenPublishBasePlugin::class.java)
 
+        setupGradleProperties()
+
         val extension = mavenPublishExtension.apply {
             coordinates.group.convention("io.github.woody230")
             coordinates.module.convention(name)
@@ -29,20 +31,20 @@ abstract class MavenPublishPlugin : Plugin<Project> {
             licensing.convention(Licensing.NONE)
         }
 
-        setupGradleProperties()
+        afterEvaluate {
+            with(extensions.getByType<MavenPublishBaseExtension>()) {
+                configureCoordinates(extension)
+                configurePom(extension)
+                configure(project.mavenPublishPlatform)
 
-        with(extensions.getByType<MavenPublishBaseExtension>()) {
-            configureCoordinates(extension)
-            configurePom(extension)
-            configure(project.mavenPublishPlatform)
+                publishToMavenCentral(
+                    host = SonatypeHost.S01,
+                    automaticRelease = false
+                )
 
-            publishToMavenCentral(
-                host = SonatypeHost.S01,
-                automaticRelease = false
-            )
-
-            if (hasProperty(GradleProperty.SIGNING_KEY) && hasProperty(GradleProperty.SIGNING_PASSWORD)) {
-                signAllPublications()
+                if (hasProperty(GradleProperty.SIGNING_KEY) && hasProperty(GradleProperty.SIGNING_PASSWORD)) {
+                    signAllPublications()
+                }
             }
         }
     }

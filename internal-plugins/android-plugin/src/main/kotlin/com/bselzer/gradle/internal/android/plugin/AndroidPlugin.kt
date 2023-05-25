@@ -22,28 +22,30 @@ abstract class AndroidPlugin : Plugin<Project> {
             targetCompatibility.convention(JavaVersion.VERSION_11)
         }
 
-        with(commonExtension) {
-            namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
-            compileSdk = extension.compileSdk.get()
-            defaultConfig {
-                minSdk = extension.minSdk.get()
-                testInstrumentationRunner = extension.testInstrumentationRunner.get()
-            }
-            compileOptions {
-                sourceCompatibility = extension.sourceCompatibility.get()
-                targetCompatibility = extension.targetCompatibility.get()
-            }
-            testOptions {
-                unitTests {
-                    androidResources {
-                        isIncludeAndroidResources = true
+        afterEvaluate {
+            with(commonExtension) {
+                namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
+                compileSdk = extension.compileSdk.get()
+                defaultConfig {
+                    minSdk = extension.minSdk.get()
+                    testInstrumentationRunner = extension.testInstrumentationRunner.get()
+                }
+                compileOptions {
+                    sourceCompatibility = extension.sourceCompatibility.get()
+                    targetCompatibility = extension.targetCompatibility.get()
+                }
+                testOptions {
+                    unitTests {
+                        androidResources {
+                            isIncludeAndroidResources = true
+                        }
                     }
                 }
             }
-        }
 
-        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
-            kotlinOptions.jvmTarget = extension.targetCompatibility.get().toNumericString()
+            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
+                kotlinOptions.jvmTarget = extension.targetCompatibility.get().toNumericString()
+            }
         }
     }
 }

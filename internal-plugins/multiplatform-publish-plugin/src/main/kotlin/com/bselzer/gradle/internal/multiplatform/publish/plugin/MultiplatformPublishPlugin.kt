@@ -1,6 +1,5 @@
 package com.bselzer.gradle.internal.multiplatform.publish.plugin
 
-import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishExtension
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
@@ -9,7 +8,7 @@ import org.gradle.api.Project
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
 class MultiplatformPublishPlugin : MavenPublishPlugin() {
-    override val Project.mavenPublishExtension: MavenPublishExtension
+    override val Project.mavenPublishExtension: MultiplatformPublishExtension
         get() = multiplatformPublishExtension
 
     override val Project.mavenPublishPlatform: Platform

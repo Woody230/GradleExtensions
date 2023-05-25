@@ -15,7 +15,9 @@ class MultiplatformComposePlugin : Plugin<Project> {
             compilerVersion.convention("1.4.2")
         }
 
-        androidExtensionOrNull?.configureCompose(extension)
+        afterEvaluate {
+            androidExtensionOrNull?.configureCompose(extension)
+        }
     }
 
     private fun CommonExtension<*, *, *, *>.configureCompose(

@@ -1,22 +1,20 @@
 package com.bselzer.gradle.internal.android.application.plugin
 
-import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
-import com.bselzer.gradle.internal.android.plugin.AndroidExtension
-import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
-import com.bselzer.gradle.internal.android.release
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.getProperty
 import com.bselzer.gradle.function.properties.localProperties
+import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
+import com.bselzer.gradle.internal.android.release
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 
 class AndroidApplicationPlugin : AndroidPlugin() {
-    override val Project.androidExtension: AndroidExtension
+    override val Project.androidExtension: AndroidApplicationExtension
         get() = androidApplicationExtension
 
-    override val Project.commonExtension: CommonExtension<*, *, *, *>
+    override val Project.commonExtension: BaseAppModuleExtension
         get() = extensions.getByType<BaseAppModuleExtension>()
 
     override fun apply(project: Project) = with(project) {
@@ -25,7 +23,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
         setupGradleProperties()
 
-        val extension = androidApplicationExtension {
+        val extension = androidExtension.apply {
             // NOTE: base logic has been applied, so we can just get the namespace that was set
             applicationId.convention("${extensions.getByType<BaseAppModuleExtension>().namespace}.android")
             targetSdk.convention(33)
@@ -39,24 +37,26 @@ class AndroidApplicationPlugin : AndroidPlugin() {
             proguardFiles.convention(listOf("proguard-rules.pro"))
         }
 
-        with(extensions.getByType<BaseAppModuleExtension>()) {
-            defaultConfig {
-                applicationId = extension.applicationId.get()
-                targetSdk = extension.targetSdk.get()
-                versionName = extension.versionName.get()
-                versionCode = extension.versionCode.get()
-            }
-
-            bundle {
-                language {
-                    enableSplit = extension.languageSplit.get()
+        afterEvaluate {
+            with(commonExtension) {
+                defaultConfig {
+                    applicationId = extension.applicationId.get()
+                    targetSdk = extension.targetSdk.get()
+                    versionName = extension.versionName.get()
+                    versionCode = extension.versionCode.get()
                 }
-            }
 
-            proguard(extension.defaultProguardFile.get(), extension.proguardFiles.get())
+                bundle {
+                    language {
+                        enableSplit = extension.languageSplit.get()
+                    }
+                }
 
-            if (properties.containsKey(GradleProperty.STORE_FILE)) {
-                signing(this)
+                proguard(extension.defaultProguardFile.get(), extension.proguardFiles.get())
+
+                if (properties.containsKey(GradleProperty.STORE_FILE)) {
+                    signing(this)
+                }
             }
         }
     }
