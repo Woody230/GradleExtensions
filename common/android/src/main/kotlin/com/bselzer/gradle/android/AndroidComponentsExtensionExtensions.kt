@@ -23,3 +23,8 @@ val Project.libraryAndroidComponentsExtension: LibraryAndroidComponentsExtension
 val Project.libraryAndroidComponentsExtensionOrNull: LibraryAndroidComponentsExtension?
     get() = extensions.findByType(LibraryAndroidComponentsExtension::class.java)
 
+fun <CommonExtension> AndroidComponentsExtension<CommonExtension, *, *>.finalizeDslReceiver(
+    configure: CommonExtension.() -> Unit
+) where CommonExtension : com.android.build.api.dsl.CommonExtension<*, *, *, *> {
+    finalizeDsl(configure)
+}

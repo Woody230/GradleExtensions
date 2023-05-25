@@ -3,7 +3,8 @@ package com.bselzer.gradle.internal.android.application.plugin
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
-import com.bselzer.gradle.android.configure.component.applicationAndroidComponents
+import com.bselzer.gradle.android.applicationAndroidComponentsExtension
+import com.bselzer.gradle.android.finalizeDslReceiver
 import com.bselzer.gradle.android.release
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.containsKeys
@@ -39,7 +40,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        applicationAndroidComponents.finalizeDsl {
+        applicationAndroidComponentsExtension.finalizeDslReceiver {
             defaultConfig {
                 applicationId = extension.applicationId.get()
                 targetSdk = extension.targetSdk.get()

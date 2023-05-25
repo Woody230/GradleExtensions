@@ -1,7 +1,8 @@
 package com.bselzer.gradle.internal.multiplatform.compose.plugin
 
 import com.android.build.api.dsl.CommonExtension
-import com.bselzer.gradle.android.configure.component.commonAndroidComponents
+import com.bselzer.gradle.android.androidComponentsExtensionOrNull
+import com.bselzer.gradle.android.finalizeDslReceiver
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.compose.ComposePlugin
@@ -17,7 +18,7 @@ class MultiplatformComposePlugin : Plugin<Project> {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        commonAndroidComponents.maybeFinalizeDsl {
+        androidComponentsExtensionOrNull?.finalizeDslReceiver {
             configureCompose(extension)
         }
     }
