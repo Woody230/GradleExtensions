@@ -74,4 +74,4 @@ vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "
 woody230-gradle-internal-jvm-publish = { id = "io.github.woody230.gradle.internal.jvm-publish", version.ref = "woody230-gradle" }
 woody230-gradle-internal-maven-publish = { id = "io.github.woody230.gradle.internal.maven-publish", version.ref = "woody230-gradle" }
 woody230-gradle-internal-plugin-publish = { id = "io.github.woody230.gradle.internal.plugin-publish", version.ref = "woody230-gradle" }
-woody230-convention-publish = { id = "io.github.woody230.gradle.convention.publish", version.ref = "woody230-gradle" }
+woody230-gradle-convention-publish = { id = "io.github.woody230.gradle.convention.publish", version.ref = "woody230-gradle" }
