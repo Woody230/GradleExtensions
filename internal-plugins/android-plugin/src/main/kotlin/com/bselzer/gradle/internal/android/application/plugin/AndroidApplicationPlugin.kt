@@ -1,7 +1,6 @@
 package com.bselzer.gradle.internal.android.application.plugin
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
 import com.bselzer.gradle.android.applicationAndroidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
@@ -12,7 +11,6 @@ import com.bselzer.gradle.function.properties.getProperty
 import com.bselzer.gradle.function.properties.localProperties
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.getByType
 
 class AndroidApplicationPlugin : AndroidPlugin() {
     override val Project.androidExtension: AndroidApplicationExtension
@@ -25,8 +23,6 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         setupGradleProperties()
 
         val extension = androidExtension.apply {
-            // NOTE: base logic has been applied, so we can just get the namespace that was set
-            applicationId.convention("${extensions.getByType<BaseAppModuleExtension>().namespace}.android")
             targetSdk.convention(33)
 
             // Prefer to have all languages available, otherwise in-app language changes won't have the strings available because they aren't downloaded.
@@ -42,7 +38,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
         applicationAndroidComponentsExtension.finalizeDslReceiver {
             defaultConfig {
-                applicationId = extension.applicationId.get()
+                applicationId = if (extension.applicationId.isPresent) extension.applicationId.get() else namespace
                 targetSdk = extension.targetSdk.get()
                 versionName = extension.versionName.get()
                 versionCode = extension.versionCode.get()
