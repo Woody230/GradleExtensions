@@ -10,15 +10,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class MultiplatformPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        // TODO libs.plugins.multiplatform.get().pluginId
-        plugins.apply("org.jetbrains.kotlin.multiplatform")
-
         val extension = multiplatformExtension {
             jdkVersion.convention(JavaVersion.VERSION_11)
-        }
-
-        kotlinMultiplatformExtension {
-            configureTargets()
         }
 
         afterEvaluate {
@@ -29,6 +22,13 @@ class MultiplatformPlugin : Plugin<Project> {
             tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
                 kotlinOptions.jvmTarget = extension.jdkVersion.get().toNumericString()
             }
+        }
+
+        // TODO libs.plugins.multiplatform.get().pluginId
+        plugins.apply("org.jetbrains.kotlin.multiplatform")
+
+        kotlinMultiplatformExtension {
+            configureTargets()
         }
     }
 

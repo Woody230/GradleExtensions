@@ -8,9 +8,6 @@ import org.gradle.api.Project
 
 class MultiplatformComposePlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        // TODO libs.plugins.compose.get().pluginId
-        plugins.apply("org.jetbrains.compose")
-
         val extension = multiplatformComposeExtension {
             // TODO libs.versions.androidx.compose.get()
             compilerVersion.convention("1.4.2")
@@ -21,6 +18,9 @@ class MultiplatformComposePlugin : Plugin<Project> {
         androidComponentsExtensionOrNull?.finalizeDslReceiver {
             configureCompose(extension)
         }
+
+        // TODO libs.plugins.compose.get().pluginId
+        plugins.apply("org.jetbrains.compose")
     }
 
     private fun CommonExtension<*, *, *, *>.configureCompose(
