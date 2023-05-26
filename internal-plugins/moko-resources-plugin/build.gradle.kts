@@ -3,6 +3,7 @@ import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
 dependencies {
     api(libs.moko.resources.plugin)
     implementation(libs.woody230.gradle.android)
+    implementation(libs.woody230.gradle.multiplatform)
     implementation(projects.multiplatformPublishPlugin)
 }
 
