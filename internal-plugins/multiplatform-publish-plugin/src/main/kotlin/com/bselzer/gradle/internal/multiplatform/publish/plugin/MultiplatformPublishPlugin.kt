@@ -5,7 +5,6 @@ import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.Project
-import org.jetbrains.dokka.gradle.DokkaPlugin
 
 class MultiplatformPublishPlugin : MavenPublishPlugin() {
     override val Project.mavenPublishExtension: MultiplatformPublishExtension
@@ -18,7 +17,8 @@ class MultiplatformPublishPlugin : MavenPublishPlugin() {
         }
 
     override fun apply(project: Project) = with(project) {
-        plugins.apply(DokkaPlugin::class.java)
+        // TODO libs.plugins.dokka.get().pluginId
+        plugins.apply("org.jetbrains.dokka")
         super.apply(project)
     }
 }

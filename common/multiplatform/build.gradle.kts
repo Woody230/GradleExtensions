@@ -1,5 +1,5 @@
 plugins {
-    id(libs.plugins.woody230.gradle.convention.publish.get().pluginId)
+    id(libs.plugins.woody230.gradle.convention.jvm.get().pluginId)
 }
 
 dependencies {

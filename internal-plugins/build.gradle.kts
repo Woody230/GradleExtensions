@@ -31,6 +31,7 @@ buildscript {
 subprojects {
     apply(plugin = rootProject.libs.plugins.kotlin.dsl.get().pluginId)
     apply(plugin = rootProject.libs.plugins.kotlin.jvm.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.plugin.publish.get().pluginId)
 
     pluginPublishExtension {
         coordinates.category.set("gradle.internal")
@@ -40,10 +41,11 @@ subprojects {
 
         tags.add("internal")
     }
+}
 
-    afterEvaluate {
-        apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.plugin.publish.get().pluginId)
-    }
+tasks.register("publishBuildToMavenCentralRepository") {
+    val tasks = getTasksByName("publishAllPublicationsToMavenCentralRepository", true)
+    dependsOn(tasks)
 }
 
 tasks.register("publishBuildToMavenLocal") {
