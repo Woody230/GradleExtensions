@@ -8,6 +8,8 @@ plugins {
     id("com.vanniktech.maven.publish.base")
 }
 
+setupGradleProperties()
+
 mavenPublishing {
     val category = when {
         rootDir.name.contains("internal") -> "gradle.internal"
