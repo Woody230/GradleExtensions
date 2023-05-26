@@ -22,14 +22,6 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         get() = pluginPublishExtension
 
     override fun apply(project: Project) = with(project) {
-        // TODO libs.plugins.java.get().pluginId
-        apply(plugin = "org.gradle.java-gradle-plugin")
-
-        // TODO libs.plugins.gradle.publish.get().pluginId
-        apply(plugin = "com.gradle.plugin-publish")
-
-        super.apply(project)
-
         setupGradleProperties()
 
         val extension = pluginPublishExtension {
@@ -60,6 +52,14 @@ class PluginPublishPlugin : MavenPublishPlugin() {
                 }
             }
         }
+
+        // TODO libs.plugins.java.get().pluginId
+        apply(plugin = "org.gradle.java-gradle-plugin")
+
+        // TODO libs.plugins.gradle.publish.get().pluginId
+        apply(plugin = "com.gradle.plugin-publish")
+
+        super.apply(project)
     }
 
     private val Project.nameConvention: String
@@ -78,8 +78,9 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         extension: PluginPublishExtension,
         plugin: com.bselzer.gradle.internal.plugin.publish.plugin.PluginDeclaration,
     ) {
-        create(plugin.name.get()) {
-            id = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}.${plugin.name.get()}"
+        val id = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}.${plugin.name.get()}"
+        create(id) {
+            this.id = id
             displayName = plugin.displayName.get()
             description = plugin.description.get()
             implementationClass = plugin.className.get()

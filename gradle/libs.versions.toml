@@ -12,7 +12,7 @@ moko-resources = "0.22.0"
 multiplatform-compose = "1.3.1"
 toolchain = "0.4.0"
 vanniktech-publish = "0.25.2"
-woody230-gradle = "1.0.0"
+woody230-gradle = "1.0.1"
 
 [libraries]
 aboutlibraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "aboutlibraries" }
@@ -74,4 +74,6 @@ vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "
 woody230-gradle-internal-jvm-publish = { id = "io.github.woody230.gradle.internal.jvm-publish", version.ref = "woody230-gradle" }
 woody230-gradle-internal-maven-publish = { id = "io.github.woody230.gradle.internal.maven-publish", version.ref = "woody230-gradle" }
 woody230-gradle-internal-plugin-publish = { id = "io.github.woody230.gradle.internal.plugin-publish", version.ref = "woody230-gradle" }
+woody230-gradle-convention-jvm = { id = "io.github.woody230.gradle.convention.jvm", version.ref = "woody230-gradle" }
+woody230-gradle-convention-plugin = { id = "io.github.woody230.gradle.convention.plugin", version.ref = "woody230-gradle" }
 woody230-gradle-convention-publish = { id = "io.github.woody230.gradle.convention.publish", version.ref = "woody230-gradle" }

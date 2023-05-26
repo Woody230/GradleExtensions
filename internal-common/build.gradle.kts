@@ -12,17 +12,11 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
     }
-
-    dependencies {
-        classpath(libs.kotlin.plugin)
-    }
 }
 
-// TODO must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
-subprojects {
-    apply(plugin = rootProject.libs.plugins.kotlin.jvm.get().pluginId)
-
-    // TODO can't apply publish convention plugin, must be done in plugins block in each individual build.gradle
+tasks.register("publishBuildToMavenCentralRepository") {
+    val tasks = getTasksByName("publishAllPublicationsToMavenCentralRepository", true)
+    dependsOn(tasks)
 }
 
 tasks.register("publishBuildToMavenLocal") {

@@ -19,10 +19,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
 
     protected abstract val Project.mavenPublishPlatform: Platform
 
-    override fun apply(project: Project) = with(project) {
-        // TODO libs.vanniktech.publish.get().pluginId
-        plugins.apply("com.vanniktech.maven.publish.base")
-
+    override fun apply(project: Project): Unit = with(project) {
         setupGradleProperties()
 
         val extension = mavenPublishExtension.apply {
@@ -48,6 +45,9 @@ abstract class MavenPublishPlugin : Plugin<Project> {
                 }
             }
         }
+
+        // TODO libs.vanniktech.publish.get().pluginId
+        plugins.apply("com.vanniktech.maven.publish.base")
     }
 
     private fun MavenPublishBaseExtension.configureCoordinates(extension: MavenPublishExtension) {

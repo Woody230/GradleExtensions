@@ -1,4 +1,4 @@
-package com.bselzer.gradle.function.properties
+package io.github.woody230.gradle.convention
 
 import org.gradle.api.Project
 import java.io.File

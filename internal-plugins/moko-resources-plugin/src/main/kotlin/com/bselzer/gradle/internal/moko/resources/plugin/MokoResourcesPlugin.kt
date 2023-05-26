@@ -8,9 +8,6 @@ import java.io.File
 
 class MokoResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        // TODO libs.moko.resources.get().pluginId
-        plugins.apply("dev.icerock.mobile.multiplatform-resources")
-
         // TODO temporary srcDir inclusion https://github.com/icerockdev/moko-resources/issues/353
         androidExtensionOrNull?.sourceSets?.findByName("main")?.apply {
             //assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
@@ -27,5 +24,8 @@ class MokoResourcesPlugin : Plugin<Project> {
                 tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).forEach { task -> task.dependsOn(this) }
             }
         }
+
+        // TODO libs.moko.resources.get().pluginId
+        plugins.apply("dev.icerock.mobile.multiplatform-resources")
     }
 }
