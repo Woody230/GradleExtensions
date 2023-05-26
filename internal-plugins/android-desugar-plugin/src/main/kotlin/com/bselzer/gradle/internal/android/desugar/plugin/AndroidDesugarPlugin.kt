@@ -16,9 +16,7 @@ class AndroidDesugarPlugin : Plugin<Project> {
             compileOptions {
                 isCoreLibraryDesugaringEnabled = true
             }
-        }
 
-        afterEvaluate {
             dependencies {
 
                 val dependency: Any = when {
