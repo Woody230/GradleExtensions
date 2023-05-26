@@ -25,11 +25,6 @@ interface AndroidApplicationExtension : AndroidExtension {
     val targetSdk: Property<Int>
 
     /**
-     * Whether on-demand language downloading is enabled.
-     */
-    val languageSplit: Property<Boolean>
-
-    /**
      * The type of default proguard file.
      */
     val defaultProguardFile: Property<DefaultProguardFile>

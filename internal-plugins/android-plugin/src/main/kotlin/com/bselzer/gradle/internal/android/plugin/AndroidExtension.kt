@@ -36,4 +36,9 @@ interface AndroidExtension {
      * The fully qualified class name of the test instrumentation runner.
      */
     val testInstrumentationRunner: Property<String>
+
+    /**
+     * Whether the build config is enabled.
+     */
+    val buildConfig: Property<Boolean>
 }

@@ -25,13 +25,8 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
         val extension = androidExtension.apply {
             targetSdk.convention(33)
-
-            // Prefer to have all languages available, otherwise in-app language changes won't have the strings available because they aren't downloaded.
-            // https://developer.android.com/guide/app-bundle/configure-base#handling_language_changes
-            // TODO on demand language downloading https://developer.android.com/guide/playcore/feature-delivery/on-demand#lang_resources
-            languageSplit.convention(false)
-
             defaultProguardFile.convention(DefaultProguardFile.OPTIMIZED)
+            buildConfig.convention(true)
         }
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
@@ -42,12 +37,6 @@ class AndroidApplicationPlugin : AndroidPlugin() {
                 targetSdk = extension.targetSdk.get()
                 versionName = extension.versionName.get()
                 versionCode = extension.versionCode.get()
-            }
-
-            bundle {
-                language {
-                    enableSplit = extension.languageSplit.get()
-                }
             }
 
             proguard(extension.defaultProguardFile.get(), fileTree("proguard") {

@@ -19,6 +19,7 @@ abstract class AndroidPlugin : Plugin<Project> {
             testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
             sourceCompatibility.convention(JavaVersion.VERSION_11)
             targetCompatibility.convention(JavaVersion.VERSION_11)
+            buildConfig.convention(false)
         }
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
@@ -29,6 +30,9 @@ abstract class AndroidPlugin : Plugin<Project> {
             defaultConfig {
                 minSdk = extension.minSdk.get()
                 testInstrumentationRunner = extension.testInstrumentationRunner.get()
+            }
+            buildFeatures {
+                buildConfig = extension.buildConfig.get()
             }
             compileOptions {
                 sourceCompatibility = extension.sourceCompatibility.get()
