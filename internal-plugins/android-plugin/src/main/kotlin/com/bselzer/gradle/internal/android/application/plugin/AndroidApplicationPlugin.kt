@@ -10,6 +10,7 @@ import com.bselzer.gradle.function.properties.getProperty
 import com.bselzer.gradle.function.properties.localProperties
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
 import org.gradle.api.Project
+import org.gradle.api.file.FileTree
 
 class AndroidApplicationPlugin : AndroidPlugin() {
     override val Project.androidExtension: AndroidApplicationExtension
@@ -31,7 +32,6 @@ class AndroidApplicationPlugin : AndroidPlugin() {
             languageSplit.convention(false)
 
             defaultProguardFile.convention(DefaultProguardFile.OPTIMIZED)
-            proguardFiles.convention(listOf("proguard-rules.pro"))
         }
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
@@ -50,7 +50,9 @@ class AndroidApplicationPlugin : AndroidPlugin() {
                 }
             }
 
-            proguard(extension.defaultProguardFile.get(), extension.proguardFiles.get())
+            proguard(extension.defaultProguardFile.get(), fileTree("proguard") {
+                include("*.pro")
+            })
 
             if (properties.containsKey(GradleProperty.STORE_FILE)) {
                 signing(this)
@@ -60,13 +62,13 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
     private fun ApplicationExtension.proguard(
         defaultProguardFile: DefaultProguardFile,
-        proguardFiles: Collection<String>
+        additionalProguardFiles: FileTree
     ) = buildTypes.release {
         isMinifyEnabled = true
         isShrinkResources = true
 
-        val files: Collection<Any> = listOf(getDefaultProguardFile(defaultProguardFile.fileName)) + proguardFiles
-        proguardFiles(files)
+        proguardFile(getDefaultProguardFile(defaultProguardFile.fileName))
+        proguardFiles(additionalProguardFiles)
 
         ndk.debugSymbolLevel = "FULL"
     }
