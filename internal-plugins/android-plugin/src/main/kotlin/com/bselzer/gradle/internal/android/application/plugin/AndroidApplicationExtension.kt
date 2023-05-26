@@ -1,7 +1,6 @@
 package com.bselzer.gradle.internal.android.application.plugin
 
 import com.bselzer.gradle.internal.android.plugin.AndroidExtension
-import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 
 interface AndroidApplicationExtension : AndroidExtension {
@@ -34,9 +33,4 @@ interface AndroidApplicationExtension : AndroidExtension {
      * The type of default proguard file.
      */
     val defaultProguardFile: Property<DefaultProguardFile>
-
-    /**
-     * The relative path from the root directory to the additional proguard files.
-     */
-    val proguardFiles: ListProperty<String>
 }
