@@ -227,7 +227,7 @@ Configures the `BaseAppModuleExtension`:
             * Add the **[defaultProguardFile]**.
                 * `OPTIMIZED` uses `proguard-android-optimize.txt`
                 * `UNOPTIMIZED` uses `proguard-android.txt`
-            * Add the additional **[proguardFiles]**.
+            * Add the files in the rootDir/proguard directory that end with the `.pro` extension.
         * ndk:
             * debugSymbolLevel: `FULL`
         * signingConfig:
@@ -251,7 +251,6 @@ Optional
 * **[targetSdk]**: The target API level. Optional with a default value of 33.
 * **[languageSplit]**: Whether on-demand language downloading is enabled. Optional with a default value of false.
 * **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional with a default value of `OPTIMIZED`.
-* **[proguardFiles]**: The relative path from the root directory to the additional proguard files. Optional with a default collection of only `proguard.rules.pro`.
 
 #### android-library-plugin
 
