@@ -68,7 +68,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         isShrinkResources = true
 
         proguardFile(getDefaultProguardFile(defaultProguardFile.fileName))
-        proguardFiles(additionalProguardFiles)
+        additionalProguardFiles.files.forEach { file -> proguardFile(file) }
 
         ndk.debugSymbolLevel = "FULL"
     }
