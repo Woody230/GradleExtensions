@@ -168,6 +168,8 @@ Configures the `CommonExtension`:
 * Default config:
     * Min sdk: **[minSdk]**
     * Test instrumentation runner: **[testInstrumentationRunner]**
+* Build features:
+  * Build config: **[buildConfig]**
 * Compile options:
     * Source compatibility: **[sourceCompatibility]**
     * Target compatibility: **[targetCompatibility]**
@@ -188,6 +190,7 @@ Optional
 * **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
 * **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
 * **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a default value of `androidx.test.runner.AndroidJUnitRunner`.
+* **[buildConfig]**: Whether the build config is enabled. Optional with a default value of false.
 
 #### android-application-plugin
 
@@ -216,9 +219,6 @@ Configures the `BaseAppModuleExtension`:
     * Application id: **[applicationId]**
     * Version name: **[versionName]**
     * Version code: **[versionCode]**
-* Bundle:
-    * Language:
-        * Enable split: **[languageSplit]**
 * Build types:
     * Release:
         * isMinifyEnabled: true
@@ -249,8 +249,8 @@ Optional
 
 * **[applicationId]**: The id of the application. Optional with a default value of the **[namespace.group]**, **[namespace.category]**, **[namespace.module]** separated by a period (`.`)
 * **[targetSdk]**: The target API level. Optional with a default value of 33.
-* **[languageSplit]**: Whether on-demand language downloading is enabled. Optional with a default value of false.
 * **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional with a default value of `OPTIMIZED`.
+* **[buildConfig]**: Whether the build config is enabled. Optional with a default value of true.
 
 #### android-library-plugin
 
