@@ -49,8 +49,7 @@ Android gradle plugin extensions:
 
 General Gradle extensions.
 
-* `localProperties` extension to get the local.properties file from the root directory
-    * The logic is the same as the Android gradle plugin.
+* `localProperties` extension to get the local.properties file from the root directory or the parent directory recursively
 
 ### multiplatform
 
