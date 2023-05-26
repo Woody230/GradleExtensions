@@ -4,7 +4,6 @@ import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.localProperties
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.MavenPublishBasePlugin
 import com.vanniktech.maven.publish.Platform
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
@@ -21,7 +20,8 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     protected abstract val Project.mavenPublishPlatform: Platform
 
     override fun apply(project: Project) = with(project) {
-        plugins.apply(MavenPublishBasePlugin::class.java)
+        // TODO libs.vanniktech.publish.get().pluginId
+        plugins.apply("com.vanniktech.maven.publish.base")
 
         setupGradleProperties()
 

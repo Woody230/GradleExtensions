@@ -1,14 +1,14 @@
 package com.bselzer.gradle.internal.moko.resources.plugin
 
 import com.bselzer.gradle.android.androidExtension
-import dev.icerock.gradle.MultiplatformResourcesPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.io.File
 
 class MokoResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
-        plugins.apply(MultiplatformResourcesPlugin::class.java)
+        // TODO libs.moko.resources.get().pluginId
+        plugins.apply("dev.icerock.mobile.multiplatform-resources")
 
         // TODO temporary srcDir inclusion https://github.com/icerockdev/moko-resources/issues/353
         with(androidExtension.sourceSets.getByName("main")) {

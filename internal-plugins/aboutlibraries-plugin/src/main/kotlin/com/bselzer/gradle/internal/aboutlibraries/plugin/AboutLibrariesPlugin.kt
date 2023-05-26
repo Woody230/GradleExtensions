@@ -2,7 +2,6 @@ package com.bselzer.gradle.internal.aboutlibraries.plugin
 
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
 import com.mikepenz.aboutlibraries.plugin.AboutLibrariesExtension
-import com.mikepenz.aboutlibraries.plugin.AboutLibrariesPlugin
 import dev.icerock.gradle.MultiplatformResourcesPluginExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -10,7 +9,8 @@ import org.gradle.kotlin.dsl.getByType
 
 class AboutLibrariesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
-        plugins.apply(AboutLibrariesPlugin::class.java)
+        // TODO libs.aboutlibraries.get().pluginId
+        plugins.apply("com.mikepenz.aboutlibraries.plugin")
 
         configureMultiplatform()
         configureMokoResources()

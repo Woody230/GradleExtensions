@@ -1,7 +1,6 @@
 package com.bselzer.gradle.internal.android.application.plugin
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.gradle.internal.plugins.AppPlugin
 import com.bselzer.gradle.android.applicationAndroidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
 import com.bselzer.gradle.android.release
@@ -17,7 +16,8 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         get() = androidApplicationExtension
 
     override fun apply(project: Project) = with(project) {
-        plugins.apply(AppPlugin::class.java)
+        // TODO libs.plugins.android.application.get().pluginId
+        plugins.apply("com.android.application")
         super.apply(project)
 
         setupGradleProperties()

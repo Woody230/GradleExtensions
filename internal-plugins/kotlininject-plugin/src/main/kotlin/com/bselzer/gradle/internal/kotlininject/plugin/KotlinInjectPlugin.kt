@@ -2,14 +2,14 @@ package com.bselzer.gradle.internal.kotlininject.plugin
 
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformSourceSets
-import com.google.devtools.ksp.gradle.KspGradleSubplugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 
 class KotlinInjectPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        plugins.apply(KspGradleSubplugin::class.java)
+        // TODO libs.ksp.get().pluginId
+        plugins.apply("com.google.devtools.ksp")
         configureMultiplatform()
     }
 

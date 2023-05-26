@@ -7,11 +7,11 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 
 class MultiplatformPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        plugins.apply(KotlinMultiplatformPluginWrapper::class.java)
+        // TODO libs.plugins.multiplatform.get().pluginId
+        plugins.apply("org.jetbrains.kotlin.multiplatform")
 
         val extension = multiplatformExtension {
             jdkVersion.convention(JavaVersion.VERSION_11)

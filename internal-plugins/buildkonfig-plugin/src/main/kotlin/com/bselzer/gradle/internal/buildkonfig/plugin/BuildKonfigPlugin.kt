@@ -1,12 +1,12 @@
 package com.bselzer.gradle.internal.buildkonfig.plugin
 
-import com.codingfeline.buildkonfig.gradle.BuildKonfigPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class BuildKonfigPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        plugins.apply(BuildKonfigPlugin::class.java)
+        // TODO libs.buildkonfig.get().pluginId
+        plugins.apply("com.codingfeline.buildkonfig")
 
         tasks.whenTaskAdded {
             if (name == "build") {

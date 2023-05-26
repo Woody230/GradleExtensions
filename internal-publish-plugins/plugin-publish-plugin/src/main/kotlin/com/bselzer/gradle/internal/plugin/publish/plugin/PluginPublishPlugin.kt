@@ -13,7 +13,6 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.PluginDeclaration
-import org.gradle.plugin.devel.plugins.JavaGradlePluginPlugin
 
 class PluginPublishPlugin : MavenPublishPlugin() {
     override val Project.mavenPublishPlatform: Platform
@@ -23,7 +22,10 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         get() = pluginPublishExtension
 
     override fun apply(project: Project) = with(project) {
-        plugins.apply(JavaGradlePluginPlugin::class.java)
+        // TODO libs.plugins.java.get().pluginId
+        apply(plugin = "org.gradle.java-gradle-plugin")
+
+        // TODO libs.plugins.gradle.publish.get().pluginId
         apply(plugin = "com.gradle.plugin-publish")
 
         super.apply(project)

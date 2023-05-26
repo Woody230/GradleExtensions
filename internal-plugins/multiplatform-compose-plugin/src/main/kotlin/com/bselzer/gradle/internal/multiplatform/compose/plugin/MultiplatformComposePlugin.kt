@@ -5,11 +5,11 @@ import com.bselzer.gradle.android.androidComponentsExtensionOrNull
 import com.bselzer.gradle.android.finalizeDslReceiver
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.jetbrains.compose.ComposePlugin
 
 class MultiplatformComposePlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        plugins.apply(ComposePlugin::class.java)
+        // TODO libs.plugins.compose.get().pluginId
+        plugins.apply("org.jetbrains.compose")
 
         val extension = multiplatformComposeExtension {
             // TODO libs.versions.androidx.compose.get()
