@@ -30,7 +30,6 @@ buildscript {
 // TODO must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
 subprojects {
     apply(plugin = rootProject.libs.plugins.kotlin.dsl.get().pluginId)
-    apply(plugin = rootProject.libs.plugins.kotlin.jvm.get().pluginId)
     apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.plugin.publish.get().pluginId)
 
     pluginPublishExtension {

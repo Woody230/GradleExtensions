@@ -78,8 +78,9 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         extension: PluginPublishExtension,
         plugin: com.bselzer.gradle.internal.plugin.publish.plugin.PluginDeclaration,
     ) {
-        create(plugin.name.get()) {
-            id = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}.${plugin.name.get()}"
+        val id = "${extension.coordinates.group.get()}.${extension.coordinates.category.get()}.${plugin.name.get()}"
+        create(id) {
+            this.id = id
             displayName = plugin.displayName.get()
             description = plugin.description.get()
             implementationClass = plugin.className.get()
