@@ -23,7 +23,7 @@ private val Project.localPropertiesFile: File?
     get() = compositeBuildSequence().firstNotNullOfOrNull { build ->
         val file = build.rootProject.rootDir.resolve("local.properties")
         when {
-            file.exists() && file.isFile -> file
+            file.isFile -> file
             else -> null
         }
     }
