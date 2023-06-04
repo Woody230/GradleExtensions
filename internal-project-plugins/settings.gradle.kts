@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "internal-plugins"
+rootProject.name = "internal-project-plugins"
 include("aboutlibraries-plugin")
 include("android-desugar-plugin")
 include("android-plugin")

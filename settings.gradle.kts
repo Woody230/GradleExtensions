@@ -37,4 +37,4 @@ includeBuild("common") {
     substitute("io.github.woody230.gradle:function" to ":function")
     substitute("io.github.woody230.gradle:multiplatform" to ":multiplatform")
 }
-includeBuild("internal-plugins")
+includeBuild("internal-project-plugins")
