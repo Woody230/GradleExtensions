@@ -120,9 +120,9 @@ kotlin {
 }
 ```
 
-## internal-plugins
+## internal-project-plugins
 
-Plugins intended to be used by my personal projects only.
+Plugins targeting a project intended to be used by my personal projects only.
 
 ### aboutlibraries-plugin
 ```kotlin
