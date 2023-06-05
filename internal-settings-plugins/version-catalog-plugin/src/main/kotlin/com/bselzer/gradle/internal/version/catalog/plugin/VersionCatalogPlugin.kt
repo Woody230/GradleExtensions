@@ -8,6 +8,14 @@ import java.nio.file.Paths
 
 class VersionCatalogPlugin : Plugin<Settings> {
     override fun apply(settings: Settings) = with(settings) {
+        val file = versionsFile
+
+        // NOTE the gradle/libs.versions.toml within the root directory is automatically included and must not be added again
+        // https://github.com/gradle/gradle/issues/20282
+        if (file.startsWith(rootDir)) {
+            return@with
+        }
+
         dependencyResolutionManagement {
             versionCatalogs {
                 create("libs") {
