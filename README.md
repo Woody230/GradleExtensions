@@ -50,6 +50,7 @@ Android gradle plugin extensions:
 General Gradle extensions.
 
 * `localProperties` extension to get the local.properties file from the root directory or the parent directory recursively
+* `fileOperations` extension to access the FileOperations from a settings plugin
 
 ### multiplatform
 
