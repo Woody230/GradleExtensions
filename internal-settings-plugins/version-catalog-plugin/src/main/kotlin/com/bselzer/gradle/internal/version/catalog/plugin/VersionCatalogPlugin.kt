@@ -12,13 +12,13 @@ class VersionCatalogPlugin : Plugin<Settings> {
         createLibs()
     }
 
-    private fun Settings.createLibs() = with(settings) {
+    private fun Settings.createLibs() {
         val file = versionsFile
 
         // NOTE the gradle/libs.versions.toml within the root directory is automatically included and must not be added again
         // https://github.com/gradle/gradle/issues/20282
         if (file.startsWith(rootDir)) {
-            return@with
+            return
         }
 
         dependencyResolutionManagement {
