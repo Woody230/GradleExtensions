@@ -1,5 +1,6 @@
 package com.bselzer.gradle.internal.version.catalog.plugin
 
+import com.bselzer.gradle.function.settings.files
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import java.io.File
@@ -8,6 +9,10 @@ import java.nio.file.Paths
 
 class VersionCatalogPlugin : Plugin<Settings> {
     override fun apply(settings: Settings) = with(settings) {
+        createLibs()
+    }
+
+    private fun Settings.createLibs() = with(settings) {
         val file = versionsFile
 
         // NOTE the gradle/libs.versions.toml within the root directory is automatically included and must not be added again
@@ -19,7 +24,7 @@ class VersionCatalogPlugin : Plugin<Settings> {
         dependencyResolutionManagement {
             versionCatalogs {
                 create("libs") {
-                    from(versionsFile)
+                    from(files(versionsFile))
                 }
             }
         }
