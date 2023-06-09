@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "internal-settings-plugins"
+include("composite-property-plugin")
 include("version-catalog-plugin")
