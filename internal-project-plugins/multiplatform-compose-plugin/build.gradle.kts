@@ -1,5 +1,3 @@
-import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
-
 dependencies {
     api(libs.compose.plugin)
     implementation(libs.woody230.gradle.android)
