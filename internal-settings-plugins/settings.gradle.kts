@@ -16,4 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "internal-settings-plugins"
 include("bundled-plugin")
 include("composite-property-plugin")
+include("composite-publish-plugin")
 include("version-catalog-plugin")
