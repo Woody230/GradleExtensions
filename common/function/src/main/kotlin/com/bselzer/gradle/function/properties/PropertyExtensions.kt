@@ -12,6 +12,22 @@ fun Project.hasProperties(vararg keys: String) = keys.all(::hasProperty)
 
 fun Project.getProperty(key: String): String = properties[key]?.toString() ?: throw Error("Gradle property $key does not exist.")
 
+fun Project.addOrSkipProperty(key: String, value: String) {
+    if (hasProperty(key)) {
+        return
+    }
+
+    addOrReplaceProperty(key, value)
+}
+
+fun Project.addOrSkipProperties(properties: Properties) {
+    properties.forEach { pair ->
+        val key = pair.key.toString()
+        val value = pair.value.toString()
+        addOrSkipProperty(key, value)
+    }
+}
+
 fun Project.addOrReplaceProperty(key: String, value: String) {
     if (hasProperty(key)) {
         setProperty(key, value)

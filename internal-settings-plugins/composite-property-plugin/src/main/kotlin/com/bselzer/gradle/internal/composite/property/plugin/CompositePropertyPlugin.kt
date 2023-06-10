@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.composite.property.plugin
 
-import com.bselzer.gradle.function.properties.addOrReplaceProperties
+import com.bselzer.gradle.function.properties.addOrSkipProperties
 import com.bselzer.gradle.function.properties.compositeProperties
 import com.bselzer.gradle.function.properties.localPropertiesFileOrNull
 import org.gradle.api.Plugin
@@ -17,17 +17,18 @@ class CompositePropertyPlugin : Plugin<Settings> {
 
     override fun apply(settings: Settings) = with(settings) {
         gradle.projectsLoaded {
-            addOrReplaceGradleProperties()
+            addGradleProperties()
             copyLocalProperties()
         }
     }
 
-    private fun Gradle.addOrReplaceGradleProperties() {
+    private fun Gradle.addGradleProperties() {
         val properties = rootProject.compositeProperties
         logger.info("Injecting ${properties.count()} composite properties.")
 
         allprojects {
-            addOrReplaceProperties(properties)
+            // Since these are common properties of the entire composite, do not overwrite if the properties exist already.
+            addOrSkipProperties(properties)
         }
     }
 
