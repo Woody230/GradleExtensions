@@ -1,11 +1,11 @@
 package com.bselzer.gradle.internal.composite.property.plugin
 
+import com.bselzer.gradle.function.properties.localPropertiesFile
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.api.invocation.Gradle
 import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
-import java.io.File
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 
@@ -20,7 +20,7 @@ class CompositePropertyPlugin : Plugin<Settings> {
     }
 
     private fun Gradle.copyLocalProperties() {
-        val file = localPropertiesFile
+        val file = rootProject.localPropertiesFile
         if (file == null) {
             logger.info("local.properties cannot be copied because the file does not exist in the root directory")
             return
@@ -33,13 +33,4 @@ class CompositePropertyPlugin : Plugin<Settings> {
             }
         }
     }
-
-    private val Gradle.localPropertiesFile: File?
-        get() {
-            val file = rootProject.projectDir.resolve("local.properties")
-            return when {
-                file.isFile -> file
-                else -> null
-            }
-        }
 }

@@ -5,9 +5,9 @@ import com.bselzer.gradle.android.applicationAndroidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
 import com.bselzer.gradle.android.release
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
+import com.bselzer.gradle.function.properties.compositeLocalProperties
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.getProperty
-import com.bselzer.gradle.function.properties.localProperties
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
 import org.gradle.api.Project
 import org.gradle.api.file.FileTree
@@ -74,7 +74,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
     }
 
     private fun Project.setupGradleProperties() {
-        val localProperties = localProperties
+        val localProperties = compositeLocalProperties
 
         if (localProperties.containsKeys(LocalProperty.STORE_FILE)) {
             addOrReplaceProperty(GradleProperty.KEY_ALIAS, localProperties.getProperty(LocalProperty.KEY_ALIAS))

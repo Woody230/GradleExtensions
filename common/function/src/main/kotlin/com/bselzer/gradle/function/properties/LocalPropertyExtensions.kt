@@ -7,23 +7,31 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.util.*
 
+val Project.compositeLocalProperties: Properties
+    get() = compositeLocalPropertiesFile.load()
+
+private val Project.compositeLocalPropertiesFile: File?
+    get() = compositeBuildSequence().firstNotNullOfOrNull { build -> build.rootProject.localPropertiesFile }
+
 val Project.localProperties: Properties
+    get() = localPropertiesFile.load()
+
+val Project.localPropertiesFile: File?
     get() {
-        val properties = Properties()
-        localPropertiesFile?.let { localProperties ->
-            InputStreamReader(FileInputStream(localProperties), Charsets.UTF_8).use { reader ->
-                properties.load(reader)
-            }
-        }
-
-        return properties
-    }
-
-private val Project.localPropertiesFile: File?
-    get() = compositeBuildSequence().firstNotNullOfOrNull { build ->
-        val file = build.rootProject.rootDir.resolve("local.properties")
-        when {
+        val file = rootDir.resolve("local.properties")
+        return when {
             file.isFile -> file
             else -> null
         }
     }
+
+private fun File?.load(): Properties {
+    val properties = Properties()
+    if (this != null) {
+        InputStreamReader(FileInputStream(this), Charsets.UTF_8).use { reader ->
+            properties.load(reader)
+        }
+    }
+
+    return properties
+}

@@ -1,8 +1,8 @@
 package com.bselzer.gradle.internal.maven.publish.plugin
 
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
+import com.bselzer.gradle.function.properties.compositeLocalProperties
 import com.bselzer.gradle.function.properties.containsKeys
-import com.bselzer.gradle.function.properties.localProperties
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.Platform
 import com.vanniktech.maven.publish.SonatypeHost
@@ -111,7 +111,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     }
 
     private fun Project.setupGradleProperties() = with(properties) {
-        val localProperties = localProperties
+        val localProperties = compositeLocalProperties
 
         if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
             addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
