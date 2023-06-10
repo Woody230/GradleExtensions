@@ -515,3 +515,28 @@ Required
 Optional
 
 * **[tags]**: The common tags to apply to all plugins. Optional with a default value of an empty list.
+
+## internal-settings-plugins
+
+Plugins targeting settings intended to be used by my personal projects only.
+
+### composite-property-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.composite-property")
+}
+```
+
+* If a `composite.properties` file exists at the root of the composite, then those properties are added to each project.
+* If a `local.properties` file exists at the root of the composite, then the file is copied to the root of each included build.
+
+### version-catalog-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.version-catalog")
+}
+```
+
+* Creates a version catalog named `libs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite. 
