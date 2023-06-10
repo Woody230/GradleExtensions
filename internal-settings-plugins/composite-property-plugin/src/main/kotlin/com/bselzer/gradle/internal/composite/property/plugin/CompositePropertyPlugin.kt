@@ -1,8 +1,8 @@
 package com.bselzer.gradle.internal.composite.property.plugin
 
 import com.bselzer.gradle.function.properties.addOrSkipProperties
-import com.bselzer.gradle.function.properties.compositeProperties
-import com.bselzer.gradle.function.properties.localPropertiesFileOrNull
+import com.bselzer.gradle.function.properties.compositeCompositeProperties
+import com.bselzer.gradle.function.properties.compositeLocalPropertiesFileOrNull
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.api.invocation.Gradle
@@ -23,8 +23,7 @@ class CompositePropertyPlugin : Plugin<Settings> {
     }
 
     private fun Gradle.addGradleProperties() {
-        val properties = rootProject.compositeProperties
-        logger.info("Injecting ${properties.count()} composite properties.")
+        val properties = rootProject.compositeCompositeProperties
 
         allprojects {
             // Since these are common properties of the entire composite, do not overwrite if the properties exist already.
@@ -33,12 +32,7 @@ class CompositePropertyPlugin : Plugin<Settings> {
     }
 
     private fun Gradle.copyLocalProperties() {
-        val file = rootProject.localPropertiesFileOrNull
-        if (file == null) {
-            logger.info("local.properties cannot be copied because the file does not exist")
-            return
-        }
-
+        val file = rootProject.compositeLocalPropertiesFileOrNull ?: return
         file.inputStream().use { sourceStream ->
             includedBuilds.forEach { includedBuild ->
                 val outputDir = includedBuild.projectDir.resolve("local.properties").toPath()
