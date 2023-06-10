@@ -520,6 +520,23 @@ Optional
 
 Plugins targeting settings intended to be used by my personal projects only.
 
+### bundled-plugin
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.bundled")
+}
+```
+
+* Add the following repositories to plugin management and all projects:
+  * gradlePluginPortal
+  * google
+  * mavenCentral
+  * mavenLocal
+* Applies the foojay toolchain plugin.
+* Applies the following internal plugins:
+  * [composite-property-plugin](#composite-property-plugin)
+  * [version-catalog-plugin](#version-catalog-plugin)
+
 ### composite-property-plugin
 
 ```kotlin
