@@ -1,5 +1,7 @@
 package com.bselzer.gradle.internal.bundled.plugin
 
+import com.bselzer.gradle.internal.composite.property.plugin.CompositePropertyPlugin
+import com.bselzer.gradle.internal.version.catalog.plugin.VersionCatalogPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.initialization.Settings
@@ -11,7 +13,7 @@ class BundledPlugin : Plugin<Settings> {
             repositories.addRepositories()
 
             plugins {
-                addToolchain()
+                applyToolchain()
             }
         }
 
@@ -20,6 +22,8 @@ class BundledPlugin : Plugin<Settings> {
                 repositories.addRepositories()
             }
         }
+
+        applyInternalPlugins()
     }
 
     private fun RepositoryHandler.addRepositories() {
@@ -29,8 +33,13 @@ class BundledPlugin : Plugin<Settings> {
         mavenLocal()
     }
 
-    private fun PluginDependenciesSpec.addToolchain() {
+    private fun PluginDependenciesSpec.applyToolchain() {
         // TODO libs
         id("org.gradle.toolchains.foojay-resolver-convention").version("0.4.0")
+    }
+
+    private fun Settings.applyInternalPlugins() {
+        plugins.apply(CompositePropertyPlugin::class.java)
+        plugins.apply(VersionCatalogPlugin::class.java)
     }
 }
