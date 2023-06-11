@@ -532,6 +532,7 @@ plugins {
   * google
   * mavenCentral
   * mavenLocal
+* Enables type safe project accessors.
 * Applies the foojay toolchain plugin.
 * Applies the following internal plugins:
   * [composite-property-plugin](#composite-property-plugin)
