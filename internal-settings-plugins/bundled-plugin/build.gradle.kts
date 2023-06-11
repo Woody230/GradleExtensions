@@ -1,6 +1,7 @@
 dependencies {
     api(projects.compositePropertyPlugin)
     api(projects.versionCatalogPlugin)
+    api(libs.toolchain.plugin)
 }
 
 pluginPublishExtension {
