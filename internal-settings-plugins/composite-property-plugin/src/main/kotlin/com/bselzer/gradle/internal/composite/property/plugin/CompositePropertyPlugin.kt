@@ -6,15 +6,12 @@ import com.bselzer.gradle.function.properties.compositeLocalPropertiesFileOrNull
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.api.invocation.Gradle
-import org.gradle.api.logging.Logger
-import org.gradle.api.logging.Logging
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.nio.file.Files
-import java.nio.file.StandardCopyOption
+import java.util.stream.Collectors
 
 class CompositePropertyPlugin : Plugin<Settings> {
-    private val logger: Logger
-        get() = Logging.getLogger(Settings::class.java)
-
     override fun apply(settings: Settings) = with(settings) {
         gradle.projectsLoaded {
             addGradleProperties()
@@ -34,9 +31,10 @@ class CompositePropertyPlugin : Plugin<Settings> {
     private fun Gradle.copyLocalProperties() {
         val file = rootProject.compositeLocalPropertiesFileOrNull ?: return
         file.inputStream().use { sourceStream ->
+            val content = BufferedReader(InputStreamReader(sourceStream)).lines().collect(Collectors.joining("\n"))
             includedBuilds.forEach { includedBuild ->
                 val outputDir = includedBuild.projectDir.resolve("local.properties").toPath()
-                Files.copy(sourceStream, outputDir, StandardCopyOption.REPLACE_EXISTING)
+                Files.writeString(outputDir, content)
             }
         }
     }
