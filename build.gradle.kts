@@ -6,9 +6,9 @@ allprojects {
     }
 }
 
-tasks.register("publishBuildsToMavenCentralRepository") {
+tasks.register("publishBuildsToMavenCentral") {
     group = "publishing"
-    val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenCentralRepository") }
+    val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenCentral") }
     dependsOn(tasks)
 }
 

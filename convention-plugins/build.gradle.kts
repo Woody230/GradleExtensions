@@ -18,7 +18,7 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
-tasks.register("publishBuildToMavenCentralRepository") {
+tasks.register("publishBuildToMavenCentral") {
     // Nothing needs to be published.
 }
 

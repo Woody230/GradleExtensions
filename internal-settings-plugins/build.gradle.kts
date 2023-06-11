@@ -38,7 +38,7 @@ subprojects {
     }
 }
 
-tasks.register("publishBuildToMavenCentralRepository") {
+tasks.register("publishBuildToMavenCentral") {
     group = "publishing"
     val tasks = getTasksByName("publishAllPublicationsToMavenCentralRepository", true)
     dependsOn(tasks)
