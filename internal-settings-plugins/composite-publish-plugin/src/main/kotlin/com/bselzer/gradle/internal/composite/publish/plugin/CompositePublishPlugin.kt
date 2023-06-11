@@ -21,11 +21,11 @@ class CompositePublishPlugin : Plugin<Settings> {
 
     private fun Project.addRootTasks() {
         // NOTE assumption is that the root project does not actually have any projects itself and purely relies on included builds.
-        tasks.register("publishBuildsToMavenCentralRepository") {
+        tasks.register("publishBuildsToMavenCentral") {
             group = PUBLISH_GROUP
             description = "Publishes all projects within the included builds to the Maven Central repository."
 
-            val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenCentralRepository") }
+            val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenCentral") }
             dependsOn(tasks)
         }
 
@@ -39,7 +39,7 @@ class CompositePublishPlugin : Plugin<Settings> {
     }
 
     private fun Project.addLeafTasks() {
-        tasks.register("publishBuildToMavenCentralRepository") {
+        tasks.register("publishBuildToMavenCentral") {
             group = PUBLISH_GROUP
             description = "Publishes all projects within this build to the Maven Central repository."
 
