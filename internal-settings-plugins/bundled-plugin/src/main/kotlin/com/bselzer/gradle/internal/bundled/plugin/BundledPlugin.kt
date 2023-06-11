@@ -9,6 +9,8 @@ import org.gradle.toolchains.foojay.FoojayToolchainsConventionPlugin
 
 class BundledPlugin : Plugin<Settings> {
     override fun apply(settings: Settings) = with(settings) {
+        buildscript.repositories.addRepositories()
+
         pluginManagement {
             repositories.addRepositories()
         }
@@ -16,6 +18,7 @@ class BundledPlugin : Plugin<Settings> {
         gradle.projectsLoaded {
             allprojects {
                 repositories.addRepositories()
+                buildscript.repositories.addRepositories()
             }
         }
 
