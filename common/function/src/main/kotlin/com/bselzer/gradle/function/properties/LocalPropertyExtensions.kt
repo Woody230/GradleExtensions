@@ -1,6 +1,6 @@
 package com.bselzer.gradle.function.properties
 
-import com.bselzer.gradle.function.project.compositeBuildSequence
+import com.bselzer.gradle.function.gradle.compositeSequence
 import org.gradle.api.Project
 import java.io.File
 import java.util.*
@@ -27,4 +27,4 @@ val Project.compositeLocalProperties: Properties
  * The local.properties file from the root directory of this project or from a parent build.
  */
 val Project.compositeLocalPropertiesFileOrNull: File?
-    get() = compositeBuildSequence().firstNotNullOfOrNull { build -> build.rootProject.localPropertiesFileOrNull }
+    get() = gradle.compositeSequence().firstNotNullOfOrNull { gradle -> gradle.rootProject.localPropertiesFileOrNull }
