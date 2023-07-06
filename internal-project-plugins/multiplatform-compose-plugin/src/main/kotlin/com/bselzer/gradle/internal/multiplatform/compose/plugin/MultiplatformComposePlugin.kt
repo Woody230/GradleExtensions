@@ -10,7 +10,7 @@ class MultiplatformComposePlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         val extension = multiplatformComposeExtension {
             // TODO libs.versions.androidx.compose.get()
-            compilerVersion.convention("1.4.2")
+            compilerVersion.convention("1.4.8")
         }
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
