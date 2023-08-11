@@ -7,13 +7,13 @@ allprojects {
 }
 
 tasks.register("publishBuildsToMavenCentral") {
-    group = "publishing"
+    group = "composite"
     val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenCentral") }
     dependsOn(tasks)
 }
 
 tasks.register("publishBuildsToMavenLocal") {
-    group = "publishing"
+    group = "composite"
     val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenLocal") }
     dependsOn(tasks)
 }
