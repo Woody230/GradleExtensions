@@ -562,6 +562,17 @@ plugins {
 * Adds the `publishBuildToMavenCentral` task to a child build which publishes the projects within the build to the Maven Central repository.
 * Adds the `publishBuildToMavenLocal` task to a child build which publishes the projects within the build to the Maven local repository.
 
+### composite-test-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.composite-test")
+}
+```
+
+* Adds the `testBuilds` task to a root build which runs all tests for the projects in all included builds.
+* Adds the `testBuild` task to a child build which runs all tests for the projects within the build.
+
 ### version-catalog-plugin
 
 ```kotlin
