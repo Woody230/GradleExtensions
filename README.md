@@ -49,7 +49,9 @@ Android gradle plugin extensions:
 
 General Gradle extensions.
 
-* `localProperties` extension to get the local.properties file from the root directory or the parent directory recursively
+* `localProperties` extension to get the local.properties file from the root directory
+* `compositeLocalProperties` extension to get the local.properties file from the root directory or the parent directory recursively
+* `fileOperations` extension to access the FileOperations from a settings plugin
 
 ### multiplatform
 
@@ -120,9 +122,9 @@ kotlin {
 }
 ```
 
-## internal-plugins
+## internal-project-plugins
 
-Plugins intended to be used by my personal projects only.
+Plugins targeting a project intended to be used by my personal projects only.
 
 ### aboutlibraries-plugin
 ```kotlin
@@ -513,3 +515,70 @@ Required
 Optional
 
 * **[tags]**: The common tags to apply to all plugins. Optional with a default value of an empty list.
+
+## internal-settings-plugins
+
+Plugins targeting settings intended to be used by my personal projects only.
+
+### bundled-plugin
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.bundled")
+}
+```
+
+* Add the following repositories to plugin management and all projects:
+  * gradlePluginPortal
+  * google
+  * mavenCentral
+  * mavenLocal
+* Enables type safe project accessors.
+* Applies the foojay toolchain plugin.
+* Applies the following internal plugins:
+  * [composite-property-plugin](#composite-property-plugin)
+  * [version-catalog-plugin](#version-catalog-plugin)
+
+### composite-property-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.composite-property")
+}
+```
+
+* If a `composite.properties` file exists at the root of the composite, then those properties are added to each project.
+* If a `local.properties` file exists at the root of the composite, then the file is copied to the root of each included build.
+
+### composite-publish-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.composite-publish")
+}
+```
+
+* Adds the `publishBuildsToMavenCentral` task to a root build which publishes the projects in all included builds to the Maven Central repository.
+* Adds the `publishBuildsToMavenLocal` task to a root build which publishes the projects in all included builds to the Maven local repository.
+* Adds the `publishBuildToMavenCentral` task to a child build which publishes the projects within the build to the Maven Central repository.
+* Adds the `publishBuildToMavenLocal` task to a child build which publishes the projects within the build to the Maven local repository.
+
+### composite-test-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.composite-test")
+}
+```
+
+* Adds the `testBuilds` task to a root build which runs all tests for the projects in all included builds.
+* Adds the `testBuild` task to a child build which runs all tests for the projects within the build.
+
+### version-catalog-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.version-catalog")
+}
+```
+
+* Creates a version catalog named `libs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite. 

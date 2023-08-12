@@ -1,6 +1,7 @@
 [versions]
 aboutlibraries = "10.6.2"
-androidx-compose = "1.4.8"
+androidx-compose = "1.4.3"
+androidx-compose-compiler = "1.4.8"
 buildkonfig = "0.13.3"
 dokka = "1.8.20"
 kotlin = "1.8.22"
@@ -12,13 +13,14 @@ moko-resources = "0.22.0"
 multiplatform-compose = "1.4.1" # Must also update androidx-compose version with the compiler version.
 toolchain = "0.4.0"
 vanniktech-publish = "0.25.2"
-woody230-gradle = "1.0.1"
+woody230-gradle = "1.2.0"
 
 [libraries]
 aboutlibraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "aboutlibraries" }
 aboutlibraries-plugin = { group = "com.mikepenz.aboutlibraries.plugin", name = "aboutlibraries-plugin", version.ref = "aboutlibraries" }
 android-desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version = "2.0.3" }
 android-plugin = { group = "com.android.tools.build", name = "gradle", version = "8.0.0" }
+androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version = "androidx-compose-compiler" }
 androidx-test-compose-ui = { group = "androidx.compose.ui", name = "ui-test", version.ref = "androidx-compose" }
 androidx-test-compose-ui-junit = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-compose" }
 androidx-test-compose-ui-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-compose" }

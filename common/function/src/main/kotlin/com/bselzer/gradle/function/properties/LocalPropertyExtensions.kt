@@ -1,41 +1,30 @@
 package com.bselzer.gradle.function.properties
 
+import com.bselzer.gradle.function.gradle.compositeSequence
 import org.gradle.api.Project
 import java.io.File
-import java.io.FileInputStream
-import java.io.InputStreamReader
-import java.nio.file.Path
-import java.nio.file.Paths
 import java.util.*
 
+/**
+ * The local.properties from the root directory.
+ */
 val Project.localProperties: Properties
-    get() {
-        val properties = Properties()
-        val localProperties = localPropertiesFile
+    get() = localPropertiesFileOrNull.load()
 
-        if (localProperties?.isFile == true) {
-            InputStreamReader(FileInputStream(localProperties), Charsets.UTF_8).use { reader ->
-                properties.load(reader)
-            }
-        }
-        return properties
-    }
+/**
+ * The local.properties file from the root directory.
+ */
+val Project.localPropertiesFileOrNull: File?
+    get() = propertiesFileOrNull("local.properties")
 
-private val Project.localPropertiesFile: File?
-    get() {
-        var path: Path? = rootDir.toPath()
-        while (true) {
-            if (path == null) {
-                return null
-            }
+/**
+ * The local.properties from the root directory of this project or from a parent build.
+ */
+val Project.compositeLocalProperties: Properties
+    get() = compositeLocalPropertiesFileOrNull.load()
 
-            val file = Paths.get(path.toString(), "local.properties").toFile()
-            if (!file.exists()) {
-                // For composite builds we need to work backwards to the root of the composite.
-                path = path.parent
-                continue
-            }
-
-            return file
-        }
-    }
+/**
+ * The local.properties file from the root directory of this project or from a parent build.
+ */
+val Project.compositeLocalPropertiesFileOrNull: File?
+    get() = gradle.compositeSequence().firstNotNullOfOrNull { gradle -> gradle.rootProject.localPropertiesFileOrNull }
