@@ -536,6 +536,8 @@ plugins {
 * Applies the foojay toolchain plugin.
 * Applies the following internal plugins:
   * [composite-property-plugin](#composite-property-plugin)
+  * [composite-publish-plugin](#composite-publish-plugin)
+  * [composite-test-plugin](#composite-test-plugin)
   * [version-catalog-plugin](#version-catalog-plugin)
 
 ### composite-property-plugin
