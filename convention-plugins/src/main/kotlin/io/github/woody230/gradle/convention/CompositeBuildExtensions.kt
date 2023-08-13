@@ -1,21 +1,20 @@
 package io.github.woody230.gradle.convention
 
-import org.gradle.api.Project
 import org.gradle.api.invocation.Gradle
 
 /**
- * Creates a sequence of the builds starting from the current build that iterates toward the root of the composite.
+ * Creates a sequence of the Gradle instance starting from the given instance that iterates toward the root of the composite.
  */
-fun Project.compositeBuildSequence(): Sequence<Gradle> = generateSequence(project.gradle) { build -> build.parent }
+fun Gradle.compositeSequence(): Sequence<Gradle> = generateSequence(this) { build -> build.parent }
 
 /**
- * The root build of the composite.
+ * The root Gradle instance of the composite.
  */
-val Project.compositeRootBuild: Gradle
-    get() = compositeBuildSequence().last()
+val Gradle.compositeRoot: Gradle
+    get() = compositeSequence().last()
 
 /**
- * The root project of the composite.
+ * Whether this Gradle instance is the root of the composite.
  */
-val Project.compositeRootProject: Project
-    get() = compositeRootBuild.rootProject
+val Gradle.isCompositeRoot: Boolean
+    get() = parent == null

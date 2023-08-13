@@ -56,8 +56,8 @@ mavenPublishing {
     }
 }
 
-fun Project.setupGradleProperties() = with(properties) {
-    val localProperties = localProperties
+fun Project.setupGradleProperties() {
+    val localProperties = compositeLocalProperties
 
     if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
         addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
