@@ -30,9 +30,9 @@ class BundledPlugin : Plugin<Settings> {
     }
 
     private fun RepositoryHandler.addRepositories() {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
         mavenLocal()
     }
 

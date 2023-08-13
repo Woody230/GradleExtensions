@@ -110,7 +110,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         configureScm(repo)
     }
 
-    private fun Project.setupGradleProperties() = with(properties) {
+    private fun Project.setupGradleProperties() {
         val localProperties = compositeLocalProperties
 
         if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {

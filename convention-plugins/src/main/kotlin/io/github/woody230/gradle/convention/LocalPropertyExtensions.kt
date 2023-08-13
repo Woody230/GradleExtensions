@@ -2,27 +2,28 @@ package io.github.woody230.gradle.convention
 
 import org.gradle.api.Project
 import java.io.File
-import java.io.FileInputStream
-import java.io.InputStreamReader
 import java.util.*
 
+/**
+ * The local.properties from the root directory.
+ */
 val Project.localProperties: Properties
-    get() {
-        val properties = Properties()
-        localPropertiesFile?.let { localProperties ->
-            InputStreamReader(FileInputStream(localProperties), Charsets.UTF_8).use { reader ->
-                properties.load(reader)
-            }
-        }
+    get() = localPropertiesFileOrNull.load()
 
-        return properties
-    }
+/**
+ * The local.properties file from the root directory.
+ */
+val Project.localPropertiesFileOrNull: File?
+    get() = propertiesFileOrNull("local.properties")
 
-private val Project.localPropertiesFile: File?
-    get() = compositeBuildSequence().firstNotNullOfOrNull { build ->
-        val file = build.rootProject.rootDir.resolve("local.properties")
-        when {
-            file.isFile -> file
-            else -> null
-        }
-    }
+/**
+ * The local.properties from the root directory of this project or from a parent build.
+ */
+val Project.compositeLocalProperties: Properties
+    get() = compositeLocalPropertiesFileOrNull.load()
+
+/**
+ * The local.properties file from the root directory of this project or from a parent build.
+ */
+val Project.compositeLocalPropertiesFileOrNull: File?
+    get() = gradle.compositeSequence().firstNotNullOfOrNull { gradle -> gradle.rootProject.localPropertiesFileOrNull }
