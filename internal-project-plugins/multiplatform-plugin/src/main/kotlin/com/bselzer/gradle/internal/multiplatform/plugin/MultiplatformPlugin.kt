@@ -34,7 +34,7 @@ class MultiplatformPlugin : Plugin<Project> {
 
     private fun KotlinMultiplatformExtension.configureTargets() {
         jvm()
-        android {
+        androidTarget {
             publishLibraryVariants("release", "debug")
         }
     }
