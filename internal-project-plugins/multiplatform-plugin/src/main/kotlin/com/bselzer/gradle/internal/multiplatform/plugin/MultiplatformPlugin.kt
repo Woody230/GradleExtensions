@@ -15,6 +15,8 @@ class MultiplatformPlugin : Plugin<Project> {
         }
 
         afterEvaluate {
+            // TODO https://github.com/gradle/gradle/issues/26061
+            // The value for property 'languageVersion' is final and cannot be changed any further
             kotlinMultiplatformExtension {
                 jvmToolchain(extension.jdkVersion.get().toInt())
             }

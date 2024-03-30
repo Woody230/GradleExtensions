@@ -8,16 +8,6 @@ import java.io.File
 
 class MokoResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        // TODO temporary srcDir inclusion https://github.com/icerockdev/moko-resources/issues/353
-        androidExtensionOrNull?.sourceSets?.findByName("main")?.apply {
-            //assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
-            res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
-        }
-
-        multiplatformSourceSets.maybeJvmMain {
-            resources.srcDir(File(buildDir, "generated/moko/jvmMain/res"))
-        }
-
         tasks.whenTaskAdded {
             if (name == "generateMRandroidMain" || name == "generateMRjvmMain") {
                 tasks.withType(org.gradle.jvm.tasks.Jar::class.java).forEach { task -> task.dependsOn(this) }

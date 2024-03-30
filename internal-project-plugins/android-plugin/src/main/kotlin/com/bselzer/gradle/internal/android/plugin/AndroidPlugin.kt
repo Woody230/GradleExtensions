@@ -14,7 +14,7 @@ abstract class AndroidPlugin : Plugin<Project> {
         val extension = androidExtension.apply {
             namespace.group.convention("com.bselzer")
             namespace.module.convention(name)
-            compileSdk.convention(33)
+            compileSdk.convention(34)
             minSdk.convention(21)
             testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
             sourceCompatibility.convention(JavaVersion.VERSION_11)

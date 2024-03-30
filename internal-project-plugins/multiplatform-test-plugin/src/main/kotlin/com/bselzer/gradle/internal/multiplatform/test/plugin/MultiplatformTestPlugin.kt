@@ -9,20 +9,20 @@ class MultiplatformTestPlugin : Plugin<Project> {
         multiplatformDependencies {
             maybeCommonTest {
                 // TODO libs.kotlin.test.asProvider()
-                implementation("org.jetbrains.kotlin:kotlin-test-common:1.9.0")
+                implementation("org.jetbrains.kotlin:kotlin-test-common:1.9.23")
 
                 // TODO libs.kotlin.test.annotations
-                implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:1.9.0")
+                implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:1.9.23")
 
                 // TODO libs.kotlin.reflect
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.23")
             }
             maybeAndroidUnitTest {
                 // TODO libs.kotlin.test.junit
-                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.9.0")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.9.23")
 
                 // TODO libs.kotlin.reflect
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.23")
 
                 // TODO libs.androidx.test.core
                 implementation("androidx.test:core:1.5.0")
@@ -38,10 +38,10 @@ class MultiplatformTestPlugin : Plugin<Project> {
             }
             maybeJvmTest {
                 // TODO libs.kotlin.test.junit
-                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.9.0")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.9.23")
 
                 // TODO libs.kotlin.reflect
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.23")
             }
         }
     }
