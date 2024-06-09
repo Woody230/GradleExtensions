@@ -1,10 +1,7 @@
 package com.bselzer.gradle.internal.moko.resources.plugin
 
-import com.bselzer.gradle.android.androidExtensionOrNull
-import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformSourceSets
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import java.io.File
 
 class MokoResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
