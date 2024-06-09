@@ -15,12 +15,6 @@ class MultiplatformPlugin : Plugin<Project> {
         }
 
         afterEvaluate {
-            // TODO https://github.com/gradle/gradle/issues/26061
-            // The value for property 'languageVersion' is final and cannot be changed any further
-            kotlinMultiplatformExtension {
-                jvmToolchain(extension.jdkVersion.get().toInt())
-            }
-
             tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
                 kotlinOptions.jvmTarget = extension.jdkVersion.get().toNumericString()
             }
@@ -28,6 +22,13 @@ class MultiplatformPlugin : Plugin<Project> {
 
         // TODO libs.plugins.multiplatform.get().pluginId
         plugins.apply("org.jetbrains.kotlin.multiplatform")
+
+        // TODO https://github.com/gradle/gradle/issues/26061
+        // The value for property 'languageVersion' is final and cannot be changed any further
+        // TODO persist jdk version as expected instead of using the default
+        kotlinMultiplatformExtension {
+            jvmToolchain(extension.jdkVersion.get().toInt())
+        }
 
         kotlinMultiplatformExtension {
             configureTargets()
