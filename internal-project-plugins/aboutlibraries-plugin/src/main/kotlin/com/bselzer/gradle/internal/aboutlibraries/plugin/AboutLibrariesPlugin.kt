@@ -45,7 +45,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
 
             // Move aboutlibraries.json so that it can be used by moko-resources.
             copy {
-                from("$buildDir\\generated\\aboutLibraries") {
+                from("${layout.buildDirectory}\\generated\\aboutLibraries") {
                     include("aboutlibraries.json")
                 }
                 into("$projectDir\\src\\$sourceSetName\\moko-resources\\assets")
