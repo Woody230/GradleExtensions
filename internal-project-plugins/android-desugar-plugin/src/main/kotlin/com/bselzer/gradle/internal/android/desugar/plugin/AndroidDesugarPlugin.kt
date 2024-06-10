@@ -24,7 +24,7 @@ class AndroidDesugarPlugin : Plugin<Project> {
                     extension.version.isPresent -> "com.android.tools:desugar_jdk_libs:${extension.version.get()}"
 
                     // TODO libs.android.desugar.get()
-                    else -> "com.android.tools:desugar_jdk_libs:2.0.3"
+                    else -> "com.android.tools:desugar_jdk_libs:2.0.4"
                 }
 
                 add("coreLibraryDesugaring", dependency)
