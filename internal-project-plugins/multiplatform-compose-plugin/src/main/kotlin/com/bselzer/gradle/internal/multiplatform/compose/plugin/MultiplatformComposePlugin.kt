@@ -51,7 +51,7 @@ class MultiplatformComposePlugin : Plugin<Project> {
     }
 
     private fun ComposeExtension.configureCompose(extension: MultiplatformComposeExtension) {
-        // https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#using-jetpack-compose-compiler
+        // https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-compatibility-and-versioning.html#jetpack-compose-and-compose-multiplatform-release-cycles
         // NOTE: using the Jetpack compiler is fine when relying only on Android/Desktop targets, otherwise the multiplatform version should be used
         // TODO libs.androidx.compose.compiler.get()
         kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:${extension.compilerVersion.get()}")
