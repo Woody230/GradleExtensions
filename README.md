@@ -300,17 +300,6 @@ plugins {
   * Adds the KSP compiler from Kotlin Inject to KSP's common dependencies.
   * Adds the Kotlin Inject runtime dependency to the main source sets.
 
-### moko-resources-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.internal.moko-resources")
-}
-```
-
-* Applies the Moko Resources gradle plugin.
-* Adds explicit task dependencies in order to be compatible with Gradle 8.
-
 ### multiplatform-compose-plugin
 
 ```kotlin

@@ -1,7 +1,6 @@
 dependencies {
     api(gradleApi())
     api(libs.aboutlibraries.plugin)
-    implementation(libs.moko.resources.plugin)
     implementation(libs.woody230.gradle.multiplatform)
 }
 
