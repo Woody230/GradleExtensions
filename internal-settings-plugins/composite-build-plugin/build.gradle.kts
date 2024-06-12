@@ -1,5 +1,6 @@
 dependencies {
     implementation(libs.woody230.gradle.function)
+    api(libs.woody230.gradle.internal.composite.task)
 }
 
 pluginPublishExtension {

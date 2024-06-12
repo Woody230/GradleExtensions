@@ -1,64 +1,39 @@
 package com.bselzer.gradle.internal.composite.publish.plugin
 
-import org.gradle.api.Plugin
+import com.bselzer.gradle.internal.composite.task.plugin.CompositeTaskPlugin
 import org.gradle.api.Project
-import org.gradle.api.initialization.Settings
 
-class CompositePublishPlugin : Plugin<Settings> {
+class CompositePublishPlugin : CompositeTaskPlugin() {
     private companion object {
-        const val GROUP = "composite"
-        const val PUBLISH_BUILDS_TO_MAVEN_LOCAL = "publishBuildsToMavenLocal"
-        const val PUBLISH_BUILDS_TO_MAVEN_CENTRAL = "publishBuildsToMavenCentral"
-        const val PUBLISH_BUILD_TO_MAVEN_LOCAL = "publishBuildToMavenLocal"
-        const val PUBLISH_BUILD_TO_MAVEN_CENTRAL = "publishBuildToMavenCentral"
+        const val PUBLISH_INCLUDED_BUILDS_TO_MAVEN_LOCAL = "publishIncludedBuildsToMavenLocal"
+        const val PUBLISH_INCLUDED_BUILDS_TO_MAVEN_CENTRAL = "publishIncludedBuildsToMavenCentral"
+        const val PUBLISH_RECURSIVELY_TO_MAVEN_LOCAL = "publishRecursivelyToMavenLocal"
+        const val PUBLISH_RECURSIVELY_TO_MAVEN_CENTRAL = "publishRecursivelyToMavenCentral"
         const val PUBLISH_ALL_PUBLICATIONS_TO_MAVEN_CENTRAL_REPOSITORY = "publishAllPublicationsToMavenCentralRepository"
         const val PUBLISH_TO_MAVEN_LOCAL = "publishToMavenLocal"
     }
 
-    override fun apply(settings: Settings) = with(settings) {
-        gradle.projectsLoaded {
-            if (parent == null) {
-                rootProject.addRootTasks()
-            } else {
-                rootProject.addLeafTasks()
-            }
-        }
-    }
-
-    private fun Project.addRootTasks() {
-        // NOTE assumption is that the root project does not actually have any projects itself and purely relies on included builds.
-        tasks.register(PUBLISH_BUILDS_TO_MAVEN_CENTRAL) {
-            group = GROUP
+    override fun Project.registerRootTasks() = listOf(
+        tasks.register(PUBLISH_INCLUDED_BUILDS_TO_MAVEN_CENTRAL) {
             description = "Publishes all projects within the included builds to the Maven Central repository."
+            dependOnIncludedBuilds(":$PUBLISH_RECURSIVELY_TO_MAVEN_CENTRAL")
+        },
 
-            val tasks = gradle.includedBuilds.map { build -> build.task(":${PUBLISH_BUILD_TO_MAVEN_CENTRAL}") }
-            dependsOn(tasks)
-        }
-
-        tasks.register(PUBLISH_BUILDS_TO_MAVEN_LOCAL) {
-            group = GROUP
+        tasks.register(PUBLISH_INCLUDED_BUILDS_TO_MAVEN_LOCAL) {
             description = "Publishes all projects within the included builds to the Maven local repository."
-
-            val tasks = gradle.includedBuilds.map { build -> build.task(":${PUBLISH_BUILD_TO_MAVEN_LOCAL}") }
-            dependsOn(tasks)
+            dependOnIncludedBuilds(":$PUBLISH_RECURSIVELY_TO_MAVEN_LOCAL")
         }
-    }
+    )
 
-    private fun Project.addLeafTasks() {
-        tasks.register(PUBLISH_BUILD_TO_MAVEN_CENTRAL) {
-            group = GROUP
+    override fun Project.registerLeafTasks() = listOf(
+        tasks.register(PUBLISH_RECURSIVELY_TO_MAVEN_CENTRAL) {
             description = "Publishes all projects within this build to the Maven Central repository."
+            dependOnRecursively(PUBLISH_ALL_PUBLICATIONS_TO_MAVEN_CENTRAL_REPOSITORY)
+        },
 
-            val tasks = getTasksByName(PUBLISH_ALL_PUBLICATIONS_TO_MAVEN_CENTRAL_REPOSITORY, true)
-            dependsOn(tasks)
-        }
-
-        tasks.register(PUBLISH_BUILD_TO_MAVEN_LOCAL) {
-            group = GROUP
+        tasks.register(PUBLISH_RECURSIVELY_TO_MAVEN_LOCAL) {
             description = "Publishes all projects within this build to the Maven local repository."
-
-            val tasks = getTasksByName(PUBLISH_TO_MAVEN_LOCAL, true)
-            dependsOn(tasks)
+            dependOnRecursively(PUBLISH_TO_MAVEN_LOCAL)
         }
-    }
+    )
 }
