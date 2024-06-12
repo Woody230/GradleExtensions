@@ -8,7 +8,7 @@ class CompositeBuildPlugin : CompositeTaskPlugin() {
         const val BUILD_INCLUDED_BUILDS = "buildIncludedBuilds"
         const val BUILD_RECURSIVELY = "buildRecursively"
         const val BUILD = "build"
-        const val CLEAN_INCLUDED_BUILDS = "cleanBuilds"
+        const val CLEAN_INCLUDED_BUILDS = "cleanIncludedBuilds"
         const val CLEAN_RECURSIVELY = "cleanRecursively"
         const val CLEAN = "clean"
     }
