@@ -524,10 +524,23 @@ plugins {
 * Enables type safe project accessors.
 * Applies the foojay toolchain plugin.
 * Applies the following internal plugins:
+  * [composite-build-plugin](#composite-build-plugin)
   * [composite-property-plugin](#composite-property-plugin)
   * [composite-publish-plugin](#composite-publish-plugin)
   * [composite-test-plugin](#composite-test-plugin)
   * [version-catalog-plugin](#version-catalog-plugin)
+
+### composite-build-plugin
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.composite-build")
+}
+```
+
+* Adds the `buildIncludedBuilds` task to a root build which builds the projects in all included builds.
+* Adds the `buildRecursive` task to a child build which builds the projects within the build.
+* Adds the `cleanIncludedBuilds` task to a root build which cleans the projects in all included builds.
+* Adds the `cleanRecursive` task to a child build which cleans the projects within the build.
 
 ### composite-property-plugin
 

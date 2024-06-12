@@ -1,4 +1,5 @@
 dependencies {
+    api(projects.compositeBuildPlugin)
     api(projects.compositePropertyPlugin)
     api(projects.compositePublishPlugin)
     api(projects.compositeTestPlugin)
