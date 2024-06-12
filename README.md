@@ -317,7 +317,7 @@ plugins {
 
 #### MultiplatformComposeExtension
 
-* **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.4.2`.
+* **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.5.8`.
     * [Multiplatform Compatibility](https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility)
         * [Mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
     * [Jetpack Compatibility](https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility)

@@ -8,7 +8,9 @@ import org.gradle.api.Project
 
 class MultiplatformComposePlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
-        val extension = multiplatformComposeExtension
+        val extension = multiplatformComposeExtension {
+            compilerVersion.convention("1.5.8")
+        }
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
