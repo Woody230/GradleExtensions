@@ -537,8 +537,10 @@ plugins {
 }
 ```
 
-* Adds the `buildIncludedBuilds` task to a root build which builds the projects in all included builds.
-* Adds the `buildRecursively` task to a child build which builds the projects within the build.
+* Adds the `assembleIncludedBuilds` task to a root build which assembles the projects in all included builds.
+* Adds the `assembleRecursively` task to a child build which assembles the projects within the build.
+* Adds the `buildIncludedBuilds` task to a root build which assembles and tests the projects in all included builds.
+* Adds the `buildRecursively` task to a child build which assembles and tests the projects within the build.
 * Adds the `cleanIncludedBuilds` task to a root build which cleans the projects in all included builds.
 * Adds the `cleanRecursively` task to a child build which cleans the projects within the build.
 
