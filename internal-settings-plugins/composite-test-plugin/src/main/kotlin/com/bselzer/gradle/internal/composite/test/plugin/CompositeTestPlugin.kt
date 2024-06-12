@@ -19,7 +19,7 @@ class CompositeTestPlugin : CompositeTaskPlugin() {
 
     override fun Project.registerLeafTasks() = listOf(
         tasks.register(TEST_RECURSIVELY) {
-            description = "Runs the tests for all targets within this build."
+            description = "Runs the tests for all targets within this project and all subprojects."
             dependOnRecursively(ALL_TESTS)
         }
     )

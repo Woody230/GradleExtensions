@@ -15,12 +15,12 @@ class CompositeBuildPlugin : CompositeTaskPlugin() {
 
     override fun Project.registerRootTasks() = listOf(
         tasks.register(BUILD_INCLUDED_BUILDS) {
-            description = "Builds the included builds."
+            description = "Builds the projects in the included builds."
             dependOnIncludedBuilds(":$BUILD_RECURSIVELY")
         },
 
         tasks.register(CLEAN_INCLUDED_BUILDS) {
-            description = "Cleans the included builds."
+            description = "Cleans the projects in the included builds."
             dependOnIncludedBuilds(":$CLEAN_RECURSIVELY")
         }
     )

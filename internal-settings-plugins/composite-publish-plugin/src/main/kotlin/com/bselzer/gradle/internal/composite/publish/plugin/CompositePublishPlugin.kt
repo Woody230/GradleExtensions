@@ -27,12 +27,12 @@ class CompositePublishPlugin : CompositeTaskPlugin() {
 
     override fun Project.registerLeafTasks() = listOf(
         tasks.register(PUBLISH_RECURSIVELY_TO_MAVEN_CENTRAL) {
-            description = "Publishes all projects within this build to the Maven Central repository."
+            description = "Publishes this project and all subprojects to the Maven Central repository."
             dependOnRecursively(PUBLISH_ALL_PUBLICATIONS_TO_MAVEN_CENTRAL_REPOSITORY)
         },
 
         tasks.register(PUBLISH_RECURSIVELY_TO_MAVEN_LOCAL) {
-            description = "Publishes all projects within this build to the Maven local repository."
+            description = "Publishes this project and all subprojects to the Maven local repository."
             dependOnRecursively(PUBLISH_TO_MAVEN_LOCAL)
         }
     )
