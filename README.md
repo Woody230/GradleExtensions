@@ -538,9 +538,9 @@ plugins {
 ```
 
 * Adds the `buildIncludedBuilds` task to a root build which builds the projects in all included builds.
-* Adds the `buildRecursive` task to a child build which builds the projects within the build.
+* Adds the `buildRecursively` task to a child build which builds the projects within the build.
 * Adds the `cleanIncludedBuilds` task to a root build which cleans the projects in all included builds.
-* Adds the `cleanRecursive` task to a child build which cleans the projects within the build.
+* Adds the `cleanRecursively` task to a child build which cleans the projects within the build.
 
 ### composite-property-plugin
 
@@ -561,10 +561,10 @@ plugins {
 }
 ```
 
-* Adds the `publishBuildsToMavenCentral` task to a root build which publishes the projects in all included builds to the Maven Central repository.
-* Adds the `publishBuildsToMavenLocal` task to a root build which publishes the projects in all included builds to the Maven local repository.
-* Adds the `publishBuildToMavenCentral` task to a child build which publishes the projects within the build to the Maven Central repository.
-* Adds the `publishBuildToMavenLocal` task to a child build which publishes the projects within the build to the Maven local repository.
+* Adds the `publishIncludedBuildsToMavenCentral` task to a root build which publishes the projects in all included builds to the Maven Central repository.
+* Adds the `publishIncludedBuildsToMavenLocal` task to a root build which publishes the projects in all included builds to the Maven local repository.
+* Adds the `publishRecursivelyToMavenCentral` task to a child build which publishes the projects within the build to the Maven Central repository.
+* Adds the `publishRecursivelyToMavenLocal` task to a child build which publishes the projects within the build to the Maven local repository.
 
 ### composite-test-plugin
 
@@ -574,8 +574,8 @@ plugins {
 }
 ```
 
-* Adds the `testBuilds` task to a root build which runs all tests for the projects in all included builds.
-* Adds the `testBuild` task to a child build which runs all tests for the projects within the build.
+* Adds the `testIncludedBuilds` task to a root build which runs all tests for the projects in all included builds.
+* Adds the `testRecursively` task to a child build which runs all tests for the projects within the build.
 
 ### version-catalog-plugin
 
