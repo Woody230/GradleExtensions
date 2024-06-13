@@ -20,11 +20,11 @@ class KotlinInjectPlugin : Plugin<Project> {
         }
 
         // TODO libs.kotlininject.ksp
-        dependencies.add("kspCommonMainMetadata", "me.tatarka.inject:kotlin-inject-compiler-ksp:0.6.3")
+        dependencies.add("kspCommonMainMetadata", "me.tatarka.inject:kotlin-inject-compiler-ksp:0.7.1")
         multiplatformDependencies {
             mainSourceSets {
                 // TODO libs.kotlininject.runtime
-                implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.3")
+                implementation("me.tatarka.inject:kotlin-inject-runtime:0.7.1")
             }
         }
 
