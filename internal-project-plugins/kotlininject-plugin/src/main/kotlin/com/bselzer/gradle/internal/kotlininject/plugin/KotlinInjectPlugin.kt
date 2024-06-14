@@ -35,11 +35,5 @@ class KotlinInjectPlugin : Plugin<Project> {
                 kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
             }
         }
-
-        tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
-            if (name != "kspCommonMainKotlinMetadata") {
-                dependsOn("kspCommonMainKotlinMetadata")
-            }
-        }
     }
 }
