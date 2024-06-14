@@ -5,8 +5,6 @@ buildkonfig = "0.15.1"
 dokka = "1.9.20"
 kotlin = "1.9.22"
 kotlin-dsl = "4.3.0"
-kotlininject = "0.7.1"
-ksp = "1.9.22-1.0.17"
 gradle-publish = "1.2.1"
 multiplatform-compose = "1.6.11"
 toolchain = "0.4.0"
@@ -36,9 +34,6 @@ kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-common",
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test-common", version.ref = "kotlin" }
 kotlin-test-annotations = { group = "org.jetbrains.kotlin", name = "kotlin-test-annotations-common", version.ref = "kotlin" }
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin" }
-kotlininject-ksp = { group = "me.tatarka.inject", name = "kotlin-inject-compiler-ksp", version.ref = "kotlininject" }
-kotlininject-runtime = { group = "me.tatarka.inject", name = "kotlin-inject-runtime", version.ref = "kotlininject" }
-ksp-plugin = { group = "com.google.devtools.ksp", name = "symbol-processing-gradle-plugin", version.ref = "ksp" }
 publish-plugin = { group = "com.gradle.publish", name = "plugin-publish-plugin", version.ref = "gradle-publish" }
 robolectric = { group = "org.robolectric", name = "robolectric", version = "4.10" }
 toolchain-plugin = { group = "org.gradle.toolchains.foojay-resolver-convention", name = "org.gradle.toolchains.foojay-resolver-convention.gradle.plugin", version.ref = "toolchain" }
@@ -64,7 +59,6 @@ gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publi
 java = { id = "org.gradle.java-gradle-plugin" }
 kotlin-dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
 woody230-gradle-internal-jvm-publish = { id = "io.github.woody230.gradle.internal.jvm-publish", version.ref = "woody230-gradle" }

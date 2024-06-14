@@ -288,18 +288,6 @@ buildkonfig {
 }
 ```
 
-### kotlininject-plugin
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.internal.kotlininject")
-}
-```
-
-* Applies the KSP plugin.
-* If the Kotlin Multiplatform plugin has been applied:
-  * Adds the KSP compiler from Kotlin Inject to KSP's common dependencies.
-  * Adds the Kotlin Inject runtime dependency to the main source sets.
-
 ### multiplatform-compose-plugin
 
 ```kotlin
