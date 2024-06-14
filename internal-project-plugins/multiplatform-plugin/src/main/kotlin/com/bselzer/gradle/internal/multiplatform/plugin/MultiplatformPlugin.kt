@@ -6,7 +6,6 @@ import com.bselzer.gradle.multiplatform.kotlinMultiplatformExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class MultiplatformPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
@@ -28,17 +27,6 @@ class MultiplatformPlugin : Plugin<Project> {
         // TODO persist jdk version as expected instead of using the default
         kotlinMultiplatformExtension {
             jvmToolchain(extension.jdkVersion.get().toInt())
-        }
-
-        kotlinMultiplatformExtension {
-            configureTargets()
-        }
-    }
-
-    private fun KotlinMultiplatformExtension.configureTargets() {
-        jvm()
-        androidTarget {
-            publishLibraryVariants("release", "debug")
         }
     }
 }

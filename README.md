@@ -341,14 +341,32 @@ plugins {
 ```
 
 * Applies the Kotlin Multiplatform gradle plugin.
-    * Configures the targets:
-        * JVM
-        * Android with library variants `release` and `debug`
     * Sets the jvm toolchain with the **[jdkVersion]**
 
 #### MultiplatformExtension
 
 * **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 11.
+
+#### multiplatform-android-target
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.multiplatform.android.target")
+}
+```
+
+* Applies the Android target.
+  * Adds the library variants `release` and `debug`.
+
+#### multiplatform-jvm-target
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.multiplatform.jvm.target")
+}
+```
+
+* Applies the JVM target.
 
 ### multiplatform-publish-plugin
 
