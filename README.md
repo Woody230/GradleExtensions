@@ -288,29 +288,6 @@ buildkonfig {
 }
 ```
 
-### kotlininject-plugin
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.internal.kotlininject")
-}
-```
-
-* Applies the KSP plugin.
-* If the Kotlin Multiplatform plugin has been applied:
-  * Adds the KSP compiler from Kotlin Inject to KSP's common dependencies.
-  * Adds the Kotlin Inject runtime dependency to the main source sets.
-
-### moko-resources-plugin
-
-```kotlin
-plugins {
-    id("io.github.woody230.gradle.internal.moko-resources")
-}
-```
-
-* Applies the Moko Resources gradle plugin.
-* Adds explicit task dependencies in order to be compatible with Gradle 8.
-
 ### multiplatform-compose-plugin
 
 ```kotlin
@@ -328,7 +305,7 @@ plugins {
 
 #### MultiplatformComposeExtension
 
-* **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.4.2`.
+* **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.5.8`.
     * [Multiplatform Compatibility](https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility)
         * [Mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
     * [Jetpack Compatibility](https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility)
@@ -352,14 +329,32 @@ plugins {
 ```
 
 * Applies the Kotlin Multiplatform gradle plugin.
-    * Configures the targets:
-        * JVM
-        * Android with library variants `release` and `debug`
     * Sets the jvm toolchain with the **[jdkVersion]**
 
 #### MultiplatformExtension
 
 * **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 11.
+
+#### multiplatform-android-target
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.multiplatform.android.target")
+}
+```
+
+* Applies the Android target.
+  * Adds the library variants `release` and `debug`.
+
+#### multiplatform-jvm-target
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.multiplatform.jvm.target")
+}
+```
+
+* Applies the JVM target.
 
 ### multiplatform-publish-plugin
 
@@ -535,10 +530,25 @@ plugins {
 * Enables type safe project accessors.
 * Applies the foojay toolchain plugin.
 * Applies the following internal plugins:
+  * [composite-build-plugin](#composite-build-plugin)
   * [composite-property-plugin](#composite-property-plugin)
   * [composite-publish-plugin](#composite-publish-plugin)
   * [composite-test-plugin](#composite-test-plugin)
   * [version-catalog-plugin](#version-catalog-plugin)
+
+### composite-build-plugin
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.composite-build")
+}
+```
+
+* Adds the `assembleIncludedBuilds` task to a root build which assembles the projects in all included builds.
+* Adds the `assembleRecursively` task to a child build which assembles the projects within the build.
+* Adds the `buildIncludedBuilds` task to a root build which assembles and tests the projects in all included builds.
+* Adds the `buildRecursively` task to a child build which assembles and tests the projects within the build.
+* Adds the `cleanIncludedBuilds` task to a root build which cleans the projects in all included builds.
+* Adds the `cleanRecursively` task to a child build which cleans the projects within the build.
 
 ### composite-property-plugin
 
@@ -559,10 +569,10 @@ plugins {
 }
 ```
 
-* Adds the `publishBuildsToMavenCentral` task to a root build which publishes the projects in all included builds to the Maven Central repository.
-* Adds the `publishBuildsToMavenLocal` task to a root build which publishes the projects in all included builds to the Maven local repository.
-* Adds the `publishBuildToMavenCentral` task to a child build which publishes the projects within the build to the Maven Central repository.
-* Adds the `publishBuildToMavenLocal` task to a child build which publishes the projects within the build to the Maven local repository.
+* Adds the `publishIncludedBuildsToMavenCentral` task to a root build which publishes the projects in all included builds to the Maven Central repository.
+* Adds the `publishIncludedBuildsToMavenLocal` task to a root build which publishes the projects in all included builds to the Maven local repository.
+* Adds the `publishRecursivelyToMavenCentral` task to a child build which publishes the projects within the build to the Maven Central repository.
+* Adds the `publishRecursivelyToMavenLocal` task to a child build which publishes the projects within the build to the Maven local repository.
 
 ### composite-test-plugin
 
@@ -572,8 +582,8 @@ plugins {
 }
 ```
 
-* Adds the `testBuilds` task to a root build which runs all tests for the projects in all included builds.
-* Adds the `testBuild` task to a child build which runs all tests for the projects within the build.
+* Adds the `testIncludedBuilds` task to a root build which runs all tests for the projects in all included builds.
+* Adds the `testRecursively` task to a child build which runs all tests for the projects within the build.
 
 ### version-catalog-plugin
 

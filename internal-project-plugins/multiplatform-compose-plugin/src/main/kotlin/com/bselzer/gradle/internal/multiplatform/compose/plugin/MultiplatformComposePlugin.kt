@@ -11,8 +11,7 @@ import org.jetbrains.compose.ComposeExtension
 class MultiplatformComposePlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         val extension = multiplatformComposeExtension {
-            // TODO libs.versions.androidx.compose.compiler.get()
-            compilerVersion.convention("1.4.8")
+            compilerVersion.convention("1.5.8")
         }
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
@@ -29,17 +28,17 @@ class MultiplatformComposePlugin : Plugin<Project> {
         }
     }
 
-    private fun CommonExtension<*, *, *, *>.configureCompose(
+    private fun CommonExtension<*, *, *, *, *>.configureCompose(
         extension: MultiplatformComposeExtension
     ) {
         buildFeatures {
             compose = true
         }
         composeOptions {
-            // https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility
+            // https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-compatibility-and-versioning.html#kotlin-compatibility
             // https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt
             // https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
-            kotlinCompilerExtensionVersion = extension.compilerVersion.get()
+            kotlinCompilerExtensionVersion = extension.compilerVersion.orNull
         }
 
         packaging {
@@ -54,6 +53,8 @@ class MultiplatformComposePlugin : Plugin<Project> {
         // https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#using-jetpack-compose-compiler
         // NOTE: using the Jetpack compiler is fine when relying only on Android/Desktop targets, otherwise the multiplatform version should be used
         // TODO libs.androidx.compose.compiler.get()
-        kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:${extension.compilerVersion.get()}")
+        extension.compilerVersion.orNull?.let { version ->
+            kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:$version")
+        }
     }
 }

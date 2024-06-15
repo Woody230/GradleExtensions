@@ -14,13 +14,13 @@ buildscript {
     }
 }
 
-tasks.register("publishBuildToMavenCentral") {
+tasks.register("publishRecursivelyToMavenCentral") {
     group = "composite"
     val tasks = getTasksByName("publishAllPublicationsToMavenCentralRepository", true)
     dependsOn(tasks)
 }
 
-tasks.register("publishBuildToMavenLocal") {
+tasks.register("publishRecursivelyToMavenLocal") {
     group = "composite"
     val tasks = getTasksByName("publishToMavenLocal", true)
     dependsOn(tasks)

@@ -6,7 +6,6 @@ import com.bselzer.gradle.multiplatform.kotlinMultiplatformExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class MultiplatformPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
@@ -15,10 +14,6 @@ class MultiplatformPlugin : Plugin<Project> {
         }
 
         afterEvaluate {
-            kotlinMultiplatformExtension {
-                jvmToolchain(extension.jdkVersion.get().toInt())
-            }
-
             tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
                 kotlinOptions.jvmTarget = extension.jdkVersion.get().toNumericString()
             }
@@ -27,15 +22,11 @@ class MultiplatformPlugin : Plugin<Project> {
         // TODO libs.plugins.multiplatform.get().pluginId
         plugins.apply("org.jetbrains.kotlin.multiplatform")
 
+        // TODO https://github.com/gradle/gradle/issues/26061
+        // The value for property 'languageVersion' is final and cannot be changed any further
+        // TODO persist jdk version as expected instead of using the default
         kotlinMultiplatformExtension {
-            configureTargets()
-        }
-    }
-
-    private fun KotlinMultiplatformExtension.configureTargets() {
-        jvm()
-        android {
-            publishLibraryVariants("release", "debug")
+            jvmToolchain(extension.jdkVersion.get().toInt())
         }
     }
 }

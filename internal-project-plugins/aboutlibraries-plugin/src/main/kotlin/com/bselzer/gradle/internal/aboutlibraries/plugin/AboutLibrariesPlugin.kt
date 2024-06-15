@@ -2,7 +2,6 @@ package com.bselzer.gradle.internal.aboutlibraries.plugin
 
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
 import com.mikepenz.aboutlibraries.plugin.AboutLibrariesExtension
-import dev.icerock.gradle.MultiplatformResourcesPluginExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
@@ -25,7 +24,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
         multiplatformDependencies {
             mainSourceSets {
                 // TODO libs.aboutlibraries.core
-                implementation("com.mikepenz:aboutlibraries-core:10.6.2")
+                implementation("com.mikepenz:aboutlibraries-core:11.1.1")
             }
         }
 
@@ -40,17 +39,16 @@ class AboutLibrariesPlugin : Plugin<Project> {
             return
         }
 
-        val sourceSetName = extensions.getByType<MultiplatformResourcesPluginExtension>().sourceSetName
-
+        val sourceSetName = "commonMain"
         val aboutLibrariesResource = task("aboutLibrariesResource") {
             dependsOn("exportLibraryDefinitions")
 
             // Move aboutlibraries.json so that it can be used by moko-resources.
             copy {
-                from("$buildDir\\generated\\aboutLibraries") {
+                from("${layout.buildDirectory}\\generated\\aboutLibraries") {
                     include("aboutlibraries.json")
                 }
-                into("$projectDir\\src\\$sourceSetName\\resources\\MR\\assets")
+                into("$projectDir\\src\\$sourceSetName\\moko-resources\\assets")
             }
         }
 

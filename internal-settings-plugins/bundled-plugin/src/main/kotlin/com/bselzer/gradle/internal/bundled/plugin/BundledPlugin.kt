@@ -1,5 +1,6 @@
 package com.bselzer.gradle.internal.bundled.plugin
 
+import com.bselzer.gradle.internal.composite.build.plugin.CompositeBuildPlugin
 import com.bselzer.gradle.internal.composite.property.plugin.CompositePropertyPlugin
 import com.bselzer.gradle.internal.composite.publish.plugin.CompositePublishPlugin
 import com.bselzer.gradle.internal.composite.test.plugin.CompositeTestPlugin
@@ -37,6 +38,7 @@ class BundledPlugin : Plugin<Settings> {
     }
 
     private fun Settings.applyInternalPlugins() {
+        plugins.apply(CompositeBuildPlugin::class.java)
         plugins.apply(CompositePropertyPlugin::class.java)
         plugins.apply(CompositePublishPlugin::class.java)
         plugins.apply(CompositeTestPlugin::class.java)

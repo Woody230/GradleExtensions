@@ -18,10 +18,10 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
-tasks.register("publishBuildToMavenCentral") {
+tasks.register("publishRecursivelyToMavenCentral") {
     // Nothing needs to be published.
 }
 
-tasks.register("publishBuildToMavenLocal") {
+tasks.register("publishRecursivelyToMavenLocal") {
     // Nothing needs to be published.
 }

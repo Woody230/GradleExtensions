@@ -6,14 +6,14 @@ allprojects {
     }
 }
 
-tasks.register("publishBuildsToMavenCentral") {
+tasks.register("publishIncludedBuildsToMavenCentral") {
     group = "composite"
-    val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenCentral") }
+    val tasks = gradle.includedBuilds.map { build -> build.task(":publishRecursivelyToMavenCentral") }
     dependsOn(tasks)
 }
 
-tasks.register("publishBuildsToMavenLocal") {
+tasks.register("publishIncludedBuildsToMavenLocal") {
     group = "composite"
-    val tasks = gradle.includedBuilds.map { build -> build.task(":publishBuildToMavenLocal") }
+    val tasks = gradle.includedBuilds.map { build -> build.task(":publishRecursivelyToMavenLocal") }
     dependsOn(tasks)
 }

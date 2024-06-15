@@ -27,6 +27,8 @@ fun JavaVersion.toNumericString(): String = when (this) {
     JavaVersion.VERSION_22 -> "22"
     JavaVersion.VERSION_23 -> "23"
     JavaVersion.VERSION_24 -> "24"
+    JavaVersion.VERSION_25 -> "25"
+    JavaVersion.VERSION_26 -> "26"
     JavaVersion.VERSION_HIGHER -> throw UnsupportedOperationException("Unable to convert a JavaVersion.VERSION_HIGHER to a numeric string.")
 }
 
@@ -57,4 +59,6 @@ fun JavaVersion.toInt(): Int = when (this) {
     JavaVersion.VERSION_22 -> 22
     JavaVersion.VERSION_23 -> 23
     JavaVersion.VERSION_24 -> 24
+    JavaVersion.VERSION_25 -> 25
+    JavaVersion.VERSION_26 -> 26
 }
