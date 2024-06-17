@@ -9,7 +9,7 @@ class AndroidLibraryPlugin : AndroidPlugin() {
 
     override fun apply(project: Project) = with(project) {
         // TODO libs.plugins.android.library.get().pluginId
-        plugins.apply("com.android.library")
+        pluginManager.apply("com.android.library")
         super.apply(project)
     }
 }

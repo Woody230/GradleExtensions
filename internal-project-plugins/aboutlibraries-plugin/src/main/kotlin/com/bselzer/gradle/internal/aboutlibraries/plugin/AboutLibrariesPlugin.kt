@@ -9,7 +9,7 @@ import org.gradle.kotlin.dsl.getByType
 class AboutLibrariesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         // TODO libs.plugins.aboutlibraries.get().pluginId
-        plugins.apply("com.mikepenz.aboutlibraries.plugin")
+        pluginManager.apply("com.mikepenz.aboutlibraries.plugin")
 
         configureMultiplatform()
         configureMokoResources()
@@ -17,7 +17,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
 
     private fun Project.configureMultiplatform() {
         // TODO libs.plugins.multiplatform.get().pluginId
-        if (!plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+        if (!pluginManager.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
             return
         }
 
@@ -35,7 +35,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
 
     private fun Project.configureMokoResources() {
         // TODO libs.plugins.moko.resources.get().pluginId
-        if (!plugins.hasPlugin("dev.icerock.mobile.multiplatform-resources")) {
+        if (!pluginManager.hasPlugin("dev.icerock.mobile.multiplatform-resources")) {
             return
         }
 

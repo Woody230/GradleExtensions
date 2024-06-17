@@ -16,11 +16,13 @@ class MultiplatformComposePlugin : Plugin<Project> {
             configureCompose(extension)
         }
 
-        // TODO libs.plugins.compose.asProvider().get().pluginId
-        plugins.apply("org.jetbrains.compose")
+        with (pluginManager) {
+            // TODO libs.plugins.compose.asProvider().get().pluginId
+            apply("org.jetbrains.compose")
 
-        // TODO libs.plugins.compose.compiler.get().pluginId
-        plugins.apply("org.jetbrains.compose.compiler")
+            // TODO libs.plugins.compose.compiler.get().pluginId
+            apply("org.jetbrains.compose.compiler")
+        }
     }
 
     private fun CommonExtension<*, *, *, *, *, *>.configureCompose(

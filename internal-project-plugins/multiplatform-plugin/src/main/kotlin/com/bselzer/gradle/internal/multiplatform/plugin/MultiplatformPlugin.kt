@@ -26,7 +26,7 @@ class MultiplatformPlugin : Plugin<Project> {
         }
 
         // TODO libs.plugins.multiplatform.get().pluginId
-        plugins.apply("org.jetbrains.kotlin.multiplatform")
+        pluginManager.apply("org.jetbrains.kotlin.multiplatform")
 
         // TODO https://github.com/gradle/gradle/issues/26061
         // The value for property 'languageVersion' is final and cannot be changed any further

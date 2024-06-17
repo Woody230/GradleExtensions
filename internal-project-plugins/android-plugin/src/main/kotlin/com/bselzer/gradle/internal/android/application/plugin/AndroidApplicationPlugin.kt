@@ -18,7 +18,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
     override fun apply(project: Project) = with(project) {
         // TODO libs.plugins.android.application.get().pluginId
-        plugins.apply("com.android.application")
+        pluginManager.apply("com.android.application")
         super.apply(project)
 
         setupGradleProperties()

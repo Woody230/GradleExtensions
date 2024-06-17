@@ -18,7 +18,7 @@ class JvmPublishPlugin : MavenPublishPlugin() {
 
     override fun apply(project: Project) = with(project) {
         // TODO libs.plugins.dokka.get().pluginId
-        plugins.apply("org.jetbrains.dokka")
+        pluginManager.apply("org.jetbrains.dokka")
         super.apply(project)
     }
 }

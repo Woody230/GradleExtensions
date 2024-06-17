@@ -47,7 +47,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
         }
 
         // TODO libs.plugins.vanniktech.publish.get().pluginId
-        plugins.apply("com.vanniktech.maven.publish.base")
+        pluginManager.apply("com.vanniktech.maven.publish.base")
     }
 
     private fun MavenPublishBaseExtension.configureCoordinates(extension: MavenPublishExtension) {
