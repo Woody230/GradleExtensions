@@ -8,7 +8,7 @@ import org.gradle.kotlin.dsl.getByType
 
 class AboutLibrariesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
-        // TODO libs.aboutlibraries.get().pluginId
+        // TODO libs.plugins.aboutlibraries.get().pluginId
         plugins.apply("com.mikepenz.aboutlibraries.plugin")
 
         configureMultiplatform()
@@ -24,7 +24,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
         multiplatformDependencies {
             mainSourceSets {
                 // TODO libs.aboutlibraries.core
-                implementation("com.mikepenz:aboutlibraries-core:11.1.1")
+                implementation("com.mikepenz:aboutlibraries-core:11.2.1")
             }
         }
 

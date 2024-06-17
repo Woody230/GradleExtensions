@@ -5,6 +5,9 @@ plugins {
 dependencies {
     api(libs.dokka.plugin)
     api(projects.mavenPublishPlugin)
+
+    // TODO can't access libs https://github.com/gradle/gradle/issues/15383
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
 val pluginDescription = "Internal publishing for Kotlin JVM projects."

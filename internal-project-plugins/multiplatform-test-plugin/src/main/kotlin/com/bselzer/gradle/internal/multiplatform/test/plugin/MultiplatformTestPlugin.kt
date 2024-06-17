@@ -9,20 +9,20 @@ class MultiplatformTestPlugin : Plugin<Project> {
         multiplatformDependencies {
             maybeCommonTest {
                 // TODO libs.kotlin.test.asProvider()
-                implementation("org.jetbrains.kotlin:kotlin-test-common:1.9.22")
+                implementation("org.jetbrains.kotlin:kotlin-test-common:2.0.0")
 
                 // TODO libs.kotlin.test.annotations
-                implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:1.9.22")
+                implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:2.0.0")
 
                 // TODO libs.kotlin.reflect
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
             }
             maybeAndroidUnitTest {
                 // TODO libs.kotlin.test.junit
-                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.9.22")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:2.0.0")
 
                 // TODO libs.kotlin.reflect
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
 
                 // TODO libs.androidx.test.core
                 implementation("androidx.test:core:1.5.0")
@@ -34,14 +34,14 @@ class MultiplatformTestPlugin : Plugin<Project> {
                 implementation("androidx.test:runner:1.5.2")
 
                 // TODO libs.robolectric
-                implementation("org.robolectric:robolectric:4.10")
+                implementation("org.robolectric:robolectric:4.12.2")
             }
             maybeJvmTest {
                 // TODO libs.kotlin.test.junit
-                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.9.22")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:2.0.0")
 
                 // TODO libs.kotlin.reflect
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
             }
         }
     }

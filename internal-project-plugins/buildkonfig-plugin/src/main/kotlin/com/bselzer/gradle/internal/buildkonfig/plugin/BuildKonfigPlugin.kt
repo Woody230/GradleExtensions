@@ -11,7 +11,7 @@ class BuildKonfigPlugin : Plugin<Project> {
             }
         }
 
-        // TODO libs.buildkonfig.get().pluginId
+        // TODO libs.plugins.buildkonfig.get().pluginId
         plugins.apply("com.codingfeline.buildkonfig")
     }
 }

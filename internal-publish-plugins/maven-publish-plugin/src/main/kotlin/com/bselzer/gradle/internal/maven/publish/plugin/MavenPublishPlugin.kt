@@ -46,7 +46,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
             }
         }
 
-        // TODO libs.vanniktech.publish.get().pluginId
+        // TODO libs.plugins.vanniktech.publish.get().pluginId
         plugins.apply("com.vanniktech.maven.publish.base")
     }
 
