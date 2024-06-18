@@ -25,6 +25,6 @@ val Project.libraryAndroidComponentsExtensionOrNull: LibraryAndroidComponentsExt
 
 fun <CommonExtension> AndroidComponentsExtension<CommonExtension, *, *>.finalizeDslReceiver(
     configure: CommonExtension.() -> Unit
-) where CommonExtension : com.android.build.api.dsl.CommonExtension<*, *, *, *, *, *> {
+) where CommonExtension : com.android.build.api.dsl.CommonExtension<*, *, *, *, *> {
     finalizeDsl(configure)
 }

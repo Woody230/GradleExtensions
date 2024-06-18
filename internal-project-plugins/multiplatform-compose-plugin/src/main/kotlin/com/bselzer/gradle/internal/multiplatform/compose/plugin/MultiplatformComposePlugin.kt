@@ -23,7 +23,7 @@ class MultiplatformComposePlugin : Plugin<Project> {
         }
     }
 
-    private fun CommonExtension<*, *, *, *, *, *>.configureCompose() {
+    private fun CommonExtension<*, *, *, *, *>.configureCompose() {
         buildFeatures {
             compose = true
         }
