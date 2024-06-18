@@ -19,7 +19,7 @@ class MultiplatformComposePlugin : Plugin<Project> {
             apply("org.jetbrains.compose")
 
             // TODO libs.plugins.compose.compiler.get().pluginId
-            apply("org.jetbrains.compose.compiler")
+            apply("org.jetbrains.kotlin.plugin.compose")
         }
     }
 

@@ -60,7 +60,7 @@ android-application = { id = "com.android.application" }
 android-library = { id = "com.android.library" }
 buildkonfig = { id = "com.codingfeline.buildkonfig" }
 compose = { id = "org.jetbrains.compose", version.ref = "multiplatform-compose" }
-compose-compiler = { id = "org.jetbrains.compose.compiler", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish" }
 java = { id = "org.gradle.java-gradle-plugin" }
