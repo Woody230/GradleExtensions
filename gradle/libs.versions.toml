@@ -31,6 +31,7 @@ androidx-test-runner = { group = "androidx.test", name = "runner", version = "1.
 buildkonfig-compiler = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-compiler", version.ref = "buildkonfig" }
 buildkonfig-plugin = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-gradle-plugin", version.ref = "buildkonfig" }
 compose-plugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "multiplatform-compose" }
+compose-compiler-plugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 dokka-plugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
 kotlin-dsl-plugin = { group = "org.gradle.kotlin", name = "gradle-kotlin-dsl-plugins", version.ref = "kotlin-dsl" }
 kotlin-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -59,7 +60,7 @@ android-application = { id = "com.android.application" }
 android-library = { id = "com.android.library" }
 buildkonfig = { id = "com.codingfeline.buildkonfig" }
 compose = { id = "org.jetbrains.compose", version.ref = "multiplatform-compose" }
-compose-compiler = { id="org.jetbrains.compose.compiler", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.compose.compiler", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish" }
 java = { id = "org.gradle.java-gradle-plugin" }

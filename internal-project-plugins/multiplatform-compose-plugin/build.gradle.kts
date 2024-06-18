@@ -1,5 +1,6 @@
 dependencies {
     api(libs.compose.plugin)
+    api(libs.compose.compiler.plugin)
     implementation(libs.woody230.gradle.android)
 }
 
