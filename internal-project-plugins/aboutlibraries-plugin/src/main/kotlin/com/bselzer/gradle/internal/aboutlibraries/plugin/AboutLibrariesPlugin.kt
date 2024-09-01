@@ -24,7 +24,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
         multiplatformDependencies {
             mainSourceSets {
                 // TODO libs.aboutlibraries.core
-                implementation("com.mikepenz:aboutlibraries-core:11.2.1")
+                implementation("com.mikepenz:aboutlibraries-core:11.2.3")
             }
         }
 
