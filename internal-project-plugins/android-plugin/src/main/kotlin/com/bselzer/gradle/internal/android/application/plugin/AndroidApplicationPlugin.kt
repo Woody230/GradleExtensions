@@ -24,7 +24,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         setupGradleProperties()
 
         val extension = androidExtension.apply {
-            targetSdk.convention(34)
+            targetSdk.convention(35)
             defaultProguardFile.convention(DefaultProguardFile.OPTIMIZED)
             buildConfig.convention(true)
         }
