@@ -18,7 +18,7 @@ abstract class AndroidPlugin : Plugin<Project> {
             namespace.module.convention(name)
 
             // TODO libs.versions.android.compileSdk.get().toInt()
-            compileSdk.convention(34)
+            compileSdk.convention(35)
 
             // TODO libs.versions.android.minSdk.get().toInt()
             minSdk.convention(21)
