@@ -18,7 +18,6 @@ class AndroidDesugarPlugin : Plugin<Project> {
             }
 
             dependencies {
-
                 val dependency: Any = when {
                     // TODO libs.android.desugar.get().module
                     extension.version.isPresent -> "com.android.tools:desugar_jdk_libs:${extension.version.get()}"

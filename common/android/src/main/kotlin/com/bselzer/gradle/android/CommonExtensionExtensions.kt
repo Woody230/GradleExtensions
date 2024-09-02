@@ -11,9 +11,9 @@ val Project.androidExtension: CommonExtension<*, *, *, *, *>
 val Project.androidExtensionOrNull: CommonExtension<*, *, *, *, *>?
     get() = when {
         // TODO libs.plugins.android.application.get().pluginId
-        plugins.hasPlugin("com.android.application") -> extensions.getByType(BaseAppModuleExtension::class.java)
+        pluginManager.hasPlugin("com.android.application") -> extensions.getByType(BaseAppModuleExtension::class.java)
 
         // TODO libs.plugins.android.library.get().pluginId
-        plugins.hasPlugin("com.android.library") -> extensions.getByType(LibraryExtension::class.java)
+        pluginManager.hasPlugin("com.android.library") -> extensions.getByType(LibraryExtension::class.java)
         else -> null
     }

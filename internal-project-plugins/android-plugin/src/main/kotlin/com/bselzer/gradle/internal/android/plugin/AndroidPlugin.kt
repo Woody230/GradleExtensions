@@ -6,6 +6,8 @@ import com.bselzer.gradle.function.toNumericString
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.assign
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 abstract class AndroidPlugin : Plugin<Project> {
     protected abstract val Project.androidExtension: AndroidExtension
@@ -14,10 +16,19 @@ abstract class AndroidPlugin : Plugin<Project> {
         val extension = androidExtension.apply {
             namespace.group.convention("com.bselzer")
             namespace.module.convention(name)
+
+            // TODO libs.versions.android.compileSdk.get().toInt()
             compileSdk.convention(35)
+
+            // TODO libs.versions.android.minSdk.get().toInt()
             minSdk.convention(21)
+
             testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
+
+            // TODO libs.versions.java.sourceCompatibility.get().toJavaVersion()
             sourceCompatibility.convention(JavaVersion.VERSION_11)
+
+            // TODO libs.versions.java.targetCompatability.get().toJavaVersion()
             targetCompatibility.convention(JavaVersion.VERSION_11)
             buildConfig.convention(false)
         }
@@ -49,7 +60,7 @@ abstract class AndroidPlugin : Plugin<Project> {
 
         afterEvaluate {
             tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
-                kotlinOptions.jvmTarget = extension.targetCompatibility.get().toNumericString()
+                compilerOptions.jvmTarget = JvmTarget.fromTarget(extension.targetCompatibility.get().toNumericString())
             }
         }
     }

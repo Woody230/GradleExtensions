@@ -297,18 +297,10 @@ plugins {
 ```
 
 * Applies the Compose Multiplatform gradle plugin.
+* Applies the Compose Compiler gradle plugin.
 * Configures the Android gradle plugin:
     * Build features:
         * Compose: true
-    * Compose options:
-        * Kotlin compiler extension version: **[compilerVersion]**
-
-#### MultiplatformComposeExtension
-
-* **[compilerVersion]**: The version of the compose compiler. Optional with a default value of `1.5.8`.
-    * [Multiplatform Compatibility](https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility)
-        * [Mapping](https://github.com/JetBrains/compose-multiplatform/blob/master/gradle-plugins/compose/src/main/kotlin/org/jetbrains/compose/ComposeCompilerCompatibility.kt)
-    * [Jetpack Compatibility](https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility)
 
 ### multiplatform-compose-test-plugin
 

@@ -9,13 +9,13 @@ class MultiplatformComposeTestPlugin : Plugin<Project> {
         multiplatformDependencies {
             maybeAndroidUnitTest {
                 // TODO libs.androidx.test.compose.ui.asProvider()
-                implementation("androidx.compose.ui:ui-test:1.4.2")
+                implementation("androidx.compose.ui:ui-test:1.6.8")
 
                 // TODO libs.androidx.test.compose.ui.junit
-                implementation("androidx.compose.ui:ui-test-junit4:1.4.2")
+                implementation("androidx.compose.ui:ui-test-junit4:1.6.8")
 
                 // TODO libs.androidx.test.compose.ui.manifest
-                implementation("androidx.compose.ui:ui-test-manifest:1.4.2")
+                implementation("androidx.compose.ui:ui-test-manifest:1.6.8")
             }
         }
     }
