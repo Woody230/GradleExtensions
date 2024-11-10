@@ -1,7 +1,6 @@
 package io.github.woody230.gradle.convention
 
 import com.vanniktech.maven.publish.SonatypeHost
-import org.gradle.configurationcache.extensions.capitalized
 
 // TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
@@ -23,7 +22,9 @@ mavenPublishing {
 
     pom {
         val components = category.split(".") + module.split("-")
-        name.set(components.joinToString(separator = " ", transform = String::capitalized))
+        name.set(components.joinToString(separator = " ") { component ->
+            component.replaceFirstChar(Char::uppercase)
+        })
 
         developers {
             developer {

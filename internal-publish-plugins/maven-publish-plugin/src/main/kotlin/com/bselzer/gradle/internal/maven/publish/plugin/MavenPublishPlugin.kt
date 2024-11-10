@@ -9,11 +9,9 @@ import com.vanniktech.maven.publish.Platform
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.logging.LogLevel
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPomLicenseSpec
-import org.gradle.configurationcache.extensions.capitalized
 import org.gradle.kotlin.dsl.getByType
 
 abstract class MavenPublishPlugin : Plugin<Project> {
@@ -94,7 +92,9 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     private fun MavenPublishBaseExtension.configurePom(extension: MavenPublishExtension) = pom {
         val components = extension.coordinates.category.get().split(".") + extension.coordinates.module.get().split("-")
         configure(
-            name = components.joinToString(separator = " ", transform = String::capitalized),
+            name = components.joinToString(separator = " ") { component ->
+                component.replaceFirstChar(Char::uppercase)
+            },
             description = extension.description.get(),
             licensing = extension.licensing.get(),
             devs = extension.developers.get(),

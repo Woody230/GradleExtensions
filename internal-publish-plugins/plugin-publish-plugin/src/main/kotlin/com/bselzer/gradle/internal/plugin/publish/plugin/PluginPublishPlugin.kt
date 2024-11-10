@@ -8,7 +8,6 @@ import com.vanniktech.maven.publish.GradlePublishPlugin
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
-import org.gradle.configurationcache.extensions.capitalized
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
@@ -71,7 +70,9 @@ class PluginPublishPlugin : MavenPublishPlugin() {
     private val Project.displayNameConvention: String
         get() {
             // Example: plugin-publish-plugin should become Plugin Publish Plugin
-            return name.split("-").joinToString(separator = " ", transform = String::capitalized)
+            return name.split("-").joinToString(separator = " ") { component ->
+                component.replaceFirstChar(Char::uppercase)
+            }
         }
 
     private fun NamedDomainObjectContainer<PluginDeclaration>.configurePlugin(
