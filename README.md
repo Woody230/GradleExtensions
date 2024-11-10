@@ -387,8 +387,19 @@ plugins {
 }
 ```
 
+* Sets up gradle properties from local properties, if they exist.
+
+| Gradle Property | Local Property  |
+|-----------------|-----------------|
+| JAVADOC_ENABLED | publish.javadoc |
+| SOURCES_ENABLED | publish.sources |
+
 * See [maven-publish-plugin](#maven-publish-plugin) for base logic.
-    * Uses a KotlinJvm platform with a Dokka generated javadoc.
+* Uses a KotlinJvm platform.
+  * Javadoc depending on the `JAVADOC_ENABLED` gradle property:
+    * `true`: Dokka generated javadoc.
+    * `false`: No generated javadoc.
+  * Sources are enabled depending on if the `SOURCES_ENABLED` gradle property is `true`.
 
 #### JvmPublishExtension
 

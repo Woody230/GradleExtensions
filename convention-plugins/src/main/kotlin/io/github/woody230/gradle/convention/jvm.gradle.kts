@@ -10,8 +10,34 @@ plugins {
     id("io.github.woody230.gradle.convention.publish")
 }
 
+setupGradleProperties()
+
 mavenPublishing {
-    val jar = JavadocJar.Dokka("dokkaHtml")
-    val platform = KotlinJvm(javadocJar = jar, sourcesJar = true)
+    val jar: JavadocJar
+    if (getBooleanPropertyOrFalse(GradleProperty.JAVADOC_ENABLED)) {
+        logger.lifecycle("Publishing with javadoc using dokka.")
+        jar = JavadocJar.Dokka("dokkaHtml")
+    }
+    else {
+        logger.lifecycle("Publishing without javadoc.")
+        jar = JavadocJar.None()
+    }
+
+    val sourcesEnabled = getBooleanPropertyOrFalse(GradleProperty.SOURCES_ENABLED)
+    logger.lifecycle("Publishing with sources ${if (sourcesEnabled) "enabled" else "disabled"}.")
+
+    val platform = KotlinJvm(javadocJar = jar, sourcesJar = sourcesEnabled)
     configure(platform)
+}
+
+private fun Project.setupGradleProperties() = with(properties) {
+    val localProperties = compositeLocalProperties
+
+    if (localProperties.containsKeys(LocalProperty.JAVADOC_ENABLED)) {
+        addOrReplaceProperty(GradleProperty.JAVADOC_ENABLED, localProperties.getProperty(LocalProperty.JAVADOC_ENABLED))
+    }
+
+    if (localProperties.containsKeys(LocalProperty.SOURCES_ENABLED)) {
+        addOrReplaceProperty(GradleProperty.SOURCES_ENABLED, localProperties.getProperty(LocalProperty.SOURCES_ENABLED))
+    }
 }

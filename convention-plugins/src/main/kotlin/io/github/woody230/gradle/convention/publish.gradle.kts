@@ -52,15 +52,15 @@ mavenPublishing {
     )
 
     if (getBooleanPropertyOrFalse(GradleProperty.SIGNING_ENABLED)) {
-        project.logger.log(LogLevel.LIFECYCLE, "Publishing with signing enabled.")
+        project.logger.lifecycle("Publishing with signing enabled.")
         signAllPublications()
     }
     else {
-        project.logger.log(LogLevel.LIFECYCLE, "Publishing with signing disabled.")
+        project.logger.lifecycle("Publishing with signing disabled.")
     }
 }
 
-fun Project.setupGradleProperties() {
+private fun Project.setupGradleProperties() {
     val localProperties = compositeLocalProperties
 
     if (localProperties.containsKeys(LocalProperty.SIGNING_ENABLED)) {
