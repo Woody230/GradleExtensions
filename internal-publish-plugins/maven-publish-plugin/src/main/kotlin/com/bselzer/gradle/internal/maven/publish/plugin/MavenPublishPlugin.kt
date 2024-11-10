@@ -38,11 +38,11 @@ abstract class MavenPublishPlugin : Plugin<Project> {
                 )
 
                 if (getBooleanPropertyOrFalse(GradleProperty.SIGNING_ENABLED)) {
-                    project.logger.lifecycle("Publishing with signing enabled.")
+                    logger.lifecycle("Publishing with signing enabled.")
                     signAllPublications()
                 }
                 else {
-                    project.logger.lifecycle("Publishing with signing disabled.")
+                    logger.lifecycle("Publishing with signing disabled.")
                 }
             }
         }
