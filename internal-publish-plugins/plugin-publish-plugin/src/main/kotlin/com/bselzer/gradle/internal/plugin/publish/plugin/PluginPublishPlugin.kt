@@ -3,6 +3,7 @@ package com.bselzer.gradle.internal.plugin.publish.plugin
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.compositeLocalProperties
 import com.bselzer.gradle.function.properties.containsKeys
+import com.bselzer.gradle.function.properties.injectLocalProperty
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
 import com.vanniktech.maven.publish.GradlePublishPlugin
 import com.vanniktech.maven.publish.Platform
@@ -91,12 +92,8 @@ class PluginPublishPlugin : MavenPublishPlugin() {
         }
     }
 
-    private fun Project.setupGradleProperties() = with(properties) {
-        val localProperties = compositeLocalProperties
-
-        if (localProperties.containsKeys(LocalProperty.GRADLE_KEY, LocalProperty.GRADLE_SECRET)) {
-            addOrReplaceProperty(GradleProperty.GRADLE_KEY, localProperties.getProperty(LocalProperty.GRADLE_KEY))
-            addOrReplaceProperty(GradleProperty.GRADLE_SECRET, localProperties.getProperty(LocalProperty.GRADLE_SECRET))
-        }
+    private fun Project.setupGradleProperties() {
+        injectLocalProperty(LocalProperty.GRADLE_KEY, GradleProperty.GRADLE_KEY)
+        injectLocalProperty(LocalProperty.GRADLE_SECRET, GradleProperty.GRADLE_SECRET)
     }
 }

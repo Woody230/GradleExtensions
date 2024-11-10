@@ -62,22 +62,12 @@ mavenPublishing {
 }
 
 private fun Project.setupGradleProperties() {
-    val localProperties = compositeLocalProperties
-
-    if (localProperties.containsKeys(LocalProperty.SIGNING_ENABLED)) {
-        addOrReplaceProperty(GradleProperty.SIGNING_ENABLED, localProperties.getProperty(LocalProperty.SIGNING_ENABLED))
-    }
-
-    if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
-        addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
-        addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_PASSWORD, localProperties.getProperty(LocalProperty.SONATYPE_PASSWORD))
-    }
-
-    if (localProperties.containsKeys(LocalProperty.SIGNING_KEY_ID, LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
-        addOrReplaceProperty(GradleProperty.SIGNING_KEY_ID, localProperties.getProperty(LocalProperty.SIGNING_KEY_ID))
-        addOrReplaceProperty(GradleProperty.SIGNING_PASSWORD, localProperties.getProperty(LocalProperty.SIGNING_PASSWORD))
-
-        val keyPath = localProperties.getProperty(LocalProperty.SIGNING_KEY)
-        addOrReplaceProperty(GradleProperty.SIGNING_KEY, project.file(keyPath).readText())
+    injectLocalProperty(LocalProperty.SIGNING_ENABLED, GradleProperty.SIGNING_ENABLED)
+    injectLocalProperty(LocalProperty.SONATYPE_USERNAME, GradleProperty.MAVEN_CENTRAL_USERNAME)
+    injectLocalProperty(LocalProperty.SONATYPE_PASSWORD, GradleProperty.MAVEN_CENTRAL_PASSWORD)
+    injectLocalProperty(LocalProperty.SIGNING_KEY_ID, GradleProperty.SIGNING_KEY_ID)
+    injectLocalProperty(LocalProperty.SIGNING_PASSWORD, GradleProperty.SIGNING_PASSWORD)
+    injectLocalProperty(LocalProperty.SIGNING_KEY, GradleProperty.SIGNING_KEY) { keyPath ->
+        project.file(keyPath).readText()
     }
 }

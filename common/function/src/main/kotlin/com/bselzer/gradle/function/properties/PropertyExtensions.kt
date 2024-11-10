@@ -45,6 +45,20 @@ fun Project.addOrReplaceProperties(properties: Properties) {
     }
 }
 
+fun Project.injectLocalProperty(localPropertyKey: String, gradlePropertyKey: String) {
+    injectLocalProperty(localPropertyKey, gradlePropertyKey) { value -> value }
+}
+
+fun Project.injectLocalProperty(localPropertyKey: String, gradlePropertyKey: String, transform: (String) -> String) {
+    val localProperties = compositeLocalProperties
+    if (!localProperties.containsKey(localPropertyKey)) {
+        return
+    }
+
+    val value = localProperties.getProperty(localPropertyKey).run(transform)
+    addOrReplaceProperty(gradlePropertyKey, value)
+}
+
 internal fun Project.propertiesFileOrNull(name: String): File? {
     val file = rootDir.resolve(name)
     return when {

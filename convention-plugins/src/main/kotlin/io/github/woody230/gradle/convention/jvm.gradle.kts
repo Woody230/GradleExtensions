@@ -30,14 +30,7 @@ mavenPublishing {
     configure(platform)
 }
 
-private fun Project.setupGradleProperties() = with(properties) {
-    val localProperties = compositeLocalProperties
-
-    if (localProperties.containsKeys(LocalProperty.JAVADOC_ENABLED)) {
-        addOrReplaceProperty(GradleProperty.JAVADOC_ENABLED, localProperties.getProperty(LocalProperty.JAVADOC_ENABLED))
-    }
-
-    if (localProperties.containsKeys(LocalProperty.SOURCES_ENABLED)) {
-        addOrReplaceProperty(GradleProperty.SOURCES_ENABLED, localProperties.getProperty(LocalProperty.SOURCES_ENABLED))
-    }
+private fun Project.setupGradleProperties() {
+    injectLocalProperty(LocalProperty.JAVADOC_ENABLED, GradleProperty.JAVADOC_ENABLED)
+    injectLocalProperty(LocalProperty.SOURCES_ENABLED, GradleProperty.SOURCES_ENABLED)
 }

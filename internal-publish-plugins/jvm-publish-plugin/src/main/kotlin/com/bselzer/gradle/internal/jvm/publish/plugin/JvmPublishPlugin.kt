@@ -1,9 +1,6 @@
 package com.bselzer.gradle.internal.jvm.publish.plugin
 
-import com.bselzer.gradle.function.properties.addOrReplaceProperty
-import com.bselzer.gradle.function.properties.compositeLocalProperties
-import com.bselzer.gradle.function.properties.containsKeys
-import com.bselzer.gradle.function.properties.getBooleanPropertyOrFalse
+import com.bselzer.gradle.function.properties.*
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
@@ -44,15 +41,8 @@ class JvmPublishPlugin : MavenPublishPlugin() {
         super.apply(project)
     }
 
-    private fun Project.setupGradleProperties() = with(properties) {
-        val localProperties = compositeLocalProperties
-
-        if (localProperties.containsKeys(LocalProperty.JAVADOC_ENABLED)) {
-            addOrReplaceProperty(GradleProperty.JAVADOC_ENABLED, localProperties.getProperty(LocalProperty.JAVADOC_ENABLED))
-        }
-
-        if (localProperties.containsKeys(LocalProperty.SOURCES_ENABLED)) {
-            addOrReplaceProperty(GradleProperty.SOURCES_ENABLED, localProperties.getProperty(LocalProperty.SOURCES_ENABLED))
-        }
+    private fun Project.setupGradleProperties() {
+        injectLocalProperty(LocalProperty.JAVADOC_ENABLED, GradleProperty.JAVADOC_ENABLED)
+        injectLocalProperty(LocalProperty.SOURCES_ENABLED, GradleProperty.SOURCES_ENABLED)
     }
 }
