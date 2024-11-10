@@ -6,4 +6,5 @@ internal object LocalProperty {
     const val SIGNING_KEY_ID = "signing.keyId"
     const val SIGNING_KEY = "signing.key"
     const val SIGNING_PASSWORD = "signing.password"
+    const val SIGNING_ENABLED = "signing.enabled"
 }

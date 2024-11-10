@@ -51,13 +51,21 @@ mavenPublishing {
         automaticRelease = false
     )
 
-    if (hasProperty(GradleProperty.SIGNING_KEY) && hasProperty(GradleProperty.SIGNING_PASSWORD)) {
+    if (getBooleanPropertyOrFalse(GradleProperty.SIGNING_ENABLED)) {
+        project.logger.log(LogLevel.LIFECYCLE, "Publishing with signing enabled.")
         signAllPublications()
+    }
+    else {
+        project.logger.log(LogLevel.LIFECYCLE, "Publishing with signing disabled.")
     }
 }
 
 fun Project.setupGradleProperties() {
     val localProperties = compositeLocalProperties
+
+    if (localProperties.containsKeys(LocalProperty.SIGNING_ENABLED)) {
+        addOrReplaceProperty(GradleProperty.SIGNING_ENABLED, localProperties.getProperty(LocalProperty.SIGNING_ENABLED))
+    }
 
     if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
         addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))

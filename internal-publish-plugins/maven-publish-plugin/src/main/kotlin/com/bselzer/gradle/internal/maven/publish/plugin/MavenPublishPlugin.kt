@@ -3,11 +3,13 @@ package com.bselzer.gradle.internal.maven.publish.plugin
 import com.bselzer.gradle.function.properties.addOrReplaceProperty
 import com.bselzer.gradle.function.properties.compositeLocalProperties
 import com.bselzer.gradle.function.properties.containsKeys
+import com.bselzer.gradle.function.properties.getBooleanPropertyOrFalse
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.Platform
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.logging.LogLevel
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPomLicenseSpec
@@ -40,8 +42,12 @@ abstract class MavenPublishPlugin : Plugin<Project> {
                     automaticRelease = false
                 )
 
-                if (hasProperty(GradleProperty.SIGNING_KEY) && hasProperty(GradleProperty.SIGNING_PASSWORD)) {
+                if (getBooleanPropertyOrFalse(GradleProperty.SIGNING_ENABLED)) {
+                    project.logger.log(LogLevel.LIFECYCLE, "Publishing with signing enabled.")
                     signAllPublications()
+                }
+                else {
+                    project.logger.log(LogLevel.LIFECYCLE, "Publishing with signing disabled.")
                 }
             }
         }
@@ -112,6 +118,10 @@ abstract class MavenPublishPlugin : Plugin<Project> {
 
     private fun Project.setupGradleProperties() {
         val localProperties = compositeLocalProperties
+
+        if (localProperties.containsKeys(LocalProperty.SIGNING_ENABLED)) {
+            addOrReplaceProperty(GradleProperty.SIGNING_ENABLED, localProperties.getProperty(LocalProperty.SIGNING_ENABLED))
+        }
 
         if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
             addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))

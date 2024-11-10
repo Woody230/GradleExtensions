@@ -407,6 +407,7 @@ Base plugin for publishing to Maven Central.
 | signingInMemoryKeyId       | signing.keyId     |
 | signingInMemoryKey         | signing.key       |
 | signingInMemoryKeyPassword | signing.password  |
+| RELEASE_SIGNING_ENABLED    | signing.enabled   |
 
 * Applies [vanniktech's base publish plugin](https://github.com/vanniktech/gradle-maven-publish-plugin).
 * Coordinates:
@@ -430,10 +431,7 @@ Base plugin for publishing to Maven Central.
     * The host is set to https://s01.oss.sonatype.org.
     * Automatic releasing is disabled.
     * The `mavenCentralUsername` and `mavenCentralPassword` gradle properties are applied.
-* Signing is set up if the in-memory signing gradle properties are configured:
-    * `signingInMemoryKeyId`
-    * `signingInMemoryKey`
-    * `signingInMemoryKeyPassword`
+* Signing is set up if the `RELEASE_SIGNING_ENABLED` gradle property is `true`.
 
 #### MavenPublishExtension
 
