@@ -1,4 +1,4 @@
-package com.bselzer.gradle.internal.multiplatform.publish.plugin
+package com.bselzer.gradle.internal.jvm.publish.plugin
 
 internal object GradleProperty {
     const val JAVADOC_ENABLED = "RELEASE_JAVADOC_ENABLED"

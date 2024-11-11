@@ -1,8 +1,6 @@
 package com.bselzer.gradle.internal.maven.publish.plugin
 
-import com.bselzer.gradle.function.properties.addOrReplaceProperty
-import com.bselzer.gradle.function.properties.compositeLocalProperties
-import com.bselzer.gradle.function.properties.containsKeys
+import com.bselzer.gradle.function.properties.*
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.Platform
 import com.vanniktech.maven.publish.SonatypeHost
@@ -11,7 +9,6 @@ import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPomLicenseSpec
-import org.gradle.configurationcache.extensions.capitalized
 import org.gradle.kotlin.dsl.getByType
 
 abstract class MavenPublishPlugin : Plugin<Project> {
@@ -40,8 +37,12 @@ abstract class MavenPublishPlugin : Plugin<Project> {
                     automaticRelease = false
                 )
 
-                if (hasProperty(GradleProperty.SIGNING_KEY) && hasProperty(GradleProperty.SIGNING_PASSWORD)) {
+                if (getBooleanPropertyOrFalse(GradleProperty.SIGNING_ENABLED)) {
+                    logger.lifecycle("Publishing with signing enabled.")
                     signAllPublications()
+                }
+                else {
+                    logger.lifecycle("Publishing with signing disabled.")
                 }
             }
         }
@@ -88,7 +89,9 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     private fun MavenPublishBaseExtension.configurePom(extension: MavenPublishExtension) = pom {
         val components = extension.coordinates.category.get().split(".") + extension.coordinates.module.get().split("-")
         configure(
-            name = components.joinToString(separator = " ", transform = String::capitalized),
+            name = components.joinToString(separator = " ") { component ->
+                component.replaceFirstChar(Char::uppercase)
+            },
             description = extension.description.get(),
             licensing = extension.licensing.get(),
             devs = extension.developers.get(),
@@ -111,19 +114,13 @@ abstract class MavenPublishPlugin : Plugin<Project> {
     }
 
     private fun Project.setupGradleProperties() {
-        val localProperties = compositeLocalProperties
-
-        if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
-            addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
-            addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_PASSWORD, localProperties.getProperty(LocalProperty.SONATYPE_PASSWORD))
-        }
-
-        if (localProperties.containsKeys(LocalProperty.SIGNING_KEY_ID, LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
-            addOrReplaceProperty(GradleProperty.SIGNING_KEY_ID, localProperties.getProperty(LocalProperty.SIGNING_KEY_ID))
-            addOrReplaceProperty(GradleProperty.SIGNING_PASSWORD, localProperties.getProperty(LocalProperty.SIGNING_PASSWORD))
-
-            val keyPath = localProperties.getProperty(LocalProperty.SIGNING_KEY)
-            addOrReplaceProperty(GradleProperty.SIGNING_KEY, project.file(keyPath).readText())
+        injectLocalProperty(LocalProperty.SIGNING_ENABLED, GradleProperty.SIGNING_ENABLED)
+        injectLocalProperty(LocalProperty.SONATYPE_USERNAME, GradleProperty.MAVEN_CENTRAL_USERNAME)
+        injectLocalProperty(LocalProperty.SONATYPE_PASSWORD, GradleProperty.MAVEN_CENTRAL_PASSWORD)
+        injectLocalProperty(LocalProperty.SIGNING_KEY_ID, GradleProperty.SIGNING_KEY_ID)
+        injectLocalProperty(LocalProperty.SIGNING_PASSWORD, GradleProperty.SIGNING_PASSWORD)
+        injectLocalProperty(LocalProperty.SIGNING_KEY, GradleProperty.SIGNING_KEY) { keyPath ->
+            project.file(keyPath).readText()
         }
     }
 }

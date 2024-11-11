@@ -1,7 +1,6 @@
 package io.github.woody230.gradle.convention
 
 import com.vanniktech.maven.publish.SonatypeHost
-import org.gradle.configurationcache.extensions.capitalized
 
 // TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
@@ -23,7 +22,9 @@ mavenPublishing {
 
     pom {
         val components = category.split(".") + module.split("-")
-        name.set(components.joinToString(separator = " ", transform = String::capitalized))
+        name.set(components.joinToString(separator = " ") { component ->
+            component.replaceFirstChar(Char::uppercase)
+        })
 
         developers {
             developer {
@@ -51,24 +52,22 @@ mavenPublishing {
         automaticRelease = false
     )
 
-    if (hasProperty(GradleProperty.SIGNING_KEY) && hasProperty(GradleProperty.SIGNING_PASSWORD)) {
+    if (getBooleanPropertyOrFalse(GradleProperty.SIGNING_ENABLED)) {
+        logger.lifecycle("Publishing with signing enabled.")
         signAllPublications()
+    }
+    else {
+        logger.lifecycle("Publishing with signing disabled.")
     }
 }
 
-fun Project.setupGradleProperties() {
-    val localProperties = compositeLocalProperties
-
-    if (localProperties.containsKeys(LocalProperty.SONATYPE_USERNAME, LocalProperty.SONATYPE_PASSWORD)) {
-        addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_USERNAME, localProperties.getProperty(LocalProperty.SONATYPE_USERNAME))
-        addOrReplaceProperty(GradleProperty.MAVEN_CENTRAL_PASSWORD, localProperties.getProperty(LocalProperty.SONATYPE_PASSWORD))
-    }
-
-    if (localProperties.containsKeys(LocalProperty.SIGNING_KEY_ID, LocalProperty.SIGNING_KEY, LocalProperty.SIGNING_PASSWORD)) {
-        addOrReplaceProperty(GradleProperty.SIGNING_KEY_ID, localProperties.getProperty(LocalProperty.SIGNING_KEY_ID))
-        addOrReplaceProperty(GradleProperty.SIGNING_PASSWORD, localProperties.getProperty(LocalProperty.SIGNING_PASSWORD))
-
-        val keyPath = localProperties.getProperty(LocalProperty.SIGNING_KEY)
-        addOrReplaceProperty(GradleProperty.SIGNING_KEY, project.file(keyPath).readText())
+private fun Project.setupGradleProperties() {
+    injectLocalProperty(LocalProperty.SIGNING_ENABLED, GradleProperty.SIGNING_ENABLED)
+    injectLocalProperty(LocalProperty.SONATYPE_USERNAME, GradleProperty.MAVEN_CENTRAL_USERNAME)
+    injectLocalProperty(LocalProperty.SONATYPE_PASSWORD, GradleProperty.MAVEN_CENTRAL_PASSWORD)
+    injectLocalProperty(LocalProperty.SIGNING_KEY_ID, GradleProperty.SIGNING_KEY_ID)
+    injectLocalProperty(LocalProperty.SIGNING_PASSWORD, GradleProperty.SIGNING_PASSWORD)
+    injectLocalProperty(LocalProperty.SIGNING_KEY, GradleProperty.SIGNING_KEY) { keyPath ->
+        project.file(keyPath).readText()
     }
 }

@@ -11,6 +11,7 @@ fun Properties.containsKeys(vararg keys: String) = keys.all(::containsKey)
 fun Project.hasProperties(vararg keys: String) = keys.all(::hasProperty)
 
 fun Project.getProperty(key: String): String = properties[key]?.toString() ?: throw Error("Gradle property $key does not exist.")
+fun Project.getBooleanPropertyOrFalse(key: String): Boolean = properties[key]?.toString().toBoolean()
 
 fun Project.addOrSkipProperty(key: String, value: String) {
     if (hasProperty(key)) {
@@ -42,6 +43,20 @@ fun Project.addOrReplaceProperties(properties: Properties) {
         val value = pair.value.toString()
         addOrReplaceProperty(key, value)
     }
+}
+
+fun Project.injectLocalProperty(localPropertyKey: String, gradlePropertyKey: String) {
+    injectLocalProperty(localPropertyKey, gradlePropertyKey) { value -> value }
+}
+
+fun Project.injectLocalProperty(localPropertyKey: String, gradlePropertyKey: String, transform: (String) -> String) {
+    val localProperties = compositeLocalProperties
+    if (!localProperties.containsKey(localPropertyKey)) {
+        return
+    }
+
+    val value = localProperties.getProperty(localPropertyKey).run(transform)
+    addOrReplaceProperty(gradlePropertyKey, value)
 }
 
 internal fun Project.propertiesFileOrNull(name: String): File? {
