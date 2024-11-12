@@ -9,13 +9,13 @@ dokka = "1.9.20"
 kotlin = "2.0.21"
 kotlin-dsl = "4.5.0"
 gradle-publish = "1.2.1"
-multiplatform-compose = "1.7.0"
+multiplatform-compose = "1.7.1"
 java-sourceCompatibility = "11"
 java-targetCompatability = "11"
 java-jdk = "11"
 toolchain = "0.8.0"
 vanniktech-publish = "0.29.0"
-woody230-gradle = "1.6.0"
+woody230-gradle = "1.7.0"
 
 [libraries]
 aboutlibraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "aboutlibraries" }
