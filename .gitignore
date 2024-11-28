@@ -13,4 +13,6 @@ local.properties
 /**/.idea
 /**/.gradle
 /**/build
+/**/.kotlin
+
 !internal-settings-plugins/composite-build-plugin/**
