@@ -1,8 +1,5 @@
 package com.bselzer.gradle.internal.plugin.publish.plugin
 
-import com.bselzer.gradle.function.properties.addOrReplaceProperty
-import com.bselzer.gradle.function.properties.compositeLocalProperties
-import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.injectLocalProperty
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
 import com.vanniktech.maven.publish.GradlePublishPlugin

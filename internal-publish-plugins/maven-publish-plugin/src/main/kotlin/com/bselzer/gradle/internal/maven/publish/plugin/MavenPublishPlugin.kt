@@ -3,7 +3,6 @@ package com.bselzer.gradle.internal.maven.publish.plugin
 import com.bselzer.gradle.function.properties.*
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.Platform
-import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
@@ -33,7 +32,6 @@ abstract class MavenPublishPlugin : Plugin<Project> {
                 configure(project.mavenPublishPlatform)
 
                 publishToMavenCentral(
-                    host = SonatypeHost.S01,
                     automaticRelease = false
                 )
 

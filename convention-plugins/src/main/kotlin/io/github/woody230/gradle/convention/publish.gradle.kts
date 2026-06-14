@@ -1,7 +1,5 @@
 package io.github.woody230.gradle.convention
 
-import com.vanniktech.maven.publish.SonatypeHost
-
 // TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
     id("com.vanniktech.maven.publish.base")
@@ -48,7 +46,6 @@ mavenPublishing {
     }
 
     publishToMavenCentral(
-        host = SonatypeHost.S01,
         automaticRelease = false
     )
 
