@@ -14,8 +14,8 @@ java-sourceCompatibility = "11"
 java-targetCompatability = "11"
 java-jdk = "11"
 toolchain = "0.8.0"
-vanniktech-publish = "0.29.0"
-woody230-gradle = "1.7.0"
+vanniktech-publish = "0.34.0"
+woody230-gradle = "1.8.0"
 
 [libraries]
 aboutlibraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "aboutlibraries" }
