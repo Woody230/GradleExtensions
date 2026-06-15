@@ -439,7 +439,6 @@ Base plugin for publishing to Maven Central.
     * Scm:
         * Url: **[repository]**
 * Sets up Maven Central publishing through the publishAllPublicationsToMavenCentralRepository task.
-    * The host is set to https://s01.oss.sonatype.org.
     * Automatic releasing is disabled.
     * The `mavenCentralUsername` and `mavenCentralPassword` gradle properties are applied.
 * Signing is set up if the `RELEASE_SIGNING_ENABLED` gradle property is `true`.
