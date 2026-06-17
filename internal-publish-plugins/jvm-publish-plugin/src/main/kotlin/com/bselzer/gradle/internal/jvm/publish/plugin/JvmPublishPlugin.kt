@@ -5,6 +5,7 @@ import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.Platform
+import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.Project
 
 class JvmPublishPlugin : MavenPublishPlugin() {
@@ -28,7 +29,7 @@ class JvmPublishPlugin : MavenPublishPlugin() {
 
             return KotlinJvm(
                 javadocJar = jar,
-                sourcesJar = sourcesEnabled
+                sourcesJar = if (sourcesEnabled) SourcesJar.Sources() else SourcesJar.Empty()
             )
         }
 
