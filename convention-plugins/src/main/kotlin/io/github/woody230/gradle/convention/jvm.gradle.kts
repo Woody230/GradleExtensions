@@ -2,6 +2,7 @@ package io.github.woody230.gradle.convention
 
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
+import com.vanniktech.maven.publish.SourcesJar
 
 // TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
@@ -26,7 +27,10 @@ mavenPublishing {
     val sourcesEnabled = getBooleanPropertyOrFalse(GradleProperty.SOURCES_ENABLED)
     logger.lifecycle("Publishing with sources ${if (sourcesEnabled) "enabled" else "disabled"}.")
 
-    val platform = KotlinJvm(javadocJar = jar, sourcesJar = sourcesEnabled)
+    val platform = KotlinJvm(
+        javadocJar = jar,
+        sourcesJar = if (sourcesEnabled) SourcesJar.Sources() else SourcesJar.Empty()
+    )
     configure(platform)
 }
 
