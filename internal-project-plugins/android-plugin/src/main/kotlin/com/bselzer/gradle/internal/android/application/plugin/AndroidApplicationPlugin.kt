@@ -25,7 +25,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
         val extension = androidExtension.apply {
             // TODO libs.versions.android.targetSdk.get().toInt()
-            targetSdk.convention(35)
+            targetSdk.convention(36)
             defaultProguardFile.convention(DefaultProguardFile.OPTIMIZED)
             buildConfig.convention(true)
         }
