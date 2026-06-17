@@ -6,6 +6,7 @@ import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.Platform
+import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.Project
 
 class MultiplatformPublishPlugin : MavenPublishPlugin() {
@@ -27,7 +28,10 @@ class MultiplatformPublishPlugin : MavenPublishPlugin() {
             val sourcesEnabled = getBooleanPropertyOrFalse(GradleProperty.SOURCES_ENABLED)
             logger.lifecycle("Publishing with sources ${if (sourcesEnabled) "enabled" else "disabled"}.")
 
-            return KotlinMultiplatform(javadocJar = jar, sourcesJar = sourcesEnabled)
+            return KotlinMultiplatform(
+                javadocJar = jar,
+                sourcesJar = if (sourcesEnabled) SourcesJar.Sources() else SourcesJar.Empty()
+            )
         }
 
     override fun apply(project: Project) = with(project) {
