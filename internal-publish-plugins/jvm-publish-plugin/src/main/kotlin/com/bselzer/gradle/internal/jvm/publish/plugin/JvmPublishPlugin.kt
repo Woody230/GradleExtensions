@@ -17,7 +17,7 @@ class JvmPublishPlugin : MavenPublishPlugin() {
             val jar: JavadocJar
             if (getBooleanPropertyOrFalse(GradleProperty.JAVADOC_ENABLED)) {
                 logger.lifecycle("Publishing with javadoc using dokka.")
-                jar = JavadocJar.Dokka("dokkaHtml")
+                jar = JavadocJar.Dokka("dokkaGenerateHtml")
             }
             else {
                 logger.lifecycle("Publishing without javadoc.")
