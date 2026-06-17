@@ -36,7 +36,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
         }
 
         val sourceSetName = "commonMain"
-        val aboutLibrariesResource = task("aboutLibrariesResource") {
+        val aboutLibrariesResource = tasks.register("aboutLibrariesResource") {
             dependsOn("exportLibraryDefinitions")
 
             // Move aboutlibraries.json so that it can be used by moko-resources.
