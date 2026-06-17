@@ -27,10 +27,6 @@ class AboutLibrariesPlugin : Plugin<Project> {
                 implementation("com.mikepenz:aboutlibraries-core:14.2.1")
             }
         }
-
-        with(extensions.getByType<AboutLibrariesExtension>()) {
-            registerAndroidTasks = false
-        }
     }
 
     private fun Project.configureMokoResources() {
