@@ -16,3 +16,4 @@ local.properties
 /**/.kotlin
 
 !internal-settings-plugins/composite-build-plugin/**
+/internal-settings-plugins/composite-build-plugin/build/
