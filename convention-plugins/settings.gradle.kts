@@ -5,12 +5,11 @@ pluginManagement {
         mavenCentral()
     }
 }
-dependencyResolutionManagement {
-    versionCatalogs {
-        create("libs") {
-            from(files("../gradle/libs.versions.toml"))
-        }
-    }
+
+plugins {
+    // TODO https://github.com/gradle/gradle/issues/15383
+    // https://github.com/radoslaw-panuszewski/typesafe-conventions-gradle-plugin
+    id("dev.panuszewski.typesafe-conventions") version ("0.11.1")
 }
 
 rootProject.name = "convention-plugins"

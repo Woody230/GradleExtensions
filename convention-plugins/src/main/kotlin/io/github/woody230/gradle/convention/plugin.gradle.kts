@@ -1,11 +1,13 @@
 package io.github.woody230.gradle.convention
 
 import com.vanniktech.maven.publish.GradlePublishPlugin
+import libs
 
-// TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
-    id("org.gradle.java-gradle-plugin")
-    id("com.gradle.plugin-publish")
+    alias(libs.plugins.java)
+    alias(libs.plugins.gradle.publish)
+
+    // TODO https://github.com/radoslaw-panuszewski/typesafe-conventions-gradle-plugin/issues/82
     id("io.github.woody230.gradle.convention.publish")
 }
 

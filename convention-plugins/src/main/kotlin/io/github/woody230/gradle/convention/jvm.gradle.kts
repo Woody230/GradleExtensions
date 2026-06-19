@@ -3,11 +3,13 @@ package io.github.woody230.gradle.convention
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.SourcesJar
+import libs
 
-// TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlin.jvm)
+
+    // TODO https://github.com/radoslaw-panuszewski/typesafe-conventions-gradle-plugin/issues/82
     id("io.github.woody230.gradle.convention.publish")
 }
 
