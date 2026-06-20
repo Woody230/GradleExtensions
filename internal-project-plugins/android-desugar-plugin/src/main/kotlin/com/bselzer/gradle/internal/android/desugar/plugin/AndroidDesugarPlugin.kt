@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.android.desugar.plugin
 
-import com.bselzer.gradle.android.androidComponentsExtension
+import com.bselzer.gradle.android.commonDslAndroidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
 import com.bselzer.gradle.internal.version.catalog.libs
 import org.gradle.api.Plugin
@@ -13,10 +13,8 @@ class AndroidDesugarPlugin : Plugin<Project> {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        androidComponentsExtension.finalizeDslReceiver {
-            compileOptions {
-                isCoreLibraryDesugaringEnabled = true
-            }
+        commonDslAndroidComponentsExtension.finalizeDslReceiver {
+            compileOptions.isCoreLibraryDesugaringEnabled = true
 
             dependencies {
                 val dependency: Any = when {

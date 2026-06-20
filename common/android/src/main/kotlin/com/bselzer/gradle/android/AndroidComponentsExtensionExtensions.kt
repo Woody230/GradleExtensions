@@ -1,5 +1,6 @@
 package com.bselzer.gradle.android
 
+import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
@@ -10,6 +11,12 @@ val Project.androidComponentsExtension: AndroidComponentsExtension<*, *, *>
 
 val Project.androidComponentsExtensionOrNull: AndroidComponentsExtension<*, *, *>?
     get() = extensions.findByType(AndroidComponentsExtension::class.java)
+
+val Project.commonDslAndroidComponentsExtension: AndroidComponentsExtension<out CommonExtension, *, *>
+    get() = commonDslAndroidComponentsExtensionOrNull ?: throw ClassNotFoundException("Unable to find an android component extension using the CommonExtension dsl.")
+
+val Project.commonDslAndroidComponentsExtensionOrNull: AndroidComponentsExtension<out CommonExtension, *, *>?
+    get() = applicationAndroidComponentsExtensionOrNull ?: libraryAndroidComponentsExtensionOrNull
 
 val Project.applicationAndroidComponentsExtension: ApplicationAndroidComponentsExtension
     get() = extensions.getByType(ApplicationAndroidComponentsExtension::class.java)
@@ -25,6 +32,6 @@ val Project.libraryAndroidComponentsExtensionOrNull: LibraryAndroidComponentsExt
 
 fun <CommonExtension> AndroidComponentsExtension<CommonExtension, *, *>.finalizeDslReceiver(
     configure: CommonExtension.() -> Unit
-) where CommonExtension : com.android.build.api.dsl.CommonExtension<*, *, *, *, *, *> {
+) where CommonExtension : com.android.build.api.dsl.CommonExtension {
     finalizeDsl(configure)
 }
