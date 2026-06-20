@@ -5,6 +5,7 @@ dependencies {
     api(libs.kotlin.plugin)
     api(libs.dokka.plugin)
     api(libs.woody230.gradle.internal.maven.publish.plugin)
+    implementation(libs.woody230.gradle.internal.version.catalog)
 }
 
 pluginPublishExtension {

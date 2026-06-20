@@ -5,6 +5,7 @@ dependencies {
     implementation(libs.woody230.gradle.android)
     implementation(libs.woody230.gradle.function)
     implementation(libs.woody230.gradle.internal.models)
+    implementation(libs.woody230.gradle.internal.version.catalog)
 }
 
 pluginPublishExtension {

@@ -2,7 +2,9 @@ package com.bselzer.gradle.internal.android.plugin
 
 import com.bselzer.gradle.android.androidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
+import com.bselzer.gradle.function.toJavaVersion
 import com.bselzer.gradle.function.toNumericString
+import com.bselzer.gradle.internal.version.catalog.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -17,19 +19,14 @@ abstract class AndroidPlugin : Plugin<Project> {
             namespace.group.convention("com.bselzer")
             namespace.module.convention(name)
 
-            // TODO libs.versions.android.compileSdk.get().toInt()
-            compileSdk.convention(36)
-
-            // TODO libs.versions.android.minSdk.get().toInt()
-            minSdk.convention(21)
+            compileSdk.convention(libs.versions.android.compileSdk.requiredVersion.toInt())
+            minSdk.convention(libs.versions.android.minSdk.requiredVersion.toInt())
 
             testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
 
-            // TODO libs.versions.java.sourceCompatibility.get().toJavaVersion()
-            sourceCompatibility.convention(JavaVersion.VERSION_11)
+            sourceCompatibility.convention(libs.versions.java.sourceCompatibility.requiredVersion.toJavaVersion())
+            targetCompatibility.convention(libs.versions.java.targetCompatibility.requiredVersion.toJavaVersion())
 
-            // TODO libs.versions.java.targetCompatability.get().toJavaVersion()
-            targetCompatibility.convention(JavaVersion.VERSION_11)
             buildConfig.convention(false)
         }
 

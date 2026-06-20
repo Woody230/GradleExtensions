@@ -1,6 +1,7 @@
 package com.bselzer.gradle.internal.maven.publish.plugin
 
 import com.bselzer.gradle.function.properties.*
+import com.bselzer.gradle.internal.version.catalog.libs
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.Plugin
@@ -45,8 +46,7 @@ abstract class MavenPublishPlugin : Plugin<Project> {
             }
         }
 
-        // TODO libs.plugins.vanniktech.publish.get().pluginId
-        pluginManager.apply("com.vanniktech.maven.publish.base")
+        pluginManager.apply(libs.plugins.vanniktech.publish.get().pluginId)
     }
 
     private fun MavenPublishBaseExtension.configureCoordinates(extension: MavenPublishExtension) {

@@ -1,37 +1,32 @@
 package com.bselzer.gradle.internal.aboutlibraries.plugin
 
+import com.bselzer.gradle.internal.version.catalog.libs
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
-import com.mikepenz.aboutlibraries.plugin.AboutLibrariesExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.getByType
 
 class AboutLibrariesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
-        // TODO libs.plugins.aboutlibraries.get().pluginId
-        pluginManager.apply("com.mikepenz.aboutlibraries.plugin")
+        pluginManager.apply(libs.plugins.aboutlibraries.get().pluginId)
 
         configureMultiplatform()
         configureMokoResources()
     }
 
     private fun Project.configureMultiplatform() {
-        // TODO libs.plugins.multiplatform.get().pluginId
-        if (!pluginManager.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+        if (!pluginManager.hasPlugin(libs.plugins.multiplatform.get().pluginId)) {
             return
         }
 
         multiplatformDependencies {
             mainSourceSets {
-                // TODO libs.aboutlibraries.core
-                implementation("com.mikepenz:aboutlibraries-core:14.2.1")
+                implementation(libs.aboutlibraries.core)
             }
         }
     }
 
     private fun Project.configureMokoResources() {
-        // TODO libs.plugins.moko.resources.get().pluginId
-        if (!pluginManager.hasPlugin("dev.icerock.mobile.multiplatform-resources")) {
+        if (!pluginManager.hasPlugin(libs.plugins.moko.resources.get().pluginId)) {
             return
         }
 

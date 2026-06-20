@@ -2,6 +2,7 @@ package com.bselzer.gradle.internal.plugin.publish.plugin
 
 import com.bselzer.gradle.function.properties.injectLocalProperty
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
+import com.bselzer.gradle.internal.version.catalog.libs
 import com.vanniktech.maven.publish.GradlePublishPlugin
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.NamedDomainObjectContainer
@@ -50,11 +51,8 @@ class PluginPublishPlugin : MavenPublishPlugin() {
             }
         }
 
-        // TODO libs.plugins.java.get().pluginId
-        apply(plugin = "org.gradle.java-gradle-plugin")
-
-        // TODO libs.plugins.gradle.publish.get().pluginId
-        apply(plugin = "com.gradle.plugin-publish")
+        apply(plugin = libs.plugins.java.get().pluginId)
+        apply(plugin = libs.plugins.gradle.publish.get().pluginId)
 
         super.apply(project)
     }

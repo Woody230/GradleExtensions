@@ -29,7 +29,8 @@ includeBuild("convention-plugins")
 includeBuild("internal-common") {
     substituteModulesUsingProjects(
         "io.github.woody230.gradle.internal:composite-task" to ":composite-task",
-        "io.github.woody230.gradle.internal:models" to ":models"
+        "io.github.woody230.gradle.internal:models" to ":models",
+        "io.github.woody230.gradle.internal:version-catalog" to ":version-catalog"
     )
 }
 includeBuild("internal-publish-plugins") {

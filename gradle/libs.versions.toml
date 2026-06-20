@@ -9,6 +9,7 @@ dokka = "2.2.0"
 kotlin = "2.4.0"
 kotlin-dsl = "6.5.7"
 gradle-publish = "2.1.1"
+moko-resources = "0.24.3"
 multiplatform-compose = "1.11.1"
 java-sourceCompatibility = "11"
 java-targetCompatability = "11"
@@ -49,6 +50,7 @@ woody230-gradle-android = { group = "io.github.woody230.gradle", name = "android
 woody230-gradle-function = { group = "io.github.woody230.gradle", name = "function", version.ref = "woody230-gradle" }
 woody230-gradle-internal-composite-task = { group = "io.github.woody230.gradle.internal", name = "composite-task", version.ref = "woody230-gradle" }
 woody230-gradle-internal-models = { group = "io.github.woody230.gradle.internal", name = "models", version.ref = "woody230-gradle" }
+woody230-gradle-internal-version-catalog = { group = "io.github.woody230.gradle.internal", name = "version-catalog", version.ref = "woody230-gradle" }
 woody230-gradle-internal-jvm-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "jvm-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-internal-maven-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "maven-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-internal-plugin-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "plugin-publish-plugin", version.ref = "woody230-gradle" }
@@ -67,6 +69,7 @@ gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publi
 java = { id = "org.gradle.java-gradle-plugin" }
 kotlin-dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
 woody230-gradle-internal-jvm-publish = { id = "io.github.woody230.gradle.internal.jvm-publish", version.ref = "woody230-gradle" }
