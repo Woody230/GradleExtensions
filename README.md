@@ -32,6 +32,7 @@ implementation("io.github.woody230.gradle.internal:$Module:$Version")
 Modules exist within multiple builds that are included within the root project as a composite:
 
 * [common](#common)
+* [internal-common](#internal-common)
 * [internal-plugins](#internal-plugins)
 * [internal-publish-plugins](#internal-publish-plugins)
 
@@ -120,6 +121,33 @@ kotlin {
         }
     }
 }
+```
+
+## internal-common
+
+Internal extensions for Gradle intended to be used by my personal projects only.
+
+### composite-task
+
+Provides the `CompositeTaskPlugin`, which is used to:
+* Register tasks recursively for the included builds.
+* Depend on tasks from the included builds in the root build.
+
+### models
+
+Provides the `ModuleId` interface for publishing coordinates.
+
+### version-catalog
+
+Provides a manual type-safe version catalog for dependencies used by plugins in the other modules.
+
+It generally follows the same dsl as the LibrariesForLibs used in scripts:
+```kotlin
+import com.bselzer.gradle.internal.version.catalog.libs
+
+val plugin = libs.plugins.android.application.get().pluginId
+val library = libs.androidx.test.compose.ui.asProvider()
+val version = libs.versions.android.minSdk.requiredVersion.toInt()
 ```
 
 ## internal-project-plugins
