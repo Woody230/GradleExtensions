@@ -8,7 +8,7 @@ class InternalVersionCatalogPlugin : Plugin<Settings> {
     override fun apply(settings: Settings) = with(settings) {
         dependencyResolutionManagement {
             versionCatalogs {
-                create("ioGithubWoody230GradleInternal") {
+                create("ioGithubWoody230GradleInternalLibs") {
                     from("io.github.woody230.gradle:catalog:${libs.versions.woody230.gradle.requiredVersion}")
                 }
             }

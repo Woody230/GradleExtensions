@@ -16,7 +16,7 @@ pluginPublishExtension {
     plugin {
         name.set("internal-version-catalog")
         displayName.set("Internal Version Catalog Plugin")
-        description.set("Adds the ioGithubWoody230GradleInternal version catalog to the dependency resolution management.")
+        description.set("Adds the ioGithubWoody230GradleInternalLibs version catalog to the dependency resolution management.")
         className.set("com.bselzer.gradle.internal.version.catalog.plugin.InternalVersionCatalogPlugin")
     }
 }

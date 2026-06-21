@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         create("libs") {
             from(files(path))
         }
-        create("ioGithubWoody230GradleInternal") {
+        create("ioGithubWoody230GradleInternalLibs") {
             from(files(path))
         }
     }
