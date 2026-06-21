@@ -128,6 +128,10 @@ kotlin {
 
 Internal extensions for Gradle intended to be used by my personal projects only.
 
+### build-configuration
+
+Provides the `BuildConfiguration` class used to provide metadata for other modules.
+
 ### composite-task
 
 Provides the `CompositeTaskPlugin`, which is used to:

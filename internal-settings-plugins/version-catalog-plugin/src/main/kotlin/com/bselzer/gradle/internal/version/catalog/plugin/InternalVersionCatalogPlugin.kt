@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.version.catalog.plugin
 
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 
@@ -9,7 +9,7 @@ class InternalVersionCatalogPlugin : Plugin<Settings> {
         dependencyResolutionManagement {
             versionCatalogs {
                 create("ioGithubWoody230GradleInternalLibs") {
-                    from(libs.woody230.gradle.internal.libs)
+                    from(BuildConfiguration.LIBS_DEPENDENCY_NOTATION)
                 }
             }
         }

@@ -1,6 +1,6 @@
 dependencies {
     implementation(libs.woody230.gradle.function)
-    implementation(libs.woody230.gradle.internal.named.version.catalog)
+    implementation(libs.woody230.gradle.internal.build.configuration)
 }
 
 pluginPublishExtension {

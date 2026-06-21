@@ -19,6 +19,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "internal-common"
+include("build-configuration")
 include("composite-task")
 include("models")
 include("named-version-catalog")

@@ -48,6 +48,7 @@ toolchain-plugin = { group = "org.gradle.toolchains.foojay-resolver-convention",
 vanniktech-publish-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
 woody230-gradle-android = { group = "io.github.woody230.gradle", name = "android", version.ref = "woody230-gradle" }
 woody230-gradle-function = { group = "io.github.woody230.gradle", name = "function", version.ref = "woody230-gradle" }
+woody230-gradle-internal-build-configuration = { group = "io.github.woody230.gradle.internal", name = "build-configuration", version.ref = "woody230-gradle" }
 woody230-gradle-internal-composite-task = { group = "io.github.woody230.gradle.internal", name = "composite-task", version.ref = "woody230-gradle" }
 woody230-gradle-internal-libs = { group = "io.github.woody230.gradle.internal", name = "libs", version.ref = "woody230-gradle" }
 woody230-gradle-internal-models = { group = "io.github.woody230.gradle.internal", name = "models", version.ref = "woody230-gradle" }
@@ -63,7 +64,7 @@ woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "m
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibraries" }
 android-application = { id = "com.android.application" }
 android-library = { id = "com.android.library" }
-buildkonfig = { id = "com.codingfeline.buildkonfig" }
+buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }
 compose = { id = "org.jetbrains.compose", version.ref = "multiplatform-compose" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
