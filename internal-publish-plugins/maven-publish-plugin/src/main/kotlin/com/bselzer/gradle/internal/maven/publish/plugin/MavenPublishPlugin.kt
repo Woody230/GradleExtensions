@@ -1,7 +1,7 @@
 package com.bselzer.gradle.internal.maven.publish.plugin
 
 import com.bselzer.gradle.function.properties.*
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.Plugin

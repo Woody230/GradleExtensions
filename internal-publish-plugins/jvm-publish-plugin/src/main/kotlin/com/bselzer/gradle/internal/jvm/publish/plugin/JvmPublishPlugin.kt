@@ -2,7 +2,7 @@ package com.bselzer.gradle.internal.jvm.publish.plugin
 
 import com.bselzer.gradle.function.properties.*
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.Platform

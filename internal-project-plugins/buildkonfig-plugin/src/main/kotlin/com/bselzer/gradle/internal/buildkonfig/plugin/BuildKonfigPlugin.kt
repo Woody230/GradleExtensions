@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.buildkonfig.plugin
 
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

@@ -1,6 +1,6 @@
 package com.bselzer.gradle.internal.multiplatform.test.plugin
 
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
 import org.gradle.api.Plugin
 import org.gradle.api.Project

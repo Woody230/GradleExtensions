@@ -1,7 +1,7 @@
 package com.bselzer.gradle.internal.android.library.plugin
 
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import org.gradle.api.Project
 
 class AndroidLibraryPlugin : AndroidPlugin() {

@@ -3,9 +3,8 @@ package com.bselzer.gradle.internal.multiplatform.plugin
 import com.bselzer.gradle.function.toInt
 import com.bselzer.gradle.function.toJavaVersion
 import com.bselzer.gradle.function.toNumericString
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import com.bselzer.gradle.multiplatform.kotlinMultiplatformExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.assign

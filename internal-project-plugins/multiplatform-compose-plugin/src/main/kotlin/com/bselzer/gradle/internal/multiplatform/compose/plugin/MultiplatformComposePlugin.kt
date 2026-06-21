@@ -3,7 +3,7 @@ package com.bselzer.gradle.internal.multiplatform.compose.plugin
 import com.android.build.api.dsl.CommonExtension
 import com.bselzer.gradle.android.commonDslAndroidComponentsExtensionOrNull
 import com.bselzer.gradle.android.finalizeDslReceiver
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

@@ -2,7 +2,7 @@ package com.bselzer.gradle.internal.android.desugar.plugin
 
 import com.bselzer.gradle.android.commonDslAndroidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

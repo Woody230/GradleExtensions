@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     api(projects.mavenPublishPlugin)
-    implementation(libs.woody230.gradle.internal.version.catalog)
+    implementation(libs.woody230.gradle.internal.named.version.catalog)
 }
 
 val pluginDescription = "Internal publishing for gradle plugins."

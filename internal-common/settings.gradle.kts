@@ -5,10 +5,15 @@ pluginManagement {
         mavenCentral()
     }
 }
+
 dependencyResolutionManagement {
+    val path = "../gradle/libs.versions.toml"
     versionCatalogs {
         create("libs") {
-            from(files("../gradle/libs.versions.toml"))
+            from(files(path))
+        }
+        create("ioGithubWoody230GradleInternal") {
+            from(files(path))
         }
     }
 }
@@ -16,4 +21,4 @@ dependencyResolutionManagement {
 rootProject.name = "internal-common"
 include("composite-task")
 include("models")
-include("version-catalog")
+include("named-version-catalog")

@@ -137,13 +137,13 @@ Provides the `CompositeTaskPlugin`, which is used to:
 
 Provides the `ModuleId` interface for publishing coordinates.
 
-### version-catalog
+### named-version-catalog
 
 Provides a manual type-safe version catalog for dependencies used by plugins in the other modules.
 
 It generally follows the same dsl as the LibrariesForLibs used in scripts:
 ```kotlin
-import com.bselzer.gradle.internal.version.catalog.libs
+import com.bselzer.gradle.internal.named.version.catalog.libs
 
 val plugin = libs.plugins.android.application.get().pluginId
 val library = libs.androidx.test.compose.ui.asProvider()

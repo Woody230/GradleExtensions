@@ -17,7 +17,7 @@ java-jdk = "11"
 panuszewski-typesafe-conventions = "0.11.1" # NOTE need to manually update settings.gradle.kts
 toolchain = "1.0.0" # NOTE need to manually update settings.gradle.kts
 vanniktech-publish = "0.36.0"
-woody230-gradle = "1.9.0" # NOTE version of this project
+woody230-gradle = "2.0.0" # NOTE version of this project
 
 [libraries]
 aboutlibraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "aboutlibraries" }
@@ -50,7 +50,7 @@ woody230-gradle-android = { group = "io.github.woody230.gradle", name = "android
 woody230-gradle-function = { group = "io.github.woody230.gradle", name = "function", version.ref = "woody230-gradle" }
 woody230-gradle-internal-composite-task = { group = "io.github.woody230.gradle.internal", name = "composite-task", version.ref = "woody230-gradle" }
 woody230-gradle-internal-models = { group = "io.github.woody230.gradle.internal", name = "models", version.ref = "woody230-gradle" }
-woody230-gradle-internal-version-catalog = { group = "io.github.woody230.gradle.internal", name = "version-catalog", version.ref = "woody230-gradle" }
+woody230-gradle-internal-named-version-catalog = { group = "io.github.woody230.gradle.internal", name = "named-version-catalog", version.ref = "woody230-gradle" }
 woody230-gradle-internal-jvm-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "jvm-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-internal-maven-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "maven-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-internal-plugin-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "plugin-publish-plugin", version.ref = "woody230-gradle" }
