@@ -14,7 +14,7 @@ class InternalVersionCatalogPlugin : Plugin<Settings> {
 
             versionCatalogs {
                 create("ioGithubWoody230GradleInternalLibs") {
-                    from(BuildConfiguration.LIBS_DEPENDENCY_NOTATION)
+                    from(BuildConfiguration.libs_woody230_gradle_internal_libs)
                 }
             }
         }

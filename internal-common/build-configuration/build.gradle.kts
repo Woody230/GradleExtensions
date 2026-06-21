@@ -16,6 +16,6 @@ buildkonfig {
     exposeObjectWithName = "BuildConfiguration"
 
     defaultConfigs {
-        buildConfigField(FieldSpec.Type.STRING, "LIBS_DEPENDENCY_NOTATION", libs.woody230.gradle.internal.libs.get().toString(), nullable = false, const = true)
+        buildConfigField(FieldSpec.Type.STRING, "libs_woody230_gradle_internal_libs", libs.woody230.gradle.internal.libs.get().toString(), nullable = false, const = true)
     }
 }
