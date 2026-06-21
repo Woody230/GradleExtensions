@@ -19,6 +19,13 @@ pluginPublishExtension {
     }
 
     plugin {
+        name.set("multiplatform-android-library")
+        displayName.set("Multiplatform Android Library Gradle Plugin")
+        description.set("Applies the multiplatform Android library gradle plugin.")
+        className.set("com.bselzer.gradle.internal.android.kotlin.multiplatform.library.plugin.MultiplatformAndroidLibraryPlugin")
+    }
+
+    plugin {
         name.set("android-library")
         displayName.set("Android Library Gradle Plugin")
         description.set("Applies the Android library gradle plugin.")

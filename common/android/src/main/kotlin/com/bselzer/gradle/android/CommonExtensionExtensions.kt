@@ -5,6 +5,7 @@ import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
 import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Project
+import kotlin.jvm.java
 
 val Project.androidExtension: CommonExtension
     get() = androidExtensionOrNull ?: throw NotImplementedError("Unable to find a CommonExtension. The Android application or library plugin must be configured.")
@@ -12,6 +13,6 @@ val Project.androidExtension: CommonExtension
 val Project.androidExtensionOrNull: CommonExtension?
     get() = when {
         pluginManager.hasPlugin(BuildConfiguration.plugins_android_application) -> extensions.getByType(ApplicationExtension::class.java)
-        pluginManager.hasPlugin(BuildConfiguration.plugins_android_library) -> extensions.getByType(LibraryExtension::class.java)
+        pluginManager.hasPlugin(BuildConfiguration.plugins_android_library) || pluginManager.hasPlugin(BuildConfiguration.plugins_android_kotlin_multiplatform_library) -> extensions.getByType(LibraryExtension::class.java)
         else -> null
     }

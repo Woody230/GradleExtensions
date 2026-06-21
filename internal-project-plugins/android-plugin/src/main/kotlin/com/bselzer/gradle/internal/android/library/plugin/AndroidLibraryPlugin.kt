@@ -9,7 +9,7 @@ class AndroidLibraryPlugin : AndroidPlugin() {
         get() = androidLibraryExtension
 
     override fun apply(project: Project) = with(project) {
-        pluginManager.apply(BuildConfiguration.plugins_android_application)
+        pluginManager.apply(BuildConfiguration.plugins_android_library)
         super.apply(project)
     }
 }

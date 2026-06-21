@@ -288,6 +288,21 @@ plugins {
 
 Implements the [AndroidExtension](#androidextension) without any additional properties.
 
+#### multiplatform-android-library-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.multiplatform-android-library")
+}
+```
+
+* See [android-plugin](#android-plugin) for base logic.
+* Applies the multiplatform Android library gradle plugin.
+
+##### MultiplatformAndroidLibraryExtension
+
+Implements the [AndroidExtension](#androidextension) without any additional properties.
+
 ### buildkonfig-plugin
 ```kotlin
 plugins {

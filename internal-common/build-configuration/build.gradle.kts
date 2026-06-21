@@ -34,6 +34,7 @@ buildkonfig {
         buildConfigField(FieldSpec.Type.STRING, "plugins_aboutlibraries", libs.plugins.aboutlibraries.get().pluginId, nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "plugins_android_application", libs.plugins.android.application.get().pluginId, nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "plugins_android_library", libs.plugins.android.library.get().pluginId, nullable = false, const = true)
+        buildConfigField(FieldSpec.Type.STRING, "plugins_android_kotlin_multiplatform_library", libs.plugins.android.kotlin.multiplatform.library.get().pluginId, nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "plugins_buildkonfig", libs.plugins.buildkonfig.get().pluginId, nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "plugins_compose", libs.plugins.compose.asProvider().get().pluginId, nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "plugins_compose_compiler", libs.plugins.compose.compiler.get().pluginId, nullable = false, const = true)
