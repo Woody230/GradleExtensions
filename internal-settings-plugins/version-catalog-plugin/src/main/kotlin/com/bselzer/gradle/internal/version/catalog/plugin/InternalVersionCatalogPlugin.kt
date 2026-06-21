@@ -9,7 +9,7 @@ class InternalVersionCatalogPlugin : Plugin<Settings> {
         dependencyResolutionManagement {
             versionCatalogs {
                 create("ioGithubWoody230GradleInternalLibs") {
-                    from("io.github.woody230.gradle:catalog:${libs.versions.woody230.gradle.requiredVersion}")
+                    from(libs.woody230.gradle.internal.libs)
                 }
             }
         }

@@ -27,7 +27,7 @@ buildscript {
 subprojects {
     apply(plugin = rootProject.libs.plugins.kotlin.dsl.get().pluginId)
 
-    // TODO Extension of type 'VersionCatalogsExtension' https://github.com/gradle/gradle/issues/31289
+    // TODO Extension of type 'VersionCatalogsExtension' does not exist https://github.com/gradle/gradle/issues/31289
     afterEvaluate {
         apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.plugin.publish.get().pluginId)
     }

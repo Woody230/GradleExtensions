@@ -37,7 +37,8 @@ includeBuild("internal-publish-plugins") {
     substituteModulesUsingProjects(
         "io.github.woody230.gradle.internal:jvm-publish-plugin" to ":jvm-publish-plugin",
         "io.github.woody230.gradle.internal:maven-publish-plugin" to ":maven-publish-plugin",
-        "io.github.woody230.gradle.internal:plugin-publish-plugin" to ":plugin-publish-plugin"
+        "io.github.woody230.gradle.internal:plugin-publish-plugin" to ":plugin-publish-plugin",
+        "io.github.woody230.gradle.internal:version-catalog-publish-plugin" to ":version-catalog-publish-plugin",
     )
 }
 includeBuild("common") {
@@ -49,4 +50,8 @@ includeBuild("common") {
 }
 includeBuild("internal-project-plugins")
 includeBuild("internal-settings-plugins")
-includeBuild("internal-version-catalog")
+includeBuild("internal-version-catalog") {
+    substituteModulesUsingProjects(
+        "io.github.woody230.gradle.internal:libs" to ":libs"
+    )
+}

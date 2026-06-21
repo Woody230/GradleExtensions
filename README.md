@@ -35,6 +35,7 @@ Modules exist within multiple builds that are included within the root project a
 * [internal-common](#internal-common)
 * [internal-plugins](#internal-plugins)
 * [internal-publish-plugins](#internal-publish-plugins)
+* [internal-version-catalog](#internal-version-catalog)
 
 ## common
 
@@ -563,6 +564,7 @@ plugins {
   * [composite-publish-plugin](#composite-publish-plugin)
   * [composite-test-plugin](#composite-test-plugin)
   * [version-catalog-plugin](#version-catalog-plugin)
+  * [internal-version-catalog-plugin](#internal-version-catalog-plugin)
 
 ### composite-build-plugin
 ```kotlin
@@ -621,4 +623,34 @@ plugins {
 }
 ```
 
-* Creates a version catalog named `libs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite. 
+* Creates a version catalog named `libs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite.
+
+### internal-version-catalog-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.internal-version-catalog")
+}
+```
+
+* Creates a version catalog named `ioGithubWoody230GradleInternalLibs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite.
+
+## internal-version-catalog
+
+Version catalogs intended to be used by my personal projects only.
+
+### libs
+
+The version catalog used by the internal plugins.
+
+Can be applied using the [internal-version-catalog-plugin](#internal-version-catalog-plugin), equivalent to the following:
+
+```kotlin
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("ioGithubWoody230GradleInternalLibs") {
+            from("io.github.woody230.gradle.internal:libs:$Version")
+        }
+    }
+}
+```

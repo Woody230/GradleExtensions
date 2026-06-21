@@ -49,11 +49,13 @@ vanniktech-publish-plugin = { group = "com.vanniktech", name = "gradle-maven-pub
 woody230-gradle-android = { group = "io.github.woody230.gradle", name = "android", version.ref = "woody230-gradle" }
 woody230-gradle-function = { group = "io.github.woody230.gradle", name = "function", version.ref = "woody230-gradle" }
 woody230-gradle-internal-composite-task = { group = "io.github.woody230.gradle.internal", name = "composite-task", version.ref = "woody230-gradle" }
+woody230-gradle-internal-libs = { group = "io.github.woody230.gradle.internal", name = "libs", version.ref = "woody230-gradle" }
 woody230-gradle-internal-models = { group = "io.github.woody230.gradle.internal", name = "models", version.ref = "woody230-gradle" }
 woody230-gradle-internal-named-version-catalog = { group = "io.github.woody230.gradle.internal", name = "named-version-catalog", version.ref = "woody230-gradle" }
 woody230-gradle-internal-jvm-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "jvm-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-internal-maven-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "maven-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-internal-plugin-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "plugin-publish-plugin", version.ref = "woody230-gradle" }
+woody230-gradle-internal-version-catalog-publish-plugin = { group = "io.github.woody230.gradle.internal", name = "version-catalog-publish-plugin", version.ref = "woody230-gradle" }
 woody230-gradle-multiplatform = { group = "io.github.woody230.gradle", name = "multiplatform", version.ref = "woody230-gradle" }
 
 # TODO can't NOT provide a version and use alias for plugins already in the classpath https://github.com/gradle/gradle/issues/17968
@@ -72,9 +74,11 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
+version-catalog-publish = { id = "version-catalog" }
 woody230-gradle-internal-jvm-publish = { id = "io.github.woody230.gradle.internal.jvm-publish", version.ref = "woody230-gradle" }
 woody230-gradle-internal-maven-publish = { id = "io.github.woody230.gradle.internal.maven-publish", version.ref = "woody230-gradle" }
 woody230-gradle-internal-plugin-publish = { id = "io.github.woody230.gradle.internal.plugin-publish", version.ref = "woody230-gradle" }
+woody230-gradle-internal-version-catalog-publish = { id = "io.github.woody230.gradle.internal.version-catalog-publish", version.ref = "woody230-gradle" }
 woody230-gradle-convention-jvm = { id = "io.github.woody230.gradle.convention.jvm", version.ref = "woody230-gradle" }
 woody230-gradle-convention-plugin = { id = "io.github.woody230.gradle.convention.plugin", version.ref = "woody230-gradle" }
 woody230-gradle-convention-publish = { id = "io.github.woody230.gradle.convention.publish", version.ref = "woody230-gradle" }

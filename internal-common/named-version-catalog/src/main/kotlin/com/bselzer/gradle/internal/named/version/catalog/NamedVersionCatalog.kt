@@ -4,6 +4,7 @@ import com.bselzer.gradle.internal.version.catalog.libraries.NamedAboutLibraries
 import com.bselzer.gradle.internal.named.version.catalog.libraries.NamedAndroidLibraries
 import com.bselzer.gradle.internal.named.version.catalog.libraries.NamedAndroidxLibraries
 import com.bselzer.gradle.internal.named.version.catalog.libraries.NamedKotlinLibraries
+import com.bselzer.gradle.internal.named.version.catalog.libraries.NamedWoody230Libraries
 import com.bselzer.gradle.internal.named.version.catalog.plugins.NamedPlugins
 import com.bselzer.gradle.internal.named.version.catalog.versions.NamedVersions
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
@@ -20,4 +21,6 @@ class NamedVersionCatalog internal constructor(private val versionCatalog: Versi
     val kotlin: NamedKotlinLibraries = NamedKotlinLibraries(versionCatalog)
     val robolectric: Provider<MinimalExternalModuleDependency>
         get() = versionCatalog.findLibrary("robolectric").get()
+
+    val woody230: NamedWoody230Libraries = NamedWoody230Libraries(versionCatalog)
 }

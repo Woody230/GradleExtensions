@@ -1,5 +1,5 @@
 import com.bselzer.gradle.internal.maven.publish.plugin.Licensing
-import com.bselzer.gradle.internal.plugin.publish.plugin.pluginPublishExtension
+import com.bselzer.gradle.internal.version.catalog.publish.plugin.versionCatalogPublishExtension
 
 allprojects {
     repositories {
@@ -17,13 +17,8 @@ buildscript {
     }
 
     dependencies {
-        classpath(libs.kotlin.plugin)
-        classpath(libs.publish.plugin)
         classpath(libs.kotlin.dsl.plugin)
-        classpath(libs.woody230.gradle.function)
-        classpath(libs.woody230.gradle.internal.maven.publish.plugin)
-        classpath(libs.woody230.gradle.multiplatform)
-        classpath(libs.woody230.gradle.internal.plugin.publish.plugin)
+        classpath(libs.woody230.gradle.internal.version.catalog.publish.plugin)
     }
 }
 
@@ -33,16 +28,14 @@ subprojects {
 
     // TODO Extension of type 'VersionCatalogsExtension' does not exist https://github.com/gradle/gradle/issues/31289
     afterEvaluate {
-        apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.plugin.publish.get().pluginId)
+        apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.version.catalog.publish.get().pluginId)
     }
 
-    pluginPublishExtension {
+    versionCatalogPublishExtension {
         coordinates.category.set("gradle.internal")
         version.set(rootProject.libs.versions.woody230.gradle)
         repository.set("https://github.com/Woody230/GradleExtensions")
         licensing.set(Licensing.APACHE_2_0)
-
-        tags.add("internal")
     }
 }
 
