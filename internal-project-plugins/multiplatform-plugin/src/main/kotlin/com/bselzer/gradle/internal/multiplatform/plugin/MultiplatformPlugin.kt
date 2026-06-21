@@ -3,7 +3,7 @@ package com.bselzer.gradle.internal.multiplatform.plugin
 import com.bselzer.gradle.function.toInt
 import com.bselzer.gradle.function.toJavaVersion
 import com.bselzer.gradle.function.toNumericString
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import com.bselzer.gradle.multiplatform.kotlinMultiplatformExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 class MultiplatformPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         val extension = multiplatformExtension {
-            jdkVersion.convention(libs.versions.java.jdk.requiredVersion.toJavaVersion())
+            jdkVersion.convention(BuildConfiguration.versions_java_jdk.toJavaVersion())
         }
 
         afterEvaluate {
@@ -24,7 +24,7 @@ class MultiplatformPlugin : Plugin<Project> {
             }
         }
 
-        pluginManager.apply(libs.plugins.multiplatform.get().pluginId)
+        pluginManager.apply(BuildConfiguration.plugins_multiplatform)
 
         // TODO https://github.com/gradle/gradle/issues/26061
         // The value for property 'languageVersion' is final and cannot be changed any further

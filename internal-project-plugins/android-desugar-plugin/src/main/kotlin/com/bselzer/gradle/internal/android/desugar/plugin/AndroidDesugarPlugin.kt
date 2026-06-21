@@ -2,7 +2,7 @@ package com.bselzer.gradle.internal.android.desugar.plugin
 
 import com.bselzer.gradle.android.commonDslAndroidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -18,8 +18,8 @@ class AndroidDesugarPlugin : Plugin<Project> {
 
             dependencies {
                 val dependency: Any = when {
-                    extension.version.isPresent -> "${libs.android.desugar.get().module}:${extension.version.get()}"
-                    else -> libs.android.desugar
+                    extension.version.isPresent -> "${BuildConfiguration.libs_android_desugar_module}:${extension.version.get()}"
+                    else -> BuildConfiguration.libs_android_desugar
                 }
 
                 add("coreLibraryDesugaring", dependency)

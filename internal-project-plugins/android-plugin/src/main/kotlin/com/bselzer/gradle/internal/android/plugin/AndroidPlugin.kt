@@ -4,7 +4,7 @@ import com.bselzer.gradle.android.commonDslAndroidComponentsExtension
 import com.bselzer.gradle.android.finalizeDslReceiver
 import com.bselzer.gradle.function.toJavaVersion
 import com.bselzer.gradle.function.toNumericString
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.assign
@@ -18,13 +18,13 @@ abstract class AndroidPlugin : Plugin<Project> {
             namespace.group.convention("com.bselzer")
             namespace.module.convention(name)
 
-            compileSdk.convention(libs.versions.android.compileSdk.requiredVersion.toInt())
-            minSdk.convention(libs.versions.android.minSdk.requiredVersion.toInt())
+            compileSdk.convention(BuildConfiguration.versions_android_compile_sdk)
+            minSdk.convention(BuildConfiguration.versions_android_min_sdk)
 
             testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
 
-            sourceCompatibility.convention(libs.versions.java.sourceCompatibility.requiredVersion.toJavaVersion())
-            targetCompatibility.convention(libs.versions.java.targetCompatibility.requiredVersion.toJavaVersion())
+            sourceCompatibility.convention(BuildConfiguration.versions_java_source_compatibility.toJavaVersion())
+            targetCompatibility.convention(BuildConfiguration.versions_java_target_compatibility.toJavaVersion())
 
             buildConfig.convention(false)
         }

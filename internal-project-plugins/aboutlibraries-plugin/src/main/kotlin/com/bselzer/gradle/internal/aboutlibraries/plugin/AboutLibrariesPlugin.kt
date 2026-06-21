@@ -1,32 +1,32 @@
 package com.bselzer.gradle.internal.aboutlibraries.plugin
 
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class AboutLibrariesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
-        pluginManager.apply(libs.plugins.aboutlibraries.get().pluginId)
+        pluginManager.apply(BuildConfiguration.plugins_aboutlibraries)
 
         configureMultiplatform()
         configureMokoResources()
     }
 
     private fun Project.configureMultiplatform() {
-        if (!pluginManager.hasPlugin(libs.plugins.multiplatform.get().pluginId)) {
+        if (!pluginManager.hasPlugin(BuildConfiguration.plugins_multiplatform)) {
             return
         }
 
         multiplatformDependencies {
             mainSourceSets {
-                implementation(libs.aboutlibraries.core)
+                implementation(BuildConfiguration.libs_aboutlibraries_core)
             }
         }
     }
 
     private fun Project.configureMokoResources() {
-        if (!pluginManager.hasPlugin(libs.plugins.moko.resources.get().pluginId)) {
+        if (!pluginManager.hasPlugin(BuildConfiguration.plugins_moko_resources)) {
             return
         }
 

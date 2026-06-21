@@ -2,7 +2,7 @@ package com.bselzer.gradle.internal.version.catalog.publish.plugin
 
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishExtension
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import com.vanniktech.maven.publish.Platform
 import org.gradle.api.Project
 import org.gradle.api.plugins.catalog.CatalogPluginExtension
@@ -28,7 +28,7 @@ class VersionCatalogPublishPlugin : MavenPublishPlugin() {
             }
         }
 
-        apply(plugin = libs.plugins.version.catalog.publish.get().pluginId)
+        apply(plugin = BuildConfiguration.plugins_version_catalog_publish)
         super.apply(project)
     }
 }

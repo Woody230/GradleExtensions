@@ -2,7 +2,7 @@ dependencies {
     api(gradleApi())
     api(libs.buildkonfig.plugin)
     api(libs.buildkonfig.compiler)
-    implementation(libs.woody230.gradle.internal.named.version.catalog)
+    implementation(libs.woody230.gradle.internal.build.configuration)
 }
 
 pluginPublishExtension {

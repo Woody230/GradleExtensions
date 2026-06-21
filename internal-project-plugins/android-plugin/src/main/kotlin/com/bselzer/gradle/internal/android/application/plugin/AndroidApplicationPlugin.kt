@@ -9,7 +9,7 @@ import com.bselzer.gradle.function.properties.compositeLocalProperties
 import com.bselzer.gradle.function.properties.containsKeys
 import com.bselzer.gradle.function.properties.getProperty
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Project
 import org.gradle.api.file.FileTree
 
@@ -18,13 +18,13 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         get() = androidApplicationExtension
 
     override fun apply(project: Project) = with(project) {
-        pluginManager.apply(libs.plugins.android.application.get().pluginId)
+        pluginManager.apply(BuildConfiguration.plugins_android_application)
         super.apply(project)
 
         setupGradleProperties()
 
         val extension = androidExtension.apply {
-            targetSdk.convention( libs.versions.android.targetSdk.requiredVersion.toInt())
+            targetSdk.convention(BuildConfiguration.versions_android_target_sdk)
             defaultProguardFile.convention(DefaultProguardFile.OPTIMIZED)
             buildConfig.convention(true)
         }

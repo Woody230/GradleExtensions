@@ -1,7 +1,7 @@
 package com.bselzer.gradle.internal.android.library.plugin
 
 import com.bselzer.gradle.internal.android.plugin.AndroidPlugin
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Project
 
 class AndroidLibraryPlugin : AndroidPlugin() {
@@ -9,7 +9,7 @@ class AndroidLibraryPlugin : AndroidPlugin() {
         get() = androidLibraryExtension
 
     override fun apply(project: Project) = with(project) {
-        pluginManager.apply(libs.plugins.android.application.get().pluginId)
+        pluginManager.apply(BuildConfiguration.plugins_android_application)
         super.apply(project)
     }
 }

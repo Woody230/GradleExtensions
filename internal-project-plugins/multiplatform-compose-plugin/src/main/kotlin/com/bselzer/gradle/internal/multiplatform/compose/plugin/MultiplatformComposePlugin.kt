@@ -3,7 +3,7 @@ package com.bselzer.gradle.internal.multiplatform.compose.plugin
 import com.android.build.api.dsl.CommonExtension
 import com.bselzer.gradle.android.commonDslAndroidComponentsExtensionOrNull
 import com.bselzer.gradle.android.finalizeDslReceiver
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -16,8 +16,8 @@ class MultiplatformComposePlugin : Plugin<Project> {
         }
 
         with (pluginManager) {
-            apply(libs.plugins.compose.asProvider().get().pluginId)
-            apply(libs.plugins.compose.compiler.get().pluginId)
+            apply(BuildConfiguration.plugins_compose)
+            apply(BuildConfiguration.plugins_compose_compiler)
         }
     }
 

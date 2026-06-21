@@ -142,19 +142,6 @@ Provides the `CompositeTaskPlugin`, which is used to:
 
 Provides the `ModuleId` interface for publishing coordinates.
 
-### named-version-catalog
-
-Provides a manual type-safe version catalog for dependencies used by plugins in the other modules.
-
-It generally follows the same dsl as the LibrariesForLibs used in scripts:
-```kotlin
-import com.bselzer.gradle.internal.named.version.catalog.libs
-
-val plugin = libs.plugins.android.application.get().pluginId
-val library = libs.androidx.test.compose.ui.asProvider()
-val version = libs.versions.android.minSdk.requiredVersion.toInt()
-```
-
 ## internal-project-plugins
 
 Plugins targeting a project intended to be used by my personal projects only.

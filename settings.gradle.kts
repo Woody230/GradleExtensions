@@ -30,8 +30,7 @@ includeBuild("internal-common") {
     substituteModulesUsingProjects(
         "io.github.woody230.gradle.internal:build-configuration" to ":build-configuration",
         "io.github.woody230.gradle.internal:composite-task" to ":composite-task",
-        "io.github.woody230.gradle.internal:models" to ":models",
-        "io.github.woody230.gradle.internal:named-version-catalog" to ":named-version-catalog"
+        "io.github.woody230.gradle.internal:models" to ":models"
     )
 }
 includeBuild("internal-publish-plugins") {

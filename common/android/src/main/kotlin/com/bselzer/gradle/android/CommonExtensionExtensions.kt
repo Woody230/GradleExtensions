@@ -3,7 +3,7 @@ package com.bselzer.gradle.android
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Project
 
 val Project.androidExtension: CommonExtension
@@ -11,7 +11,7 @@ val Project.androidExtension: CommonExtension
 
 val Project.androidExtensionOrNull: CommonExtension?
     get() = when {
-        pluginManager.hasPlugin(libs.plugins.android.application.get().pluginId) -> extensions.getByType(ApplicationExtension::class.java)
-        pluginManager.hasPlugin(libs.plugins.android.library.get().pluginId) -> extensions.getByType(LibraryExtension::class.java)
+        pluginManager.hasPlugin(BuildConfiguration.plugins_android_application) -> extensions.getByType(ApplicationExtension::class.java)
+        pluginManager.hasPlugin(BuildConfiguration.plugins_android_library) -> extensions.getByType(LibraryExtension::class.java)
         else -> null
     }

@@ -3,7 +3,7 @@ package com.bselzer.gradle.internal.multiplatform.publish.plugin
 import com.bselzer.gradle.function.properties.getBooleanPropertyOrFalse
 import com.bselzer.gradle.function.properties.injectLocalProperty
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
-import com.bselzer.gradle.internal.named.version.catalog.libs
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.Platform
@@ -38,7 +38,7 @@ class MultiplatformPublishPlugin : MavenPublishPlugin() {
     override fun apply(project: Project) = with(project) {
         setupGradleProperties()
 
-        pluginManager.apply(libs.plugins.dokka.get().pluginId)
+        pluginManager.apply(BuildConfiguration.plugins_dokka)
 
         super.apply(project)
     }

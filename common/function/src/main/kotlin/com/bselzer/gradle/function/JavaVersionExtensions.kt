@@ -71,4 +71,4 @@ fun JavaVersion.toInt(): Int = when (this) {
     JavaVersion.VERSION_30 -> 30
 }
 
-fun String.toJavaVersion() = JavaVersion.valueOf(this)
+fun String.toJavaVersion() = JavaVersion.valueOf("VERSION_$this")

@@ -5,7 +5,7 @@ plugins {
 dependencies {
     api(libs.dokka.plugin)
     api(projects.mavenPublishPlugin)
-    implementation(libs.woody230.gradle.internal.named.version.catalog)
+    implementation(libs.woody230.gradle.internal.build.configuration)
 }
 
 val pluginDescription = "Internal publishing for Kotlin JVM projects."
