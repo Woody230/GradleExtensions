@@ -17,15 +17,12 @@ buildscript {
     }
 
     dependencies {
-        classpath(libs.kotlin.dsl.plugin)
         classpath(libs.woody230.gradle.internal.version.catalog.publish.plugin)
     }
 }
 
 // NOTE must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
 subprojects {
-    apply(plugin = rootProject.libs.plugins.kotlin.dsl.get().pluginId)
-
     // TODO Extension of type 'VersionCatalogsExtension' does not exist https://github.com/gradle/gradle/issues/31289
     afterEvaluate {
         apply(plugin = rootProject.libs.plugins.woody230.gradle.internal.version.catalog.publish.get().pluginId)

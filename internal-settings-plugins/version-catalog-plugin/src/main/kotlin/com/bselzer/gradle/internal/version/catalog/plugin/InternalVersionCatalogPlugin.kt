@@ -7,6 +7,11 @@ import org.gradle.api.initialization.Settings
 class InternalVersionCatalogPlugin : Plugin<Settings> {
     override fun apply(settings: Settings) = with(settings) {
         dependencyResolutionManagement {
+            repositories {
+                mavenCentral()
+                mavenLocal()
+            }
+
             versionCatalogs {
                 create("ioGithubWoody230GradleInternalLibs") {
                     from(BuildConfiguration.LIBS_DEPENDENCY_NOTATION)
