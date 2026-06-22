@@ -65,8 +65,8 @@ Kotlin Multiplatform gradle plugin extensions:
     * jvmMain
     * jvmTest
     * androidMain
-    * androidUnitTest
-    * androidInstrumentedTest
+    * androidHostTest
+    * androidDeviceTest
 
 ```kotlin
 kotlin {

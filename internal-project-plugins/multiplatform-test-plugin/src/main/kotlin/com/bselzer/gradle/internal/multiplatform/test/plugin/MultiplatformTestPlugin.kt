@@ -13,7 +13,7 @@ class MultiplatformTestPlugin : Plugin<Project> {
                 implementation(BuildConfiguration.libs_kotlin_test_annotations)
                 implementation(BuildConfiguration.libs_kotlin_reflect)
             }
-            maybeAndroidUnitTest {
+            maybeAndroidHostTest {
                 implementation(BuildConfiguration.libs_kotlin_test_junit)
                 implementation(BuildConfiguration.libs_kotlin_reflect)
                 implementation(BuildConfiguration.libs_androidx_test_core)

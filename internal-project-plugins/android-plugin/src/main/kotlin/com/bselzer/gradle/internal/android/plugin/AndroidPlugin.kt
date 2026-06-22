@@ -1,7 +1,11 @@
 package com.bselzer.gradle.internal.android.plugin
 
-import com.bselzer.gradle.android.commonDslAndroidComponentsExtension
+import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
+import com.bselzer.gradle.android.applicationAndroidComponentsExtensionOrNull
 import com.bselzer.gradle.android.finalizeDslReceiver
+import com.bselzer.gradle.android.libraryAndroidComponentsExtensionOrNull
+import com.bselzer.gradle.android.multiplatformLibraryAndroidComponentsExtensionOrNull
 import com.bselzer.gradle.function.toJavaVersion
 import com.bselzer.gradle.function.toNumericString
 import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
@@ -31,29 +35,51 @@ abstract class AndroidPlugin : Plugin<Project> {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        commonDslAndroidComponentsExtension.finalizeDslReceiver {
-            namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
-            compileSdk = extension.compileSdk.get()
-
-            with (defaultConfig) {
-                minSdk = extension.minSdk.get()
-                testInstrumentationRunner = extension.testInstrumentationRunner.get()
-            }
-
-            buildFeatures.buildConfig = extension.buildConfig.get()
-
-            with (compileOptions) {
-                sourceCompatibility = extension.sourceCompatibility.get()
-                targetCompatibility = extension.targetCompatibility.get()
-            }
-
-            testOptions.unitTests.isIncludeAndroidResources = true
-        }
+        applicationAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureAndroid(androidExtension) }
+        libraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureAndroid(androidExtension) }
+        multiplatformLibraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureAndroid(androidExtension) }
 
         afterEvaluate {
             tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
                 compilerOptions.jvmTarget = JvmTarget.fromTarget(extension.targetCompatibility.get().toNumericString())
             }
+        }
+    }
+
+    private fun CommonExtension.configureAndroid(extension: AndroidExtension) {
+        namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
+        compileSdk = extension.compileSdk.get()
+
+        with (defaultConfig) {
+            minSdk = extension.minSdk.get()
+            testInstrumentationRunner = extension.testInstrumentationRunner.get()
+        }
+
+        buildFeatures.buildConfig = extension.buildConfig.get()
+
+        with (compileOptions) {
+            sourceCompatibility = extension.sourceCompatibility.get()
+            targetCompatibility = extension.targetCompatibility.get()
+        }
+
+        testOptions.unitTests.isIncludeAndroidResources = true
+    }
+
+    private fun KotlinMultiplatformAndroidLibraryExtension.configureAndroid(extension: AndroidExtension) {
+        namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
+        compileSdk = extension.compileSdk.get()
+        minSdk = extension.minSdk.get()
+
+        withHostTest {
+            isIncludeAndroidResources = true
+        }
+        withDeviceTest {
+            instrumentationRunner = extension.testInstrumentationRunner.get()
+            execution = "HOST"
+        }
+
+        androidResources {
+            enable = true
         }
     }
 }

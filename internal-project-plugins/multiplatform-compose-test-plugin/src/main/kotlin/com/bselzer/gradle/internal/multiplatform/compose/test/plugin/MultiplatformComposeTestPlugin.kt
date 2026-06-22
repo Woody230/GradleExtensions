@@ -8,7 +8,7 @@ import org.gradle.api.Project
 class MultiplatformComposeTestPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         multiplatformDependencies {
-            maybeAndroidUnitTest {
+            maybeAndroidHostTest {
                 implementation(BuildConfiguration.libs_androidx_test_compose_ui)
                 implementation(BuildConfiguration.libs_androidx_test_compose_ui_junit)
                 implementation(BuildConfiguration.libs_androidx_test_compose_ui_manifest)
