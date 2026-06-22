@@ -1,8 +1,8 @@
 [versions]
 aboutlibraries = "15.0.0"
-android-compileSdk = "36"
+android-compileSdk = "37"
 android-minSdk = "21"
-android-targetSdk = "36"
+android-targetSdk = "37"
 android-gradle-plugin = "9.2.1"
 androidx-compose = "1.11.2"
 buildkonfig = "0.21.2"
