@@ -176,7 +176,7 @@ plugins {
 
 #### AndroidDesugarExtension
 
-* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default value of `2.0.3`.
+* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default value of `2.1.5`.
 
 ### android-plugin
 
@@ -206,7 +206,7 @@ Required
 
 Optional
 
-* **[compileSdk]**: The API level to compile against. Optional with a default value of 33.
+* **[compileSdk]**: The API level to compile against. Optional with a default value of 37.
 * **[minSdk]**: The minimum API level required. Optional with a default value of 21.
 * **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
 * **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
@@ -269,7 +269,7 @@ Required
 Optional
 
 * **[applicationId]**: The id of the application. Optional with a default value of the **[namespace.group]**, **[namespace.category]**, **[namespace.module]** separated by a period (`.`)
-* **[targetSdk]**: The target API level. Optional with a default value of 33.
+* **[targetSdk]**: The target API level. Optional with a default value of 37.
 * **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional with a default value of `OPTIMIZED`.
 * **[buildConfig]**: Whether the build config is enabled. Optional with a default value of true.
 
