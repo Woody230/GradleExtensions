@@ -70,10 +70,15 @@ abstract class AndroidPlugin : Plugin<Project> {
         compileSdk = extension.compileSdk.get()
         minSdk = extension.minSdk.get()
 
-        withHostTest {
+        withHostTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
             isIncludeAndroidResources = true
         }
-        withDeviceTest {
+
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
             instrumentationRunner = extension.testInstrumentationRunner.get()
             execution = "HOST"
         }
