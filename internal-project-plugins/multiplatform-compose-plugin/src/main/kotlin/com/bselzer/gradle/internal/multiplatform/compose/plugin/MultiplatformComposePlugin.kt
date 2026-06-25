@@ -15,9 +15,20 @@ class MultiplatformComposePlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        applicationAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureCompose() }
-        libraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureCompose() }
-        multiplatformLibraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureCompose() }
+        applicationAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring compose for an Android application.")
+            configureCompose()
+        }
+
+        libraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring compose for an Android library.")
+            configureCompose()
+        }
+
+        multiplatformLibraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring compose for an Android multiplatform library.")
+            configureCompose()
+        }
 
         with (pluginManager) {
             apply(BuildConfiguration.plugins_compose)

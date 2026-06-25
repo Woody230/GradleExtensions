@@ -19,7 +19,10 @@ class MultiplatformAndroidLibraryPlugin : AndroidPlugin() {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        multiplatformLibraryAndroidComponentsExtension.finalizeDslReceiver { finalizeConfigureAndroid(androidExtension) }
+        multiplatformLibraryAndroidComponentsExtension.finalizeDslReceiver {
+            logger.info("Finalizing the Android multiplatform library.")
+            finalizeConfigureAndroid(androidExtension)
+        }
     }
 
     private fun KotlinMultiplatformAndroidLibraryExtension.finalizeConfigureAndroid(extension: AndroidExtension) {

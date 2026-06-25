@@ -17,6 +17,9 @@ class AndroidLibraryPlugin : AndroidPlugin() {
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        libraryAndroidComponentsExtension.finalizeDslReceiver { finalizeConfigureAndroid(androidExtension) }
+        libraryAndroidComponentsExtension.finalizeDslReceiver {
+            logger.info("Finalizing the Android library.")
+            finalizeConfigureAndroid(androidExtension)
+        }
     }
 }

@@ -9,6 +9,7 @@ class MultiplatformComposeTestPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         multiplatformDependencies {
             maybeAndroidHostTest {
+                logger.info("Adding compose test dependencies for androidHostTest")
                 implementation(BuildConfiguration.libs_androidx_test_compose_ui)
                 implementation(BuildConfiguration.libs_androidx_test_compose_ui_junit)
                 implementation(BuildConfiguration.libs_androidx_test_compose_ui_manifest)

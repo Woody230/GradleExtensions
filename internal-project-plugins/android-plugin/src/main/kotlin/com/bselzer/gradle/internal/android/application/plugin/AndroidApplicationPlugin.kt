@@ -22,10 +22,6 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
         super.apply(project)
 
-        // NOTE: Must configure in finalizeDsl not afterEvaluate
-        // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        applicationAndroidComponentsExtension.finalizeDslReceiver { finalizeConfigureAndroid(androidExtension) }
-
         setupGradleProperties()
 
         val extension = androidExtension.apply {
@@ -37,6 +33,9 @@ class AndroidApplicationPlugin : AndroidPlugin() {
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
         applicationAndroidComponentsExtension.finalizeDslReceiver {
+            logger.info("Finalizing the Android application.")
+            finalizeConfigureAndroid(androidExtension)
+
             defaultConfig {
                 applicationId = if (extension.applicationId.isPresent) extension.applicationId.get() else namespace
                 targetSdk = extension.targetSdk.get()

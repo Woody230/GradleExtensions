@@ -16,16 +16,19 @@ class AndroidDesugarPlugin : Plugin<Project> {
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
         applicationAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring desugaring for an Android application.")
             compileOptions.isCoreLibraryDesugaringEnabled = true
             addDesugaringDependency(extension)
         }
 
         libraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring desugaring for an Android library.")
             compileOptions.isCoreLibraryDesugaringEnabled = true
             addDesugaringDependency(extension)
         }
 
         multiplatformLibraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring desugaring for an Android multiplatform library.")
             enableCoreLibraryDesugaring = true
             addDesugaringDependency(extension)
         }
