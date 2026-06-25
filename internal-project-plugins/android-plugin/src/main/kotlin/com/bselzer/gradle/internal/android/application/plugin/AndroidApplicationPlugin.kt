@@ -19,7 +19,12 @@ class AndroidApplicationPlugin : AndroidPlugin() {
 
     override fun apply(project: Project) = with(project) {
         pluginManager.apply(BuildConfiguration.plugins_android_application)
+
         super.apply(project)
+
+        // NOTE: Must configure in finalizeDsl not afterEvaluate
+        // https://developer.android.com/build/extend-agp#build-flow-extension-points
+        applicationAndroidComponentsExtension.finalizeDslReceiver { finalizeConfigureAndroid(androidExtension) }
 
         setupGradleProperties()
 

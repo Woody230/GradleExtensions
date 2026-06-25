@@ -1,11 +1,6 @@
 package com.bselzer.gradle.internal.android.plugin
 
 import com.android.build.api.dsl.CommonExtension
-import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
-import com.bselzer.gradle.android.applicationAndroidComponentsExtensionOrNull
-import com.bselzer.gradle.android.finalizeDslReceiver
-import com.bselzer.gradle.android.libraryAndroidComponentsExtensionOrNull
-import com.bselzer.gradle.android.multiplatformLibraryAndroidComponentsExtensionOrNull
 import com.bselzer.gradle.function.toJavaVersion
 import com.bselzer.gradle.function.toNumericString
 import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
@@ -33,12 +28,6 @@ abstract class AndroidPlugin : Plugin<Project> {
             buildConfig.convention(false)
         }
 
-        // NOTE: Must configure in finalizeDsl not afterEvaluate
-        // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        applicationAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureAndroid(androidExtension) }
-        libraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureAndroid(androidExtension) }
-        multiplatformLibraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver { configureAndroid(androidExtension) }
-
         afterEvaluate {
             tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
                 compilerOptions.jvmTarget = JvmTarget.fromTarget(extension.targetCompatibility.get().toNumericString())
@@ -46,7 +35,7 @@ abstract class AndroidPlugin : Plugin<Project> {
         }
     }
 
-    private fun CommonExtension.configureAndroid(extension: AndroidExtension) {
+    protected fun CommonExtension.finalizeConfigureAndroid(extension: AndroidExtension) {
         namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
         compileSdk = extension.compileSdk.get()
 
@@ -63,28 +52,5 @@ abstract class AndroidPlugin : Plugin<Project> {
         }
 
         testOptions.unitTests.isIncludeAndroidResources = true
-    }
-
-    private fun KotlinMultiplatformAndroidLibraryExtension.configureAndroid(extension: AndroidExtension) {
-        namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
-        compileSdk = extension.compileSdk.get()
-        minSdk = extension.minSdk.get()
-
-        withHostTestBuilder {
-            sourceSetTreeName = "test"
-        }.configure {
-            isIncludeAndroidResources = true
-        }
-
-        withDeviceTestBuilder {
-            sourceSetTreeName = "test"
-        }.configure {
-            instrumentationRunner = extension.testInstrumentationRunner.get()
-            execution = "HOST"
-        }
-
-        androidResources {
-            enable = true
-        }
     }
 }
