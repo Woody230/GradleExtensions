@@ -47,7 +47,7 @@ class AndroidApplicationPlugin : AndroidPlugin() {
                 include("*.pro")
             })
 
-            if (properties.containsKey(GradleProperty.STORE_FILE)) {
+            if (findProperty(GradleProperty.STORE_FILE) != null) {
                 signing(this)
             }
         }
