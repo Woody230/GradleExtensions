@@ -13,11 +13,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
         configureMokoResources()
     }
 
-    private fun Project.configureMultiplatform() {
-        if (!pluginManager.hasPlugin(BuildConfiguration.plugins_multiplatform)) {
-            return
-        }
-
+    private fun Project.configureMultiplatform() =  pluginManager.withPlugin(BuildConfiguration.plugins_multiplatform) {
         multiplatformDependencies {
             mainSourceSets {
                 implementation(BuildConfiguration.libs_aboutlibraries_core)
@@ -25,11 +21,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
         }
     }
 
-    private fun Project.configureMokoResources() {
-        if (!pluginManager.hasPlugin(BuildConfiguration.plugins_moko_resources)) {
-            return
-        }
-
+    private fun Project.configureMokoResources() = pluginManager.withPlugin(BuildConfiguration.plugins_moko_resources) {
         val sourceSetName = "commonMain"
         val aboutLibrariesResource = tasks.register("aboutLibrariesResource") {
             dependsOn("exportLibraryDefinitions")
