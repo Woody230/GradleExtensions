@@ -53,7 +53,7 @@ class MultiplatformTestPlugin : Plugin<Project> {
         }
 
         multiplatformLibraryAndroidComponentsExtension.onVariants { variant ->
-            variant.sources.resources?.addGeneratedSourceDirectory(
+            variant.testFixtures?.sources?.resources?.addGeneratedSourceDirectory(
                 taskProvider = generateRobolectricPropertiesTask,
                 wiredWith = GenerateRobolectricPropertiesTask::outputDir
             )
