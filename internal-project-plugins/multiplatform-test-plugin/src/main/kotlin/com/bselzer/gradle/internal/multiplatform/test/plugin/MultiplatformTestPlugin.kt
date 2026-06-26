@@ -53,10 +53,12 @@ class MultiplatformTestPlugin : Plugin<Project> {
         }
 
         multiplatformLibraryAndroidComponentsExtension.onVariants { variant ->
-            variant.testFixtures?.sources?.resources?.addGeneratedSourceDirectory(
-                taskProvider = generateRobolectricPropertiesTask,
-                wiredWith = GenerateRobolectricPropertiesTask::outputDir
-            )
+            variant.hostTests.values.forEach { hostTest ->
+                hostTest.sources.resources?.addGeneratedSourceDirectory(
+                    taskProvider = generateRobolectricPropertiesTask,
+                    wiredWith = GenerateRobolectricPropertiesTask::outputDir
+                )
+            }
         }
     }
 
