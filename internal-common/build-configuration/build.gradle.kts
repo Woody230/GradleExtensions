@@ -48,6 +48,7 @@ buildkonfig {
         buildConfigField(FieldSpec.Type.INT, "versions_android_compile_sdk", libs.versions.android.compileSdk.get(), nullable = false, const = true)
         buildConfigField(FieldSpec.Type.INT, "versions_android_min_sdk", libs.versions.android.minSdk.get(), nullable = false, const = true)
         buildConfigField(FieldSpec.Type.INT, "versions_android_target_sdk", libs.versions.android.targetSdk.get(), nullable = false, const = true)
+        buildConfigField(FieldSpec.Type.INT, "versions_android_robolectric_sdk", libs.versions.android.robolectricSdk.get(), nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "versions_java_jdk", libs.versions.java.jdk.get(), nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "versions_java_source_compatibility", libs.versions.java.sourceCompatibility.get(), nullable = false, const = true)
         buildConfigField(FieldSpec.Type.STRING, "versions_java_target_compatibility", libs.versions.java.targetCompatability.get(), nullable = false, const = true)
