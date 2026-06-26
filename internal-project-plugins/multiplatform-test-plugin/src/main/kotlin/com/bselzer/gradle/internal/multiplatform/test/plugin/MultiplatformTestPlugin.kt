@@ -12,6 +12,7 @@ import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.testing.AbstractTestTask
 import org.gradle.kotlin.dsl.register
 
 class MultiplatformTestPlugin : Plugin<Project> {
@@ -37,6 +38,11 @@ class MultiplatformTestPlugin : Plugin<Project> {
                 implementation(BuildConfiguration.libs_kotlin_test_junit)
                 implementation(BuildConfiguration.libs_kotlin_reflect)
             }
+        }
+
+        // NOTE: https://github.com/gradle/gradle/issues/33619
+        tasks.withType(AbstractTestTask::class.java).configureEach {
+            failOnNoDiscoveredTests.set(false)
         }
     }
 
