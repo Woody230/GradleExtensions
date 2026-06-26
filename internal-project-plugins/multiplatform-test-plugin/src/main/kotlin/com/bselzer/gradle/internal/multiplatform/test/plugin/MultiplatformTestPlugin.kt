@@ -69,7 +69,10 @@ class MultiplatformTestPlugin : Plugin<Project> {
 
         @TaskAction
         fun generate() = outputDir.get().asFile
-            .also { it.mkdirs() }
+            .also { directory ->
+                logger.debug("robolectric.properties directory: ${directory.absolutePath}")
+                directory.mkdirs()
+            }
             .resolve("robolectric.properties")
             .writeText("sdk=${sdk.get()}")
     }
