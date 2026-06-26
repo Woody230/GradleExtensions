@@ -208,8 +208,8 @@ Optional
 
 * **[compileSdk]**: The API level to compile against. Optional with a default value of 37.
 * **[minSdk]**: The minimum API level required. Optional with a default value of 23.
-* **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
-* **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
+* **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 21.
+* **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 21.
 * **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a default value of `androidx.test.runner.AndroidJUnitRunner`.
 * **[buildConfig]**: Whether the build config is enabled. Optional with a default value of false.
 
@@ -360,7 +360,7 @@ plugins {
 
 #### MultiplatformExtension
 
-* **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 11.
+* **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 21.
 
 #### multiplatform-android-target
 
