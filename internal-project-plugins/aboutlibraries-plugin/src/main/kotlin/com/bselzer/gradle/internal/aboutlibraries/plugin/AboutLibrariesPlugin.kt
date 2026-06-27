@@ -1,54 +1,41 @@
 package com.bselzer.gradle.internal.aboutlibraries.plugin
 
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import com.bselzer.gradle.multiplatform.configure.sourceset.multiplatformDependencies
-import com.mikepenz.aboutlibraries.plugin.AboutLibrariesExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.getByType
 
 class AboutLibrariesPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
-        // TODO libs.plugins.aboutlibraries.get().pluginId
-        pluginManager.apply("com.mikepenz.aboutlibraries.plugin")
+        pluginManager.apply(BuildConfiguration.plugins_aboutlibraries)
 
         configureMultiplatform()
         configureMokoResources()
     }
 
-    private fun Project.configureMultiplatform() {
-        // TODO libs.plugins.multiplatform.get().pluginId
-        if (!pluginManager.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
-            return
-        }
-
+    private fun Project.configureMultiplatform() =  pluginManager.withPlugin(BuildConfiguration.plugins_multiplatform) {
         multiplatformDependencies {
             mainSourceSets {
-                // TODO libs.aboutlibraries.core
-                implementation("com.mikepenz:aboutlibraries-core:11.2.3")
+                implementation(BuildConfiguration.libs_aboutlibraries_core)
             }
-        }
-
-        with(extensions.getByType<AboutLibrariesExtension>()) {
-            registerAndroidTasks = false
         }
     }
 
-    private fun Project.configureMokoResources() {
-        // TODO libs.plugins.moko.resources.get().pluginId
-        if (!pluginManager.hasPlugin("dev.icerock.mobile.multiplatform-resources")) {
-            return
-        }
-
+    private fun Project.configureMokoResources() = pluginManager.withPlugin(BuildConfiguration.plugins_moko_resources) {
         val sourceSetName = "commonMain"
-        val aboutLibrariesResource = task("aboutLibrariesResource") {
+        val aboutLibrariesResource = tasks.register("aboutLibrariesResource") {
             dependsOn("exportLibraryDefinitions")
 
             // Move aboutlibraries.json so that it can be used by moko-resources.
             copy {
-                from("${layout.buildDirectory}\\generated\\aboutLibraries") {
+                val from = "${layout.buildDirectory.get()}\\generated\\aboutLibraries"
+                val to = "$projectDir\\src\\$sourceSetName\\moko-resources\\assets"
+                logger.info("Copying the aboutLibraries.json from '$from' to '$to'.")
+
+                from(from) {
                     include("aboutlibraries.json")
                 }
-                into("$projectDir\\src\\$sourceSetName\\moko-resources\\assets")
+                into(to)
             }
         }
 

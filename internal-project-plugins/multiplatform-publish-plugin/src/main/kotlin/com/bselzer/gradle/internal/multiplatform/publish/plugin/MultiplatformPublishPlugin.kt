@@ -3,9 +3,11 @@ package com.bselzer.gradle.internal.multiplatform.publish.plugin
 import com.bselzer.gradle.function.properties.getBooleanPropertyOrFalse
 import com.bselzer.gradle.function.properties.injectLocalProperty
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.Platform
+import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.Project
 
 class MultiplatformPublishPlugin : MavenPublishPlugin() {
@@ -17,7 +19,7 @@ class MultiplatformPublishPlugin : MavenPublishPlugin() {
             val jar: JavadocJar
             if (getBooleanPropertyOrFalse(GradleProperty.JAVADOC_ENABLED)) {
                 logger.lifecycle("Publishing with javadoc using dokka.")
-                jar = JavadocJar.Dokka("dokkaHtml")
+                jar = JavadocJar.Dokka("dokkaGenerateHtml")
             }
             else {
                 logger.lifecycle("Publishing without javadoc.")
@@ -27,14 +29,16 @@ class MultiplatformPublishPlugin : MavenPublishPlugin() {
             val sourcesEnabled = getBooleanPropertyOrFalse(GradleProperty.SOURCES_ENABLED)
             logger.lifecycle("Publishing with sources ${if (sourcesEnabled) "enabled" else "disabled"}.")
 
-            return KotlinMultiplatform(javadocJar = jar, sourcesJar = sourcesEnabled)
+            return KotlinMultiplatform(
+                javadocJar = jar,
+                sourcesJar = if (sourcesEnabled) SourcesJar.Sources() else SourcesJar.Empty()
+            )
         }
 
     override fun apply(project: Project) = with(project) {
         setupGradleProperties()
 
-        // TODO libs.plugins.dokka.get().pluginId
-        pluginManager.apply("org.jetbrains.dokka")
+        pluginManager.apply(BuildConfiguration.plugins_dokka)
 
         super.apply(project)
     }

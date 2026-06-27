@@ -5,6 +5,7 @@ plugins {
 dependencies {
     api(gradleApi())
     api(libs.android.plugin)
+    implementation(libs.woody230.gradle.internal.build.configuration)
 }
 
 mavenPublishing {

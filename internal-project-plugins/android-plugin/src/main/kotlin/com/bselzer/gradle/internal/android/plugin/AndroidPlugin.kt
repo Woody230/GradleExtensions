@@ -1,9 +1,9 @@
 package com.bselzer.gradle.internal.android.plugin
 
-import com.bselzer.gradle.android.androidComponentsExtension
-import com.bselzer.gradle.android.finalizeDslReceiver
+import com.android.build.api.dsl.CommonExtension
+import com.bselzer.gradle.function.toJavaVersion
 import com.bselzer.gradle.function.toNumericString
-import org.gradle.api.JavaVersion
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.assign
@@ -17,45 +17,15 @@ abstract class AndroidPlugin : Plugin<Project> {
             namespace.group.convention("com.bselzer")
             namespace.module.convention(name)
 
-            // TODO libs.versions.android.compileSdk.get().toInt()
-            compileSdk.convention(35)
-
-            // TODO libs.versions.android.minSdk.get().toInt()
-            minSdk.convention(21)
+            compileSdk.convention(BuildConfiguration.versions_android_compile_sdk)
+            minSdk.convention(BuildConfiguration.versions_android_min_sdk)
 
             testInstrumentationRunner.convention("androidx.test.runner.AndroidJUnitRunner")
 
-            // TODO libs.versions.java.sourceCompatibility.get().toJavaVersion()
-            sourceCompatibility.convention(JavaVersion.VERSION_11)
+            sourceCompatibility.convention(BuildConfiguration.versions_java_source_compatibility.toJavaVersion())
+            targetCompatibility.convention(BuildConfiguration.versions_java_target_compatibility.toJavaVersion())
 
-            // TODO libs.versions.java.targetCompatability.get().toJavaVersion()
-            targetCompatibility.convention(JavaVersion.VERSION_11)
             buildConfig.convention(false)
-        }
-
-        // NOTE: Must configure in finalizeDsl not afterEvaluate
-        // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        androidComponentsExtension.finalizeDslReceiver {
-            namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
-            compileSdk = extension.compileSdk.get()
-            defaultConfig {
-                minSdk = extension.minSdk.get()
-                testInstrumentationRunner = extension.testInstrumentationRunner.get()
-            }
-            buildFeatures {
-                buildConfig = extension.buildConfig.get()
-            }
-            compileOptions {
-                sourceCompatibility = extension.sourceCompatibility.get()
-                targetCompatibility = extension.targetCompatibility.get()
-            }
-            testOptions {
-                unitTests {
-                    androidResources {
-                        isIncludeAndroidResources = true
-                    }
-                }
-            }
         }
 
         afterEvaluate {
@@ -63,5 +33,24 @@ abstract class AndroidPlugin : Plugin<Project> {
                 compilerOptions.jvmTarget = JvmTarget.fromTarget(extension.targetCompatibility.get().toNumericString())
             }
         }
+    }
+
+    protected fun CommonExtension.finalizeConfigureAndroid(extension: AndroidExtension) {
+        namespace = "${extension.namespace.group.get()}.${extension.namespace.category.get()}.${extension.namespace.module.get()}".replace("-", ".")
+        compileSdk = extension.compileSdk.get()
+
+        with (defaultConfig) {
+            minSdk = extension.minSdk.get()
+            testInstrumentationRunner = extension.testInstrumentationRunner.get()
+        }
+
+        buildFeatures.buildConfig = extension.buildConfig.get()
+
+        with (compileOptions) {
+            sourceCompatibility = extension.sourceCompatibility.get()
+            targetCompatibility = extension.targetCompatibility.get()
+        }
+
+        testOptions.unitTests.isIncludeAndroidResources = true
     }
 }

@@ -4,6 +4,7 @@ import com.bselzer.gradle.internal.composite.build.plugin.CompositeBuildPlugin
 import com.bselzer.gradle.internal.composite.property.plugin.CompositePropertyPlugin
 import com.bselzer.gradle.internal.composite.publish.plugin.CompositePublishPlugin
 import com.bselzer.gradle.internal.composite.test.plugin.CompositeTestPlugin
+import com.bselzer.gradle.internal.version.catalog.plugin.InternalVersionCatalogPlugin
 import com.bselzer.gradle.internal.version.catalog.plugin.VersionCatalogPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -43,6 +44,7 @@ class BundledPlugin : Plugin<Settings> {
         plugins.apply(CompositePublishPlugin::class.java)
         plugins.apply(CompositeTestPlugin::class.java)
         plugins.apply(VersionCatalogPlugin::class.java)
+        plugins.apply(InternalVersionCatalogPlugin::class.java)
     }
 
     private fun Settings.applyToolchainPlugin() {

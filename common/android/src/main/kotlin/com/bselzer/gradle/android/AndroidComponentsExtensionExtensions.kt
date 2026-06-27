@@ -1,7 +1,9 @@
 package com.bselzer.gradle.android
 
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Project
 
@@ -23,8 +25,20 @@ val Project.libraryAndroidComponentsExtension: LibraryAndroidComponentsExtension
 val Project.libraryAndroidComponentsExtensionOrNull: LibraryAndroidComponentsExtension?
     get() = extensions.findByType(LibraryAndroidComponentsExtension::class.java)
 
+val Project.multiplatformLibraryAndroidComponentsExtension: KotlinMultiplatformAndroidComponentsExtension
+    get() = extensions.getByType(KotlinMultiplatformAndroidComponentsExtension::class.java)
+
+val Project.multiplatformLibraryAndroidComponentsExtensionOrNull: KotlinMultiplatformAndroidComponentsExtension?
+    get() = extensions.findByType(KotlinMultiplatformAndroidComponentsExtension::class.java)
+
 fun <CommonExtension> AndroidComponentsExtension<CommonExtension, *, *>.finalizeDslReceiver(
     configure: CommonExtension.() -> Unit
-) where CommonExtension : com.android.build.api.dsl.CommonExtension<*, *, *, *, *, *> {
+) where CommonExtension : com.android.build.api.dsl.CommonExtension {
+    finalizeDsl(configure)
+}
+
+fun KotlinMultiplatformAndroidComponentsExtension.finalizeDslReceiver(
+    configure: KotlinMultiplatformAndroidLibraryExtension.() -> Unit
+) {
     finalizeDsl(configure)
 }

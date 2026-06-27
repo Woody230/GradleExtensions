@@ -32,8 +32,10 @@ implementation("io.github.woody230.gradle.internal:$Module:$Version")
 Modules exist within multiple builds that are included within the root project as a composite:
 
 * [common](#common)
+* [internal-common](#internal-common)
 * [internal-plugins](#internal-plugins)
 * [internal-publish-plugins](#internal-publish-plugins)
+* [internal-version-catalog](#internal-version-catalog)
 
 ## common
 
@@ -63,8 +65,8 @@ Kotlin Multiplatform gradle plugin extensions:
     * jvmMain
     * jvmTest
     * androidMain
-    * androidUnitTest
-    * androidInstrumentedTest
+    * androidHostTest
+    * androidDeviceTest
 
 ```kotlin
 kotlin {
@@ -122,6 +124,24 @@ kotlin {
 }
 ```
 
+## internal-common
+
+Internal extensions for Gradle intended to be used by my personal projects only.
+
+### build-configuration
+
+Provides the `BuildConfiguration` class used to provide metadata for other modules.
+
+### composite-task
+
+Provides the `CompositeTaskPlugin`, which is used to:
+* Register tasks recursively for the included builds.
+* Depend on tasks from the included builds in the root build.
+
+### models
+
+Provides the `ModuleId` interface for publishing coordinates.
+
 ## internal-project-plugins
 
 Plugins targeting a project intended to be used by my personal projects only.
@@ -156,7 +176,7 @@ plugins {
 
 #### AndroidDesugarExtension
 
-* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default value of `2.0.3`.
+* **[version]**: The version of the `com.android.tools:desugar_jdk_libs` dependency to apply. Optional with a default value of `2.1.5`.
 
 ### android-plugin
 
@@ -186,10 +206,10 @@ Required
 
 Optional
 
-* **[compileSdk]**: The API level to compile against. Optional with a default value of 33.
-* **[minSdk]**: The minimum API level required. Optional with a default value of 21.
-* **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 11.
-* **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 11.
+* **[compileSdk]**: The API level to compile against. Optional with a default value of 37.
+* **[minSdk]**: The minimum API level required. Optional with a default value of 23.
+* **[sourceCompatibility]**: The language level of the java source code. Optional with a default value of 21.
+* **[targetCompatibility]**: The version of the generated Java bytecode. Optional with a default value of 21.
 * **[testInstrumentationRunner]**: The fully qualified class name of the test instrumentation runner. Optional with a default value of `androidx.test.runner.AndroidJUnitRunner`.
 * **[buildConfig]**: Whether the build config is enabled. Optional with a default value of false.
 
@@ -249,7 +269,7 @@ Required
 Optional
 
 * **[applicationId]**: The id of the application. Optional with a default value of the **[namespace.group]**, **[namespace.category]**, **[namespace.module]** separated by a period (`.`)
-* **[targetSdk]**: The target API level. Optional with a default value of 33.
+* **[targetSdk]**: The target API level. Optional with a default value of 37.
 * **[defaultProguardFile]**: The type of default proguard file. Must be either `UNOPTIMIZED` or `OPTIMIZED`. Optional with a default value of `OPTIMIZED`.
 * **[buildConfig]**: Whether the build config is enabled. Optional with a default value of true.
 
@@ -265,6 +285,21 @@ plugins {
 * Applies the Android library gradle plugin.
 
 ##### AndroidLibraryExtension
+
+Implements the [AndroidExtension](#androidextension) without any additional properties.
+
+#### multiplatform-android-library-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.multiplatform-android-library")
+}
+```
+
+* See [android-plugin](#android-plugin) for base logic.
+* Applies the multiplatform Android library gradle plugin.
+
+##### MultiplatformAndroidLibraryExtension
 
 Implements the [AndroidExtension](#androidextension) without any additional properties.
 
@@ -325,7 +360,7 @@ plugins {
 
 #### MultiplatformExtension
 
-* **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 11.
+* **[jdkVersion]**: The version of the JDK used for the Java toolchain. Optional with a default value of 21.
 
 #### multiplatform-android-target
 
@@ -535,6 +570,7 @@ plugins {
   * [composite-publish-plugin](#composite-publish-plugin)
   * [composite-test-plugin](#composite-test-plugin)
   * [version-catalog-plugin](#version-catalog-plugin)
+  * [internal-version-catalog-plugin](#internal-version-catalog-plugin)
 
 ### composite-build-plugin
 ```kotlin
@@ -593,4 +629,34 @@ plugins {
 }
 ```
 
-* Creates a version catalog named `libs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite. 
+* Creates a version catalog named `libs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite.
+
+### internal-version-catalog-plugin
+
+```kotlin
+plugins {
+    id("io.github.woody230.gradle.internal.internal-version-catalog")
+}
+```
+
+* Creates a version catalog named `ioGithubWoody230GradleInternalLibs` from a `libs.versions.toml` file that should exist under the `gradle` folder of the root of the composite.
+
+## internal-version-catalog
+
+Version catalogs intended to be used by my personal projects only.
+
+### libs
+
+The version catalog used by the internal plugins.
+
+Can be applied using the [internal-version-catalog-plugin](#internal-version-catalog-plugin), equivalent to the following:
+
+```kotlin
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("ioGithubWoody230GradleInternalLibs") {
+            from("io.github.woody230.gradle.internal:libs:$Version")
+        }
+    }
+}
+```

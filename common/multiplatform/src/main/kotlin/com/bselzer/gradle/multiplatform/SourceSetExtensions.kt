@@ -34,17 +34,17 @@ val NamedDomainObjectContainer<KotlinSourceSet>.androidMain: KotlinSourceSet
 val NamedDomainObjectContainer<KotlinSourceSet>.androidMainOrNull: KotlinSourceSet?
     get() = findByName("androidMain")
 
-val NamedDomainObjectContainer<KotlinSourceSet>.androidUnitTest: KotlinSourceSet
-    get() = getByName("androidUnitTest")
+val NamedDomainObjectContainer<KotlinSourceSet>.androidHostTest: KotlinSourceSet
+    get() = getByName("androidHostTest")
 
-val NamedDomainObjectContainer<KotlinSourceSet>.androidUnitTestOrNull: KotlinSourceSet?
-    get() = findByName("androidUnitTest")
+val NamedDomainObjectContainer<KotlinSourceSet>.androidHostTestOrNull: KotlinSourceSet?
+    get() = findByName("androidHostTest")
 
-val NamedDomainObjectContainer<KotlinSourceSet>.androidInstrumentedTest: KotlinSourceSet
-    get() = getByName("androidInstrumentedTest")
+val NamedDomainObjectContainer<KotlinSourceSet>.androidDeviceTest: KotlinSourceSet
+    get() = getByName("androidDeviceTest")
 
-val NamedDomainObjectContainer<KotlinSourceSet>.androidInstrumentedTestOrNull: KotlinSourceSet?
-    get() = findByName("androidInstrumentedTest")
+val NamedDomainObjectContainer<KotlinSourceSet>.androidDeviceTestOrNull: KotlinSourceSet?
+    get() = findByName("androidDeviceTest")
 
 val KotlinProjectExtension.mainSourceSets: Collection<KotlinSourceSet>
     get() = sourceSets.filter { sourceSet -> sourceSet.name == "main" || sourceSet.name.endsWith("Main") }

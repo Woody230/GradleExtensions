@@ -1,8 +1,8 @@
 package io.github.woody230.gradle.convention
+import libs
 
-// TODO can't access libs from precompiled scripts https://github.com/gradle/gradle/issues/15383
 plugins {
-    id("com.vanniktech.maven.publish.base")
+    alias(libs.plugins.vanniktech.publish)
 }
 
 setupGradleProperties()

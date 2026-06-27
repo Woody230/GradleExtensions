@@ -18,7 +18,7 @@ buildscript {
     }
 }
 
-// TODO must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
+// NOTE must use root project: extension libs does not exist https://github.com/gradle/gradle/issues/18237
 subprojects {
     apply(plugin = rootProject.libs.plugins.kotlin.dsl.get().pluginId)
 }

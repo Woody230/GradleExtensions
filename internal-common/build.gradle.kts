@@ -12,6 +12,10 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    dependencies {
+        classpath(libs.buildkonfig.plugin)
+    }
 }
 
 tasks.register("publishRecursivelyToMavenCentral") {

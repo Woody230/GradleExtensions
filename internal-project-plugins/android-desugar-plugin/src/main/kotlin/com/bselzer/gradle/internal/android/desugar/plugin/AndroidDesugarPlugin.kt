@@ -1,33 +1,47 @@
 package com.bselzer.gradle.internal.android.desugar.plugin
 
-import com.bselzer.gradle.android.androidComponentsExtension
+import com.bselzer.gradle.android.applicationAndroidComponentsExtensionOrNull
 import com.bselzer.gradle.android.finalizeDslReceiver
+import com.bselzer.gradle.android.libraryAndroidComponentsExtensionOrNull
+import com.bselzer.gradle.android.multiplatformLibraryAndroidComponentsExtensionOrNull
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
 class AndroidDesugarPlugin : Plugin<Project> {
-    override fun apply(project: Project) = with(project) {
+    override fun apply(project: Project): Unit = with(project) {
         val extension = androidDesugarExtension
 
         // NOTE: Must configure in finalizeDsl not afterEvaluate
         // https://developer.android.com/build/extend-agp#build-flow-extension-points
-        androidComponentsExtension.finalizeDslReceiver {
-            compileOptions {
-                isCoreLibraryDesugaringEnabled = true
+        applicationAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring desugaring for an Android application.")
+            compileOptions.isCoreLibraryDesugaringEnabled = true
+            addDesugaringDependency(extension)
+        }
+
+        libraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring desugaring for an Android library.")
+            compileOptions.isCoreLibraryDesugaringEnabled = true
+            addDesugaringDependency(extension)
+        }
+
+        multiplatformLibraryAndroidComponentsExtensionOrNull?.finalizeDslReceiver {
+            logger.info("Configuring desugaring for an Android multiplatform library.")
+            enableCoreLibraryDesugaring = true
+            addDesugaringDependency(extension)
+        }
+    }
+
+    fun Project.addDesugaringDependency(extension: AndroidDesugarExtension) {
+        dependencies {
+            val dependency: Any = when {
+                extension.version.isPresent -> "${BuildConfiguration.libs_android_desugar_module}:${extension.version.get()}"
+                else -> BuildConfiguration.libs_android_desugar
             }
 
-            dependencies {
-                val dependency: Any = when {
-                    // TODO libs.android.desugar.get().module
-                    extension.version.isPresent -> "com.android.tools:desugar_jdk_libs:${extension.version.get()}"
-
-                    // TODO libs.android.desugar.get()
-                    else -> "com.android.tools:desugar_jdk_libs:2.0.4"
-                }
-
-                add("coreLibraryDesugaring", dependency)
-            }
+            add("coreLibraryDesugaring", dependency)
         }
     }
 }

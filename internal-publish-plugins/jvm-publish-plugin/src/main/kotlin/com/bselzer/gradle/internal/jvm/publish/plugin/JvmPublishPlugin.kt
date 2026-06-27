@@ -2,9 +2,11 @@ package com.bselzer.gradle.internal.jvm.publish.plugin
 
 import com.bselzer.gradle.function.properties.*
 import com.bselzer.gradle.internal.maven.publish.plugin.MavenPublishPlugin
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.Platform
+import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.Project
 
 class JvmPublishPlugin : MavenPublishPlugin() {
@@ -16,7 +18,7 @@ class JvmPublishPlugin : MavenPublishPlugin() {
             val jar: JavadocJar
             if (getBooleanPropertyOrFalse(GradleProperty.JAVADOC_ENABLED)) {
                 logger.lifecycle("Publishing with javadoc using dokka.")
-                jar = JavadocJar.Dokka("dokkaHtml")
+                jar = JavadocJar.Dokka("dokkaGenerateHtml")
             }
             else {
                 logger.lifecycle("Publishing without javadoc.")
@@ -28,15 +30,14 @@ class JvmPublishPlugin : MavenPublishPlugin() {
 
             return KotlinJvm(
                 javadocJar = jar,
-                sourcesJar = sourcesEnabled
+                sourcesJar = if (sourcesEnabled) SourcesJar.Sources() else SourcesJar.Empty()
             )
         }
 
     override fun apply(project: Project) = with(project) {
         setupGradleProperties()
 
-        // TODO libs.plugins.dokka.get().pluginId
-        pluginManager.apply("org.jetbrains.dokka")
+        pluginManager.apply(BuildConfiguration.plugins_dokka)
 
         super.apply(project)
     }

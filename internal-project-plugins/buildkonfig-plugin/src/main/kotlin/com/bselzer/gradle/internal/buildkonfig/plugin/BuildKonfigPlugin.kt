@@ -1,5 +1,6 @@
 package com.bselzer.gradle.internal.buildkonfig.plugin
 
+import io.github.woody230.gradle.internal.build.configuration.BuildConfiguration
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -11,7 +12,6 @@ class BuildKonfigPlugin : Plugin<Project> {
             }
         }
 
-        // TODO libs.plugins.buildkonfig.get().pluginId
-        pluginManager.apply("com.codingfeline.buildkonfig")
+        pluginManager.apply(BuildConfiguration.plugins_buildkonfig)
     }
 }
