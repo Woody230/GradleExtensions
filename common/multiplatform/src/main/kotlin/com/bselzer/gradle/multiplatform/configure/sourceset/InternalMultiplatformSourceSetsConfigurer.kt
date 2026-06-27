@@ -22,7 +22,7 @@ internal class InternalMultiplatformSourceSetsConfigurer<Receiver>(
     }
 
     private fun KotlinSourceSet.apply(configure: Receiver.() -> Unit) {
-        extension.project.logger.lifecycle("Configuring KotlinSourceSet $name")
+        extension.project.logger.info("Configuring KotlinSourceSet $name")
         configure(configure)
     }
 
