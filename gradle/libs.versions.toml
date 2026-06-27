@@ -75,6 +75,7 @@ gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publi
 java = { id = "org.gradle.java-gradle-plugin" }
 kotlin-dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+panuszewski-typesafe-conventions = { id = "dev.panuszewski.typesafe-conventions", version.ref = "panuszewski-typesafe-conventions" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "vanniktech-publish" }
