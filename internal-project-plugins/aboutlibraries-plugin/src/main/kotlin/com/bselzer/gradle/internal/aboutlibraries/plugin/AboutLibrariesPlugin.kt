@@ -28,7 +28,7 @@ class AboutLibrariesPlugin : Plugin<Project> {
 
             // Move aboutlibraries.json so that it can be used by moko-resources.
             copy {
-                val from = "${layout.buildDirectory}\\generated\\aboutLibraries"
+                val from = "${layout.buildDirectory.get()}\\generated\\aboutLibraries"
                 val to = "$projectDir\\src\\$sourceSetName\\moko-resources\\assets"
                 logger.info("Copying the aboutLibraries.json from '$from' to '$to'.")
 
